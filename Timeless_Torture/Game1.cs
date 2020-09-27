@@ -44,7 +44,7 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            texture = Content.Load<Texture2D>("Player");
+            texture = Content.Load<Texture2D>("Player1");
             position = new Vector2(0, 0);
         }
 
@@ -64,7 +64,25 @@ namespace Timeless_Torture
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                position.Y -= 5;
+            }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                position.Y += 5;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                position.X -= 5;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                position.X += 5;
+            }aw
 
             base.Update(gameTime);
         }
@@ -78,6 +96,9 @@ namespace Timeless_Torture
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
