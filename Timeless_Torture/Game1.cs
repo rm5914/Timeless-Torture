@@ -11,7 +11,10 @@ namespace Timeless_Torture
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        private Texture2D texture;
+        private Vector2 position;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,6 +44,8 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            texture = Content.Load<Texture2D>("Player");
+            position = new Vector2(0, 0);
         }
 
         /// <summary>
@@ -59,10 +64,7 @@ namespace Timeless_Torture
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
