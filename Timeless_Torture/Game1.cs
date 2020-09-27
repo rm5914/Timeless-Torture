@@ -19,6 +19,8 @@ namespace Timeless_Torture
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            // This is a test
+            string riley = "cool";
         }
 
         /// <summary>
