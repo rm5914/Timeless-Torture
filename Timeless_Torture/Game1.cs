@@ -19,8 +19,6 @@ namespace Timeless_Torture
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            // This is a test
-            string riley = "cool";
         }
 
         /// <summary>
@@ -84,7 +82,7 @@ namespace Timeless_Torture
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 position.X += 5;
-            }aw
+            }
 
             base.Update(gameTime);
         }
