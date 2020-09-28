@@ -104,7 +104,6 @@ namespace Timeless_Torture
                         MovePlayer();
                         break;
                     }
-                    break;
             }
 
             
@@ -130,7 +129,6 @@ namespace Timeless_Torture
                         spriteBatch.Draw(button, position, Color.White);
                         break;
                     }
-                    break;
                 case GameState.Game:
                     {
                         spriteBatch.Draw(texture, position, Color.White);
