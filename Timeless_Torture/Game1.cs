@@ -124,7 +124,7 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
-
+                        break;
                     }
                     break;
                 case GameState.Game:
