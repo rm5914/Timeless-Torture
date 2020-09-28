@@ -51,7 +51,11 @@ namespace Timeless_Torture
         {
             // TODO: Add your initialization logic here
 
+            // Making the initial Game State the menu
             gameState = GameState.Menu;
+
+            // Making mouse visible
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -103,7 +107,7 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
-                        if (keyState.IsKeyDown(Keys.Enter)) 
+                        if ((mouseState.X >= startButton.X && mouseState.X <= startButton.X + startButton.Width) && (mouseState.Y > startButton.Y && mouseState.Y < startButton.Y + startButton.Height) && mouseState.LeftButton == ButtonState.Pressed) 
                         {
                             gameState = GameState.Game;
                         }
@@ -138,6 +142,7 @@ namespace Timeless_Torture
                 case GameState.Menu:
                     {
                         spriteBatch.Draw(button, startButton, Color.White);
+                        spriteBatch.DrawString(mainFont, "START", new Vector2(graphics.PreferredBackBufferWidth / 2 - 1 * button.Width / 3, graphics.PreferredBackBufferHeight / 3 - 3 * button.Height / 8), Color.White);
                         break;
                     }
                 case GameState.Game:
