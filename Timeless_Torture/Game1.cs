@@ -22,6 +22,7 @@ namespace Timeless_Torture
 
         //mouse state
         MouseState mouseState;
+        MouseState previousMouseState;
 
         //sprite font
         SpriteFont mainFont;
@@ -100,6 +101,8 @@ namespace Timeless_Torture
         {
             //see if buttons are pressed
             keyState = Keyboard.GetState();
+
+            previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
             // Checking the current game State
@@ -107,7 +110,8 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
-                        if ((mouseState.X >= startButton.X && mouseState.X <= startButton.X + startButton.Width) && (mouseState.Y > startButton.Y && mouseState.Y < startButton.Y + startButton.Height) && mouseState.LeftButton == ButtonState.Pressed) 
+                        // Checking if they click the 
+                        if (MouseClick(startButton))  
                         {
                             gameState = GameState.Game;
                         }
@@ -179,6 +183,24 @@ namespace Timeless_Torture
             if (keyState.IsKeyDown(Keys.D))
             {
                 position.X += 5;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the mouse has clicked (left-clicked) a button
+        /// </summary>
+        /// <param name="rectButton"> The rectangle of the button calling the method </param>
+        /// <returns> True if the button was clicked, false otherwise </returns>
+        protected bool MouseClick (Rectangle rectButton)
+        {
+            if ((mouseState.X >= rectButton.X && mouseState.X <= rectButton.X + rectButton.Width) && (mouseState.Y > rectButton.Y && mouseState.Y < rectButton.Y + rectButton.Height)
+                            && mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
