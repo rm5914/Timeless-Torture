@@ -126,7 +126,7 @@ namespace Timeless_Torture
                     {
                         break;
                     }
-                    break;
+                   
                 case GameState.Game:
                     {
                         spriteBatch.Draw(texture, position, Color.White);
