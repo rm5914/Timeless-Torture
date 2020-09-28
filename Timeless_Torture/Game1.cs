@@ -27,6 +27,7 @@ namespace Timeless_Torture
         SpriteBatch spriteBatch;
 
         private Texture2D texture;
+        private Texture2D button;
         private Vector2 position;
 
         public Game1()
@@ -44,6 +45,8 @@ namespace Timeless_Torture
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            gameState = GameState.Menu;
 
             base.Initialize();
         }
@@ -82,7 +85,22 @@ namespace Timeless_Torture
             keyState = Keyboard.GetState();
             //mouseState = Mouse.GetState();
 
-            MovePlayer();
+            // Checking the current game State
+            switch (gameState) 
+            {
+                case GameState.Menu:
+                    {
+                        if (keyState.IsKeyDown(Keys.Enter)) 
+                        {
+                            gameState = GameState.Game;
+                        }
+                    }
+                case GameState.Game:
+                    {
+                        MovePlayer();
+                    }
+            }
+
             
 
             base.Update(gameTime);
@@ -98,7 +116,19 @@ namespace Timeless_Torture
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, Color.White);
+
+            switch (gameState) 
+            {
+                case GameState.Menu:
+                    {
+
+                    }
+                case GameState.Game:
+                    {
+                        spriteBatch.Draw(texture, position, Color.White);
+                        break;
+                    }
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
