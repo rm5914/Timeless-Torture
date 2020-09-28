@@ -31,7 +31,9 @@ namespace Timeless_Torture
 
         private Texture2D texture;
         private Texture2D button;
+
         private Vector2 position;
+        private Rectangle startButton;
 
         public Game1()
         {
@@ -64,9 +66,14 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            // All of the textures
             texture = Content.Load<Texture2D>("Player1");
             button = Content.Load<Texture2D>("TT Buttons");
+
+            // All rectangles
             position = new Vector2(0, 0);
+            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, graphics.PreferredBackBufferHeight / 3 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
+
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
         }
@@ -99,7 +106,6 @@ namespace Timeless_Torture
                         if (keyState.IsKeyDown(Keys.Enter)) 
                         {
                             gameState = GameState.Game;
-                           
                         }
                         break;
                     }
@@ -131,7 +137,7 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
-                        spriteBatch.Draw(button, position, Color.White);
+                        spriteBatch.Draw(button, startButton, Color.White);
                         break;
                     }
                 case GameState.Game:
