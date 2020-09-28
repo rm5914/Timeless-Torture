@@ -22,16 +22,20 @@ namespace Timeless_Torture
 
         //mouse state
         MouseState mouseState;
+        MouseState previousMouseState;
 
         //sprite font
         SpriteFont mainFont;
 
+        // Basic game stuff
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // Textures
         private Texture2D texture;
         private Texture2D button;
 
+        // positions and rectangles
         private Vector2 position;
         private Rectangle startButton;
 
@@ -51,7 +55,11 @@ namespace Timeless_Torture
         {
             // TODO: Add your initialization logic here
 
+            // Making the initial Game State the menu
             gameState = GameState.Menu;
+
+            // Making mouse visible
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -96,6 +104,8 @@ namespace Timeless_Torture
         {
             //see if buttons are pressed
             keyState = Keyboard.GetState();
+
+            previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
             // Checking the current game State
@@ -103,7 +113,8 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
-                        if (keyState.IsKeyDown(Keys.Enter)) 
+                        // Checking if they click the 
+                        if (MouseClick(startButton))  
                         {
                             gameState = GameState.Game;
                         }
@@ -138,6 +149,7 @@ namespace Timeless_Torture
                 case GameState.Menu:
                     {
                         spriteBatch.Draw(button, startButton, Color.White);
+                        spriteBatch.DrawString(mainFont, "START", new Vector2(graphics.PreferredBackBufferWidth / 2 - 1 * button.Width / 3, graphics.PreferredBackBufferHeight / 3 - 3 * button.Height / 8), Color.White);
                         break;
                     }
                 case GameState.Game:
@@ -174,6 +186,24 @@ namespace Timeless_Torture
             if (keyState.IsKeyDown(Keys.D))
             {
                 position.X += 5;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the mouse has clicked (left-clicked) a button
+        /// </summary>
+        /// <param name="rectButton"> The rectangle of the button calling the method </param>
+        /// <returns> True if the button was clicked, false otherwise </returns>
+        protected bool MouseClick (Rectangle rectButton)
+        {
+            if ((mouseState.X >= rectButton.X && mouseState.X <= rectButton.X + rectButton.Width) && (mouseState.Y > rectButton.Y && mouseState.Y < rectButton.Y + rectButton.Height)
+                            && mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
