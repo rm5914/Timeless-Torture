@@ -23,6 +23,9 @@ namespace Timeless_Torture
         //mouse state
         //MouseState mouseState;
 
+        //sprite font
+        SpriteFont mainFont;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -64,6 +67,8 @@ namespace Timeless_Torture
             texture = Content.Load<Texture2D>("Player1");
             button = Content.Load<Texture2D>("TT Buttons");
             position = new Vector2(0, 0);
+            //load sprite font
+            mainFont = Content.Load<SpriteFont>("mainFont");
         }
 
         /// <summary>
