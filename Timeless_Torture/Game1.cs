@@ -20,6 +20,9 @@ namespace Timeless_Torture
         KeyboardState keyState;
         KeyboardState previousKeyState;
 
+        //mouse state
+        //MouseState mouseState;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -80,6 +83,7 @@ namespace Timeless_Torture
         {
             //see if buttons are pressed
             keyState = Keyboard.GetState();
+            //mouseState = Mouse.GetState();
 
             // Checking the current game State
             switch (gameState) 
@@ -108,7 +112,7 @@ namespace Timeless_Torture
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
