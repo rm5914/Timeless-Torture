@@ -34,9 +34,11 @@ namespace Timeless_Torture
         // Textures
         private Texture2D texture;
         private Texture2D button;
+        private Texture2D title;
 
         // positions and rectangles
         private Vector2 position;
+        private Vector2 titlePosition;
         private Rectangle startButton;
 
         public Game1()
@@ -77,10 +79,14 @@ namespace Timeless_Torture
             // All of the textures
             texture = Content.Load<Texture2D>("Player1");
             button = Content.Load<Texture2D>("TT Buttons");
+            title = Content.Load<Texture2D>("Title");
 
-            // All rectangles
+            // All positions
             position = new Vector2(0, 0);
-            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, graphics.PreferredBackBufferHeight / 3 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
+            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 4 - title.Height / 2);
+
+            // All Rectangles
+            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 3 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -148,8 +154,15 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
+                        //Changing Background Color
+                        GraphicsDevice.Clear(Color.Black);
+
+                        // Title
+                        spriteBatch.Draw(title, titlePosition, Color.White);
+
+                        // Start button
                         spriteBatch.Draw(button, startButton, Color.White);
-                        spriteBatch.DrawString(mainFont, "START", new Vector2(graphics.PreferredBackBufferWidth / 2 - 1 * button.Width / 3, graphics.PreferredBackBufferHeight / 3 - 3 * button.Height / 8), Color.White);
+                        spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.Black);
                         break;
                     }
                 case GameState.Game:
