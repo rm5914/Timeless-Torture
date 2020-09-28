@@ -78,6 +78,33 @@ namespace Timeless_Torture
             //see if buttons are pressed
             keyState = Keyboard.GetState();
 
+            MovePlayer();
+            
+
+            base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Black);
+
+            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.End();
+
+            base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Makes the player move, should be called in Update
+        /// </summary>
+        protected void MovePlayer() 
+        {
             if (keyState.IsKeyDown(Keys.W))
             {
                 position.Y -= 5;
@@ -97,24 +124,6 @@ namespace Timeless_Torture
             {
                 position.X += 5;
             }
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, Color.White);
-            spriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }
