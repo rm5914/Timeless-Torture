@@ -62,6 +62,7 @@ namespace Timeless_Torture
 
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("Player1");
+            button = Content.Load<Texture2D>("TT Buttons");
             position = new Vector2(0, 0);
         }
 
@@ -93,6 +94,7 @@ namespace Timeless_Torture
                         if (keyState.IsKeyDown(Keys.Enter)) 
                         {
                             gameState = GameState.Game;
+                           
                         }
                         break;
                     }
@@ -100,8 +102,8 @@ namespace Timeless_Torture
                 case GameState.Game:
                     {
                         MovePlayer();
+                        break;
                     }
-                    break;
             }
 
             
@@ -124,9 +126,9 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
+                        spriteBatch.Draw(button, position, Color.White);
                         break;
                     }
-                   
                 case GameState.Game:
                     {
                         spriteBatch.Draw(texture, position, Color.White);
