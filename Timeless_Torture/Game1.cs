@@ -94,11 +94,14 @@ namespace Timeless_Torture
                         {
                             gameState = GameState.Game;
                         }
+                        break;
                     }
+                    
                 case GameState.Game:
                     {
                         MovePlayer();
                     }
+                    break;
             }
 
             
@@ -123,6 +126,7 @@ namespace Timeless_Torture
                     {
 
                     }
+                    break;
                 case GameState.Game:
                     {
                         spriteBatch.Draw(texture, position, Color.White);
