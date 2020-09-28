@@ -27,12 +27,15 @@ namespace Timeless_Torture
         //sprite font
         SpriteFont mainFont;
 
+        // Basic game stuff
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // Textures
         private Texture2D texture;
         private Texture2D button;
 
+        // positions and rectangles
         private Vector2 position;
         private Rectangle startButton;
 
