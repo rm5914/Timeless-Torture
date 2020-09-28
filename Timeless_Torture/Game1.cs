@@ -21,7 +21,7 @@ namespace Timeless_Torture
         KeyboardState previousKeyState;
 
         //mouse state
-        //MouseState mouseState;
+        MouseState mouseState;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -91,7 +91,7 @@ namespace Timeless_Torture
         {
             //see if buttons are pressed
             keyState = Keyboard.GetState();
-            //mouseState = Mouse.GetState();
+            mouseState = Mouse.GetState();
 
             // Checking the current game State
             switch (gameState) 
