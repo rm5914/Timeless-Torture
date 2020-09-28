@@ -7,8 +7,19 @@ namespace Timeless_Torture
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
+     
+    //enum GameState
+    enum GameState { Menu, Game };
+
     public class Game1 : Game
     {
+        //enum as data type
+        GameState gameState;
+
+        //keyboard state
+        KeyboardState keyState;
+        KeyboardState previousKeyState;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -64,22 +75,25 @@ namespace Timeless_Torture
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            //see if buttons are pressed
+            keyState = Keyboard.GetState();
+
+            if (keyState.IsKeyDown(Keys.W))
             {
                 position.Y -= 5;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            if (keyState.IsKeyDown(Keys.S))
             {
                 position.Y += 5;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (keyState.IsKeyDown(Keys.A))
             {
                 position.X -= 5;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (keyState.IsKeyDown(Keys.D))
             {
                 position.X += 5;
             }
