@@ -115,18 +115,18 @@ namespace Timeless_Torture
             mouseState = Mouse.GetState();
 
             // Checking the current game State
-            switch (gameState) 
+            switch (gameState)
             {
                 case GameState.Menu:
                     {
                         // Checking if they click the 
-                        if (MouseClick(startButton))  
+                        if (MouseClick(startButton))
                         {
                             gameState = GameState.Game;
                         }
                         break;
                     }
-                    
+
                 case GameState.Game:
                     {
                         MovePlayer();
@@ -134,7 +134,7 @@ namespace Timeless_Torture
                     }
             }
 
-            
+
 
             base.Update(gameTime);
         }
@@ -150,7 +150,7 @@ namespace Timeless_Torture
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            switch (gameState) 
+            switch (gameState)
             {
                 case GameState.Menu:
                     {
@@ -160,9 +160,18 @@ namespace Timeless_Torture
                         // Title
                         spriteBatch.Draw(title, titlePosition, Color.White);
 
-                        // Start button
-                        spriteBatch.Draw(button, startButton, Color.White);
-                        spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.Black);
+                        // Start button, draws differently if it's being pressed
+                        if (IsMouseDown(startButton))
+                        {
+                            spriteBatch.Draw(button, startButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
+                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(button, startButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
+                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                        }
+                        
                         break;
                     }
                 case GameState.Game:
@@ -179,7 +188,7 @@ namespace Timeless_Torture
         /// <summary>
         /// Makes the player move, should be called in Update
         /// </summary>
-        protected void MovePlayer() 
+        protected void MovePlayer()
         {
             if (keyState.IsKeyDown(Keys.W))
             {
@@ -207,10 +216,28 @@ namespace Timeless_Torture
         /// </summary>
         /// <param name="rectButton"> The rectangle of the button calling the method </param>
         /// <returns> True if the button was clicked, false otherwise </returns>
-        protected bool MouseClick (Rectangle rectButton)
+        protected bool MouseClick(Rectangle rectButton)
         {
             if ((mouseState.X >= rectButton.X && mouseState.X <= rectButton.X + rectButton.Width) && (mouseState.Y > rectButton.Y && mouseState.Y < rectButton.Y + rectButton.Height)
                             && mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the mouse is currently pressed on a button
+        /// </summary>
+        /// <param name="rectButton"> The rectangle of the button calling the method </param>
+        /// <returns> True if the button is being pressed </returns>
+        protected bool IsMouseDown(Rectangle rectButton)
+        {
+            if ((mouseState.X >= rectButton.X && mouseState.X <= rectButton.X + rectButton.Width) && (mouseState.Y > rectButton.Y && mouseState.Y < rectButton.Y + rectButton.Height)
+                            && mouseState.LeftButton == ButtonState.Pressed)
             {
                 return true;
             }
