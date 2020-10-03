@@ -126,20 +126,28 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
-                        // Checking if they click the 
+                        // Checking if they click the start button
                         if (MouseClick(startButton))
                         {
                             gameState = GameState.Game;
+                        }
+                        //checking if they click the instructions button
+                        if (MouseClick(instructionsButton))
+                        {
+                            gameState = GameState.Instructions;
                         }
                         break;
                     }
 
                 case GameState.Instructions:
                     {
-
-
+                        //checking if they click the instructions button
+                        if (MouseClick(instructionsButton))
+                        {
+                            gameState = GameState.Menu;
+                        }
+                        break;
                     }
-                    break;
 
                 case GameState.Game:
                     {
@@ -199,8 +207,10 @@ namespace Timeless_Torture
                         break;
                     }
 
+                    //create instructions for game
                 case GameState.Instructions:
                     {
+                        spriteBatch.DrawString(mainFont, "WASD for character movement", new Vector2(400, 300), Color.Black);
                         
                     }
                     break;
