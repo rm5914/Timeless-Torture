@@ -60,6 +60,11 @@ namespace Timeless_Torture
             // Making the initial Game State the menu
             gameState = GameState.Menu;
 
+            // Changing screen size
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.PreferredBackBufferHeight = 900;
+            graphics.ApplyChanges();
+
             // Making mouse visible
             this.IsMouseVisible = true;
 
@@ -83,10 +88,10 @@ namespace Timeless_Torture
 
             // All positions
             position = new Vector2(0, 0);
-            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 4 - title.Height / 2);
+            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
 
             // All Rectangles
-            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 3 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
+            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 2 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
