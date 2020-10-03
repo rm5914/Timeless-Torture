@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Timeless_Torture
 {
@@ -9,7 +10,7 @@ namespace Timeless_Torture
     /// </summary>
      
     //enum GameState
-    enum GameState { Menu, Instructions, Game };
+    enum GameState { Menu, Options, Instructions, Game };
 
     public class Game1 : Game
     {
@@ -41,6 +42,9 @@ namespace Timeless_Torture
         private Vector2 titlePosition;
         private Rectangle startButton;
         private Rectangle instructionsButton;
+        private Rectangle instructionsBackButton;
+        private Rectangle optionsButton;
+        private Rectangle exitButton;
 
         public Game1()
         {
@@ -92,8 +96,11 @@ namespace Timeless_Torture
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
 
             // All Rectangles
-            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 3 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width, button.Height / 2);
-            instructionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 5 * graphics.PreferredBackBufferHeight / 7 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            instructionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 7 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            instructionsBackButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            optionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            exitButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -116,6 +123,7 @@ namespace Timeless_Torture
         protected override void Update(GameTime gameTime)
         {
             //see if buttons are pressed
+            previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
             previousMouseState = mouseState;
@@ -131,18 +139,44 @@ namespace Timeless_Torture
                         {
                             gameState = GameState.Game;
                         }
-                        //checking if they click the instructions button
+
+                        // checking if they click the instructions button
                         if (MouseClick(instructionsButton))
                         {
                             gameState = GameState.Instructions;
+                        }
+
+                        // Checking if they want to edit the options of the game
+                        if (MouseClick(optionsButton))
+                        {
+                            gameState = GameState.Options;
+                        }
+
+                        // Checking if they want to exit the game
+                        if (MouseClick(exitButton))
+                        {
+                            this.Exit();
                         }
                         break;
                     }
 
                 case GameState.Instructions:
                     {
-                        //checking if they click the instructions button
-                        if (MouseClick(instructionsButton))
+                        //checking if they click the back button
+                        if (MouseClick(instructionsBackButton))
+                        {
+                            gameState = GameState.Menu;
+                        }
+                        else if (SingleKeyPress(Keys.Back))
+                        {
+                            gameState = GameState.Menu;
+                        }
+                        break;
+                    }
+
+                case GameState.Options:
+                    {
+                        if (SingleKeyPress(Keys.Back))
                         {
                             gameState = GameState.Menu;
                         }
@@ -155,8 +189,6 @@ namespace Timeless_Torture
                         break;
                     }
             }
-
-
 
             base.Update(gameTime);
         }
@@ -182,38 +214,39 @@ namespace Timeless_Torture
                         // Title
                         spriteBatch.Draw(title, titlePosition, Color.White);
 
-                        // Start button, draws differently if it's being pressed
-                        if (IsMouseDown(startButton))
-                        {
-                            spriteBatch.Draw(button, startButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 10 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, startButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 10 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
-                        }
-                        // Start button, draws differently if it's being pressed
-                        if (IsMouseDown(instructionsButton))
-                        {
-                            spriteBatch.Draw(button, instructionsButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "INSTRUCTIONS", new Vector2(instructionsButton.X + 13 * instructionsButton.Width / 50, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, instructionsButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "INSTRUCTIONS", new Vector2(instructionsButton.X + 13 * instructionsButton.Width / 50, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
-                        }
+                        // Start Button
+                        PressButton(startButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(startButton.X + 10 * startButton.Width / 25, startButton.Y + startButton.Height / 4), "START");
+
+                        // Istructions Button
+                        PressButton(instructionsButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsButton.X + 1 * instructionsButton.Width / 4, instructionsButton.Y + instructionsButton.Height / 4), "INSTRUCTIONS");
+
+                        // Options Button
+                        PressButton(optionsButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(optionsButton.X + 35 * optionsButton.Width / 100, optionsButton.Y + optionsButton.Height / 4), "OPTIONS");
+
+                        // Exit Button
+                        PressButton(exitButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(exitButton.X + 21 * exitButton.Width / 50, exitButton.Y + exitButton.Height / 4), "EXIT");
+
                         break;
                     }
 
                     //create instructions for game
                 case GameState.Instructions:
                     {
-                        spriteBatch.DrawString(mainFont, "WASD for character movement", new Vector2(400, 300), Color.Black);
+                        //Changing Background Color
+                        GraphicsDevice.Clear(Color.Black);
+
+                        // Back Button
+                        PressButton(instructionsBackButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsBackButton.X + 21 * instructionsBackButton.Width / 50, instructionsBackButton.Y + instructionsBackButton.Height / 4), "BACK");
+
+                        spriteBatch.DrawString(mainFont, "WASD for character movement", new Vector2(400, 300), Color.DarkTurquoise);
                         
                     }
                     break;
+
+                case GameState.Options:
+                    {
+                        break;
+                    }
 
                 case GameState.Game:
                     {
@@ -225,6 +258,8 @@ namespace Timeless_Torture
 
             base.Draw(gameTime);
         }
+
+        // Start of Helper Methods
 
         /// <summary>
         /// Makes the player move, should be called in Update
@@ -249,6 +284,23 @@ namespace Timeless_Torture
             if (keyState.IsKeyDown(Keys.D))
             {
                 position.X += 5;
+            }
+        }
+
+        /// <summary>
+        /// Determines if a key has been pressed once
+        /// </summary>
+        /// <param name="key"> The selected key to determine if it's been pressed </param>
+        /// <returns> Returns true if a key was pressed once, returns false otherwise </returns>
+        protected bool SingleKeyPress (Keys key)
+        {
+            if (previousKeyState.IsKeyDown(key) && keyState.IsKeyUp(key))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -285,6 +337,30 @@ namespace Timeless_Torture
             else
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// If a button is pressed it will change it's color
+        /// </summary>
+        /// <param name="rect"> The rectangle of the button that is being pushed </param>
+        /// <param name="initialButtonColor"> The color the button is without being pressed </param>
+        /// <param name="initialtextColor"> The color the text is without being pressed </param>
+        /// <param name="pressedButtonColor"> The color the button is when being pressed </param>
+        /// <param name="pressedTextColor"> The color the text is when being pressed </param>
+        /// <param name="vector"> The position of the button </param>
+        /// <param name="text"> The text of the button </param>
+        protected void PressButton (Rectangle rect, Color initialButtonColor, Color initialtextColor, Color pressedButtonColor, Color pressedTextColor, Vector2 vector, string text)
+        {
+            if (IsMouseDown(rect))
+            {
+                spriteBatch.Draw(button, rect, pressedButtonColor);
+                spriteBatch.DrawString(mainFont, text, vector, pressedTextColor); 
+            }
+            else
+            {
+                spriteBatch.Draw(button, rect, initialButtonColor);
+                spriteBatch.DrawString(mainFont, text, vector, initialtextColor);
             }
         }
     }
