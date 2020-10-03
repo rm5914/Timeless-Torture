@@ -92,8 +92,8 @@ namespace Timeless_Torture
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
 
             // All Rectangles
-            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 3 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
-            instructionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 5 * graphics.PreferredBackBufferHeight / 7 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
+            startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 3 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            instructionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 5 * graphics.PreferredBackBufferHeight / 7 - button.Height / 2, 3 * button.Width, button.Height / 2);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -178,29 +178,30 @@ namespace Timeless_Torture
                         if (IsMouseDown(startButton))
                         {
                             spriteBatch.Draw(button, startButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 10 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
                         }
                         else
                         {
                             spriteBatch.Draw(button, startButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                            spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 10 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                        }
+                        // Start button, draws differently if it's being pressed
+                        if (IsMouseDown(instructionsButton))
+                        {
+                            spriteBatch.Draw(button, instructionsButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
+                            spriteBatch.DrawString(mainFont, "INSTRUCTIONS", new Vector2(instructionsButton.X + 13 * instructionsButton.Width / 50, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(button, instructionsButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
+                            spriteBatch.DrawString(mainFont, "INSTRUCTIONS", new Vector2(instructionsButton.X + 13 * instructionsButton.Width / 50, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
                         }
                         break;
                     }
 
                 case GameState.Instructions:
                     {
-                        // Start button, draws differently if it's being pressed
-                        if (IsMouseDown(instructionsButton))
-                        {
-                            spriteBatch.Draw(button, instructionsButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "Instructions", new Vector2(instructionsButton.X + 7 * instructionsButton.Width / 25, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, instructionsButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
-                            spriteBatch.DrawString(mainFont, "Instructions", new Vector2(instructionsButton.X + 7 * instructionsButton.Width / 25, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
-                        }
+                        
                     }
                     break;
 
