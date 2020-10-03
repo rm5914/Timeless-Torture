@@ -9,7 +9,7 @@ namespace Timeless_Torture
     /// </summary>
      
     //enum GameState
-    enum GameState { Menu, Game };
+    enum GameState { Menu, Instructions, Game };
 
     public class Game1 : Game
     {
@@ -40,6 +40,7 @@ namespace Timeless_Torture
         private Vector2 position;
         private Vector2 titlePosition;
         private Rectangle startButton;
+        private Rectangle instructionsButton;
 
         public Game1()
         {
@@ -87,6 +88,7 @@ namespace Timeless_Torture
 
             // All Rectangles
             startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 3 * graphics.PreferredBackBufferHeight / 5 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
+            instructionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 4, 5 * graphics.PreferredBackBufferHeight / 7 - button.Height / 2, 3 * button.Width / 2, button.Height / 2);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -126,6 +128,13 @@ namespace Timeless_Torture
                         }
                         break;
                     }
+
+                case GameState.Instructions:
+                    {
+
+
+                    }
+                    break;
 
                 case GameState.Game:
                     {
@@ -171,9 +180,25 @@ namespace Timeless_Torture
                             spriteBatch.Draw(button, startButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
                             spriteBatch.DrawString(mainFont, "START", new Vector2(startButton.X + 7 * startButton.Width / 25, startButton.Y + startButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
                         }
-                        
                         break;
                     }
+
+                case GameState.Instructions:
+                    {
+                        // Start button, draws differently if it's being pressed
+                        if (IsMouseDown(instructionsButton))
+                        {
+                            spriteBatch.Draw(button, instructionsButton, Color.RoyalBlue); // Lavender, royal blue, MediummAquamarine, turqoise
+                            spriteBatch.DrawString(mainFont, "Instructions", new Vector2(instructionsButton.X + 7 * instructionsButton.Width / 25, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkGreen); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(button, instructionsButton, Color.MediumAquamarine); // Lavender, royal blue, MediummAquamarine, turqoise
+                            spriteBatch.DrawString(mainFont, "Instructions", new Vector2(instructionsButton.X + 7 * instructionsButton.Width / 25, instructionsButton.Y + instructionsButton.Height / 4), Color.DarkTurquoise); // DarkSeaGreen,  DarkOrchid/Orchid, DodgerBlue, DarkTurquoise
+                        }
+                    }
+                    break;
+
                 case GameState.Game:
                     {
                         spriteBatch.Draw(texture, position, Color.White);
