@@ -10,12 +10,13 @@ namespace Timeless_Torture
     /// </summary>
      
     //enum GameState
-    enum GameState { Menu, Options, Instructions, Game };
+    enum GameState { Menu, Options, Instructions, Game, Pause };
 
     public class Game1 : Game
     {
         //enum as data type
         GameState gameState;
+        GameState previousGameState;
 
         //keyboard state
         KeyboardState keyState;
@@ -137,18 +138,21 @@ namespace Timeless_Torture
                         // Checking if they click the start button
                         if (MouseClick(startButton))
                         {
+                            previousGameState = gameState;
                             gameState = GameState.Game;
                         }
 
                         // checking if they click the instructions button
                         if (MouseClick(instructionsButton))
                         {
+                            previousGameState = gameState;
                             gameState = GameState.Instructions;
                         }
 
                         // Checking if they want to edit the options of the game
                         if (MouseClick(optionsButton))
                         {
+                            previousGameState = gameState;
                             gameState = GameState.Options;
                         }
 
@@ -163,21 +167,34 @@ namespace Timeless_Torture
                 case GameState.Instructions:
                     {
                         //checking if they click the back button
-                        if (MouseClick(instructionsBackButton))
+                        if (MouseClick(instructionsBackButton) && previousGameState == GameState.Menu)
                         {
+                            previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
-                        else if (SingleKeyPress(Keys.Back))
+                        else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
                         {
+                            previousGameState = gameState;
                             gameState = GameState.Menu;
+                        }
+                        else if (MouseClick(instructionsBackButton) && previousGameState == GameState.Pause)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Pause;
+                        }
+                        else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Pause;
                         }
                         break;
                     }
 
                 case GameState.Options:
                     {
-                        if (SingleKeyPress(Keys.Back))
+                        if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
                         {
+                            previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
                         break;
@@ -185,9 +202,51 @@ namespace Timeless_Torture
 
                 case GameState.Game:
                     {
+                        if (SingleKeyPress(Keys.Escape))
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Pause;
+                        }
                         MovePlayer();
                         break;
                     }
+
+                case GameState.Pause:
+                    {
+                        /*
+                        // Checking if they click the start button
+                        if (MouseClick(startButton))
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Game;
+                        }
+                        */
+
+                        // checking if they click the instructions button
+                        if (MouseClick(instructionsButton))
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Instructions;
+                        }
+
+                        // Checking if they want to edit the options of the game
+                        if (MouseClick(optionsButton))
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Options;
+                        }
+
+                        // Checking if they want to exit to the menu
+                        if (MouseClick(exitButton))
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Menu;
+                        }
+                        break;
+                    }
+
+
+
             }
 
             base.Update(gameTime);
