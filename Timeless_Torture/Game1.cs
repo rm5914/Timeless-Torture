@@ -38,14 +38,17 @@ namespace Timeless_Torture
         private Texture2D button;
         private Texture2D title;
 
-        // positions and rectangles
+        // positions
         private Vector2 position;
         private Vector2 titlePosition;
+
+        // Rectangles
         private Rectangle startButton;
         private Rectangle instructionsButton;
         private Rectangle instructionsBackButton;
         private Rectangle optionsButton;
         private Rectangle exitButton;
+        private Rectangle pauseContinueButton;
 
         public Game1()
         {
@@ -102,6 +105,7 @@ namespace Timeless_Torture
             instructionsBackButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             optionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             exitButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            pauseContinueButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -197,6 +201,11 @@ namespace Timeless_Torture
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
+                        else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Pause;
+                        }
                         break;
                     }
 
@@ -213,14 +222,14 @@ namespace Timeless_Torture
 
                 case GameState.Pause:
                     {
-                        /*
-                        // Checking if they click the start button
-                        if (MouseClick(startButton))
+                        
+                        // Checking if they click the continue button
+                        if (MouseClick(pauseContinueButton))
                         {
                             previousGameState = gameState;
                             gameState = GameState.Game;
                         }
-                        */
+                        
 
                         // checking if they click the instructions button
                         if (MouseClick(instructionsButton))
@@ -310,6 +319,28 @@ namespace Timeless_Torture
                 case GameState.Game:
                     {
                         spriteBatch.Draw(texture, position, Color.White);
+                        break;
+                    }
+                case GameState.Pause:
+                    {
+                        // Making the background
+                        spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
+
+                        // Title
+                        spriteBatch.Draw(title, titlePosition, Color.White);
+
+                        // Continue Button
+                        PressButton(pauseContinueButton, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2(startButton.X + 33 * startButton.Width / 100, startButton.Y + startButton.Height / 4), "CONTINUE");
+
+                        // Istructions Button
+                        PressButton(instructionsButton,  Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2(instructionsButton.X + 1 * instructionsButton.Width / 4, instructionsButton.Y + instructionsButton.Height / 4), "INSTRUCTIONS");
+
+                        // Options Button
+                        PressButton(optionsButton,  Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2(optionsButton.X + 35 * optionsButton.Width / 100, optionsButton.Y + optionsButton.Height / 4), "OPTIONS");
+
+                        // Exit Button
+                        PressButton(exitButton, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2(exitButton.X + 21 * exitButton.Width / 50, exitButton.Y + exitButton.Height / 4), "EXIT");
+
                         break;
                     }
             }
