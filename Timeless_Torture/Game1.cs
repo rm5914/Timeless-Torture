@@ -57,6 +57,12 @@ namespace Timeless_Torture
         private Rectangle exitButton;
         private Rectangle pauseContinueButton;
 
+        // Rectangles that are used just to be clean
+        private Rectangle instructionsWButton;
+        private Rectangle instructionsAButton;
+        private Rectangle instructionsSButton;
+        private Rectangle instructionsDButton;
+
         // CONSTRUCTOR
         public Game1()
         {
@@ -101,7 +107,7 @@ namespace Timeless_Torture
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // All of the textures
+            // All of the textures, also initializing the player
             texture = Content.Load<Texture2D>("PlayerSprite");
             player = new Player(texture, position);
 
@@ -120,6 +126,7 @@ namespace Timeless_Torture
             optionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             exitButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             pauseContinueButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -394,8 +401,6 @@ namespace Timeless_Torture
                         //Displaying the timer
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
-                        
-                        spriteBatch.Draw(texture, position, Color.White);
                         player.Draw(spriteBatch);
                         break;
                     }
