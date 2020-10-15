@@ -4,13 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Player.jpg</File>
-    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Player1.png</File>
-    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Title.png</File>
-    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/TT Buttons.png</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/PlayerSprite.png</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/Title.png</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/TT Buttons.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

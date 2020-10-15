@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/Player1.png","C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/PlayerSprite.xnb","TextureProcessor","Texture2DContent",4013,262229,0.1067142
 "C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Player.jpg","C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Player.xnb","TextureProcessor","Texture2DContent",8190,262229,0.7630516
 "C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Player1.png","C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Player1.xnb","TextureProcessor","Texture2DContent",4013,262229,0.0760049
 "C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Title.png","C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Title.xnb","TextureProcessor","Texture2DContent",5197,262229,0.0750027
