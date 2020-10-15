@@ -37,6 +37,7 @@ namespace Timeless_Torture
         private Texture2D texture;
         private Texture2D button;
         private Texture2D title;
+        private Texture2D pauseTitle;
 
         // positions
         private Vector2 position;
@@ -45,8 +46,9 @@ namespace Timeless_Torture
         // Rectangles
         private Rectangle startButton;
         private Rectangle instructionsButton;
-        private Rectangle instructionsBackButton;
+        private Rectangle backButton;
         private Rectangle optionsButton;
+        private Rectangle optionsBackButton;
         private Rectangle exitButton;
         private Rectangle pauseContinueButton;
 
@@ -94,6 +96,7 @@ namespace Timeless_Torture
             texture = Content.Load<Texture2D>("Player1");
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
+            pauseTitle = Content.Load<Texture2D>("Pause");
 
             // All positions
             position = new Vector2(0, 0);
@@ -102,7 +105,7 @@ namespace Timeless_Torture
             // All Rectangles
             startButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             instructionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 7 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
-            instructionsBackButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
+            backButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             optionsButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             exitButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             pauseContinueButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
@@ -171,7 +174,7 @@ namespace Timeless_Torture
                 case GameState.Instructions:
                     {
                         //checking if they click the back button
-                        if (MouseClick(instructionsBackButton) && previousGameState == GameState.Menu)
+                        if (MouseClick(backButton) && previousGameState == GameState.Menu)
                         {
                             previousGameState = gameState;
                             gameState = GameState.Menu;
@@ -181,7 +184,7 @@ namespace Timeless_Torture
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
-                        else if (MouseClick(instructionsBackButton) && previousGameState == GameState.Pause)
+                        else if (MouseClick(backButton) && previousGameState == GameState.Pause)
                         {
                             previousGameState = gameState;
                             gameState = GameState.Pause;
@@ -196,10 +199,21 @@ namespace Timeless_Torture
 
                 case GameState.Options:
                     {
-                        if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
+                        //checking if they click the back button
+                        if (MouseClick(backButton) && previousGameState == GameState.Menu)
                         {
                             previousGameState = gameState;
                             gameState = GameState.Menu;
+                        }
+                        else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Menu;
+                        }
+                        else if (MouseClick(backButton) && previousGameState == GameState.Pause)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Pause;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
                         {
@@ -304,15 +318,30 @@ namespace Timeless_Torture
                         GraphicsDevice.Clear(Color.Black);
 
                         // Back Button
-                        PressButton(instructionsBackButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsBackButton.X + 21 * instructionsBackButton.Width / 50, instructionsBackButton.Y + instructionsBackButton.Height / 4), "BACK");
-
+                        PressButton(backButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(backButton.X + 21 * backButton.Width / 50, backButton.Y + backButton.Height / 4), "BACK");
                         spriteBatch.DrawString(mainFont, "WASD for character movement", new Vector2(400, 300), Color.DarkTurquoise);
+                        if (SingleKeyPress(Keys.W))
+                        {
+                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 - 25, 50, 50), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 - 25, 50, 50), Color.White);
+                        }
                         
+                        
+                        spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.White);
+                        spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.White);
+                        spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 80, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.White);
+
                     }
                     break;
 
                 case GameState.Options:
                     {
+                        // Back Button
+                        PressButton(backButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(backButton.X + 21 * backButton.Width / 50, backButton.Y + backButton.Height / 4), "BACK");
+
                         break;
                     }
 
@@ -326,8 +355,8 @@ namespace Timeless_Torture
                         // Making the background
                         spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
 
-                        // Title
-                        spriteBatch.Draw(title, titlePosition, Color.White);
+                        // Pause titel
+                        spriteBatch.Draw(pauseTitle, titlePosition, Color.White);
 
                         // Continue Button
                         PressButton(pauseContinueButton, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2(startButton.X + 33 * startButton.Width / 100, startButton.Y + startButton.Height / 4), "CONTINUE");
