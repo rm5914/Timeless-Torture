@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.ComponentModel.Design;
+using System.Threading;
 
 namespace Timeless_Torture
 {
@@ -10,7 +12,7 @@ namespace Timeless_Torture
     /// </summary>
      
     //enum GameState
-    enum GameState { Menu, Options, Instructions, Game, Pause };
+    enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
 
     public class Game1 : Game
     {
@@ -32,6 +34,7 @@ namespace Timeless_Torture
         // Basic game stuff
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        double timer;
 
         // Textures
         private Texture2D texture;
@@ -65,7 +68,8 @@ namespace Timeless_Torture
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            timer = 180;
+            
             // Making the initial Game State the menu
             gameState = GameState.Menu;
 
@@ -157,7 +161,7 @@ namespace Timeless_Torture
                         if (MouseClick(optionsButton))
                         {
                             previousGameState = gameState;
-                            gameState = GameState.Options;
+                            gameState = GameState.Options;wwa
                         }
 
                         // Checking if they want to exit the game
@@ -211,6 +215,15 @@ namespace Timeless_Torture
 
                 case GameState.Game:
                     {
+                        //Starting the timer
+                        timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
+
+                        if (timer <= 0)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Gameover;
+                        }
+
                         if (SingleKeyPress(Keys.Escape))
                         {
                             previousGameState = gameState;
@@ -254,7 +267,16 @@ namespace Timeless_Torture
                         break;
                     }
 
+                case GameState.GameOver:
+                    {
+                        if(SingleKeyPress(Keys.Enter)
+                        {
+                            previousGameState = gameState;
+                            gameState = GameState.Menu;
+                        }
 
+                        break;
+                    }
 
             }
 
@@ -318,6 +340,10 @@ namespace Timeless_Torture
 
                 case GameState.Game:
                     {
+                        //Displaying the timer
+                        string time = string.Format("{0:0.00}", timer);
+                        spriteBatch.DrawString(font, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
+                        
                         spriteBatch.Draw(texture, position, Color.White);
                         break;
                     }
@@ -342,6 +368,11 @@ namespace Timeless_Torture
                         PressButton(exitButton, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2(exitButton.X + 21 * exitButton.Width / 50, exitButton.Y + exitButton.Height / 4), "EXIT");
 
                         break;
+                    }
+
+                case GameState.GameOver:
+                    {
+                        spriteBatch.DrawString(font, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                     }
             }
             spriteBatch.End();
