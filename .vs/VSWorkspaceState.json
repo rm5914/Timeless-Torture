@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Timeless_Torture",
+    "\\Timeless_Torture\\Content"
   ],
+  "SelectedNode": "\\Timeless_Torture\\Game1.cs",
   "PreviewInSolutionExplorer": false
 }
