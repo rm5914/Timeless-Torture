@@ -16,6 +16,8 @@ namespace Timeless_Torture
 
     public class Game1 : Game
     {
+        // FIELDS
+
         //enum as data type
         GameState gameState;
         GameState previousGameState;
@@ -35,6 +37,7 @@ namespace Timeless_Torture
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         double timer;
+        Player player;
 
         // Textures
         private Texture2D texture;
@@ -54,11 +57,15 @@ namespace Timeless_Torture
         private Rectangle exitButton;
         private Rectangle pauseContinueButton;
 
+        // CONSTRUCTOR
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
+
+        // CORE GAME METHODS
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -94,9 +101,10 @@ namespace Timeless_Torture
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             // All of the textures
-            texture = Content.Load<Texture2D>("Player1");
+            texture = Content.Load<Texture2D>("PlayerSprite");
+            player = new Player(texture, position);
+
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
@@ -115,15 +123,6 @@ namespace Timeless_Torture
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -242,7 +241,7 @@ namespace Timeless_Torture
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
-                        MovePlayer();
+                        player.MovePlayer(keyState);
                         break;
                     }
 
@@ -397,6 +396,7 @@ namespace Timeless_Torture
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         
                         spriteBatch.Draw(texture, position, Color.White);
+                        player.Draw(spriteBatch);
                         break;
                     }
                 case GameState.Pause:
@@ -433,33 +433,7 @@ namespace Timeless_Torture
             base.Draw(gameTime);
         }
 
-        // Start of Helper Methods
-
-        /// <summary>
-        /// Makes the player move, should be called in Update
-        /// </summary>
-        protected void MovePlayer()
-        {
-            if (keyState.IsKeyDown(Keys.W))
-            {
-                position.Y -= 5;
-            }
-
-            if (keyState.IsKeyDown(Keys.S))
-            {
-                position.Y += 5;
-            }
-
-            if (keyState.IsKeyDown(Keys.A))
-            {
-                position.X -= 5;
-            }
-
-            if (keyState.IsKeyDown(Keys.D))
-            {
-                position.X += 5;
-            }
-        }
+        // HELPER METHODS
 
         /// <summary>
         /// Determines if a key has been pressed once
