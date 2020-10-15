@@ -247,7 +247,6 @@ namespace Timeless_Torture
 
                 case GameState.Pause:
                     {
-                        
                         // Checking if they click the continue button
                         if (MouseClick(pauseContinueButton))
                         {
@@ -255,7 +254,6 @@ namespace Timeless_Torture
                             gameState = GameState.Game;
                         }
                         
-
                         // checking if they click the instructions button
                         if (MouseClick(instructionsButton))
                         {
@@ -289,7 +287,6 @@ namespace Timeless_Torture
 
                         break;
                     }
-
             }
 
             base.Update(gameTime);
@@ -394,8 +391,6 @@ namespace Timeless_Torture
                         //Displaying the timer
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
-                        
-                        spriteBatch.Draw(texture, position, Color.White);
                         player.Draw(spriteBatch);
                         break;
                     }
