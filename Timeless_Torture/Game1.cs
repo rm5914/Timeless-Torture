@@ -101,18 +101,23 @@ namespace Timeless_Torture
         protected override void Initialize()
         {
             // Tries to read in the file data
-            try
-            {
-                // Making the timer the legnth selected by user input
-                StreamReader sr = new StreamReader(@"c:\Downloads\timer.txt");
+            //try
+            //{
+            // Making the timer the legnth selected by user input
+            string path = Directory.GetParent(
+            Directory.GetCurrentDirectory()).Parent.FullName;
+            path = path.Substring(0, path.Length - 31);
+            // may need to go one directory higher for solution directory
+            
+            StreamReader sr = new StreamReader(path + @"\ExternalTool\bin\Debug\timer.txt");
                 timer = int.Parse(sr.ReadLine());
                 sr.Close();
-            }
-            catch
-            {
+            //}
+            //catch
+            //{
                 // Base timer if the file doesn't give one
-                timer = 120;
-            }
+                //timer = 120;
+            //}
 
             // TODO: Add your initialization logic here
             
