@@ -1,4 +1,4 @@
-﻿namespace Timeless_Torture
+﻿namespace ExternalTool
 {
     partial class Form1
     {
@@ -37,3 +37,4 @@
         #endregion
     }
 }
+
