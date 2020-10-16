@@ -24,6 +24,9 @@ namespace ExternalTool
             StreamWriter output = new StreamWriter(outStream);
 
             output.WriteLine(numericUpDown1.Value);
+
+            output.Close();
+            Close();
         }
     }
 }
