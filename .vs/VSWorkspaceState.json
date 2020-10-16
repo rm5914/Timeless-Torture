@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Timeless_Torture"
+    "\\Timeless_Torture",
+    "\\Timeless_Torture\\Content"
   ],
-  "SelectedNode": "\\Timeless_Torture\\Timeless_Torture.sln",
+  "SelectedNode": "\\Timeless_Torture\\Content\\mainFont.xnb",
   "PreviewInSolutionExplorer": false
 }
