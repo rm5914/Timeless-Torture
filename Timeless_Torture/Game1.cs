@@ -258,7 +258,6 @@ namespace Timeless_Torture
 
                 case GameState.Pause:
                     {
-                        
                         // Checking if they click the continue button
                         if (MouseClick(pauseContinueButton))
                         {
@@ -266,7 +265,6 @@ namespace Timeless_Torture
                             gameState = GameState.Game;
                         }
                         
-
                         // checking if they click the instructions button
                         if (MouseClick(instructionsButton))
                         {
@@ -300,7 +298,6 @@ namespace Timeless_Torture
 
                         break;
                     }
-
             }
 
             base.Update(gameTime);
