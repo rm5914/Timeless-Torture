@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
 using System.Threading;
+using System.IO;
 
 namespace Timeless_Torture
 {
@@ -99,8 +100,22 @@ namespace Timeless_Torture
         /// </summary>
         protected override void Initialize()
         {
+            // Tries to read in the file data
+            try
+            {
+                // Making the timer the legnth selected by user input
+                StreamReader sr = new StreamReader(@"c:\Downloads\timer.txt");
+                timer = int.Parse(sr.ReadLine());
+                sr.Close();
+            }
+            catch
+            {
+                // Base timer if the file doesn't give one
+                timer = 120;
+            }
+
             // TODO: Add your initialization logic here
-            timer = 10;
+            
             numGenerator = new Random();
             
             // Making the initial Game State the menu

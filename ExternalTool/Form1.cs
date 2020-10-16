@@ -20,7 +20,7 @@ namespace ExternalTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FileStream outStream = File.OpenWrite("file.txt");
+            FileStream outStream = File.OpenWrite(@"c:\Downloads\timer.txt");
             StreamWriter output = new StreamWriter(outStream);
 
             output.WriteLine(numericUpDown1.Value);
