@@ -8,10 +8,10 @@ namespace Timeless_Torture
     class Player
     {
         // FIELDS
-        private Vector2 position;
+        private Rectangle position;
         private Texture2D playerTexture;
 
-        public Player(Texture2D texture, Vector2 pos)
+        public Player(Texture2D texture, Rectangle pos)
         {
             position = pos;
             playerTexture = texture;

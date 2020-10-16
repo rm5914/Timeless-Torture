@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ExternalTool
 {
@@ -15,6 +16,17 @@ namespace ExternalTool
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FileStream outStream = File.OpenWrite("file.txt");
+            StreamWriter output = new StreamWriter(outStream);
+
+            output.WriteLine(numericUpDown1.Value);
+
+            output.Close();
+            Close();
         }
     }
 }

@@ -36,17 +36,30 @@ namespace Timeless_Torture
         // Basic game stuff
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         double timer;
+
+        // The player and their position
         Player player;
+        private Rectangle playerPosition;
+
+        // Item positions
+        Vector2[] itemPositions;
+
+        // Random Number Generator
+        Random numGenerator;
+
+        // All of the items
+        Item placeholder;
 
         // Textures
         private Texture2D texture;
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
+        private Texture2D genericItem;
 
-        // positions
-        private Vector2 position;
+        // Vectors for positions
         private Vector2 titlePosition;
 
         // Main menu buttons
@@ -88,6 +101,7 @@ namespace Timeless_Torture
         {
             // TODO: Add your initialization logic here
             timer = 10;
+            numGenerator = new Random();
             
             // Making the initial Game State the menu
             gameState = GameState.Menu;
@@ -109,23 +123,36 @@ namespace Timeless_Torture
         /// </summary>
         protected override void LoadContent()
         {
+           
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // All of the textures, also initializing the player
+            // Making the player 
             texture = Content.Load<Texture2D>("PlayerSprite");
-            player = new Player(texture, position);
+            playerPosition = new Rectangle(0, 0, texture.Width / 2, texture.Height / 2);
+            player = new Player(texture, playerPosition);
 
+            // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
+            genericItem = Content.Load<Texture2D>("ItemPlaceholder");
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
 
             // All positions
-            position = new Vector2(0, 0);
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
+
+            // All of the item positions
+            itemPositions = new Vector2[3];
+            itemPositions[0] = new Vector2(50, 50);
+            itemPositions[1] = new Vector2(300, 300);
+            itemPositions[2] = new Vector2(550, 550);
+
+            int position = numGenerator.Next(0, itemPositions.Length);
+            placeholder = new Item(new Rectangle((int)itemPositions[position].X, (int)itemPositions[position].Y, genericItem.Width / 25, genericItem.Height / 25), genericItem, Color.White);
 
             // Creating all of the buttons
 
@@ -457,6 +484,8 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
+                        placeholder.Draw(spriteBatch);
+
                         break;
                     }
                 case GameState.Pause:
@@ -464,7 +493,7 @@ namespace Timeless_Torture
                         // Making the background
                         spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
 
-                        // Pause titel
+                        // Pause title
                         spriteBatch.Draw(pauseTitle, titlePosition, Color.White);
 
                         // Continue Button

@@ -1,0 +1,10 @@
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\bin\Debug\ExternalTool.exe.config
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\bin\Debug\ExternalTool.exe
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\bin\Debug\ExternalTool.pdb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.csprojAssemblyReference.cache
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.Form1.resources
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.Properties.Resources.resources
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.csproj.GenerateResource.cache
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.csproj.CoreCompileInputs.cache
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.exe
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\ExternalTool\obj\Debug\ExternalTool.pdb
