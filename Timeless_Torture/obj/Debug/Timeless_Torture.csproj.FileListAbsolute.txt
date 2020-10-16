@@ -1,7 +1,6 @@
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\obj\Debug\Timeless_Torture.csprojAssemblyReference.cache
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\obj\Debug\Timeless_Torture.csproj.CoreCompileInputs.cache
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player.xnb
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
@@ -96,6 +95,7 @@ C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyC
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Pause.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\PlayerSprite.xnb
-C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ItemPlaceholder.xnb
-C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\obj\Debug\Timeless_Torture.Form1.resources
-C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\obj\Debug\Timeless_Torture.csproj.GenerateResource.cache
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Title.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\TT Buttons.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mainFont.xnb

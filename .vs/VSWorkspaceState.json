@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\ExternalTool",
     "\\Timeless_Torture",
     "\\Timeless_Torture\\Content"
   ],
-  "SelectedNode": "\\Timeless_Torture\\Content\\Content.mgcb",
+  "SelectedNode": "\\ExternalTool\\ExternalTool.sln",
   "PreviewInSolutionExplorer": false
 }
