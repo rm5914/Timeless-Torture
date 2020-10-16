@@ -127,7 +127,11 @@ namespace Timeless_Torture
             exitButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
             pauseContinueButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2);
 
-
+            // Rectangles that make the code cleaner
+            instructionsWButton =  new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 - 25, 50, 50);
+            instructionsAButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 80, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50);
+            instructionsSButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50);
+            instructionsDButton = new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50);
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
         }
@@ -349,42 +353,17 @@ namespace Timeless_Torture
                         spriteBatch.DrawString(mainFont, "WASD for character movement", new Vector2(400, 300), Color.DarkTurquoise);
 
                         // Making the buttons to display wasd and changes color when their corresponding button is pressed
-                        if (keyState.IsKeyDown(Keys.W))
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 - 25, 50, 50), Color.RoyalBlue);
-                            spriteBatch.DrawString(mainFont, "w", new Vector2(), Color.White);
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 - 25, 50, 50), Color.MediumAquamarine);
-                        }
+                        // W button
+                        KeyboardPressButton(instructionsWButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsWButton.X + instructionsWButton.Width / 4, instructionsWButton.Y + instructionsWButton.Height / 5), "W", Keys.W);
 
-                        if (keyState.IsKeyDown(Keys.S))
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.RoyalBlue);
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.MediumAquamarine);
-                        }
+                        // A Button
+                        KeyboardPressButton(instructionsAButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsAButton.X + instructionsAButton.Width / 3, instructionsAButton.Y + instructionsAButton.Height / 5), "A", Keys.A);
 
-                        if (keyState.IsKeyDown(Keys.D))
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.RoyalBlue);
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.MediumAquamarine);
-                        }
+                        // S Button
+                        KeyboardPressButton(instructionsSButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsSButton.X + instructionsSButton.Width / 3, instructionsSButton.Y + instructionsSButton.Height / 5), "S", Keys.S);
 
-                        if (keyState.IsKeyDown(Keys.A))
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 80, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.RoyalBlue);
-                        }
-                        else
-                        {
-                            spriteBatch.Draw(button, new Rectangle(graphics.PreferredBackBufferWidth / 2 - 80, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), Color.MediumAquamarine);
-                        }
+                        // D Button
+                        KeyboardPressButton(instructionsDButton, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2(instructionsDButton.X + instructionsDButton.Width / 3, instructionsDButton.Y + instructionsDButton.Height / 5), "D", Keys.D);
                     }
                     break;
 
@@ -509,6 +488,31 @@ namespace Timeless_Torture
             {
                 spriteBatch.Draw(button, rect, pressedButtonColor);
                 spriteBatch.DrawString(mainFont, text, vector, pressedTextColor); 
+            }
+            else
+            {
+                spriteBatch.Draw(button, rect, initialButtonColor);
+                spriteBatch.DrawString(mainFont, text, vector, initialtextColor);
+            }
+        }
+
+        /// <summary>
+        /// Changes the button when a selected key on the keyboard is pressed
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="initialButtonColor"></param>
+        /// <param name="initialtextColor"></param>
+        /// <param name="pressedButtonColor"></param>
+        /// <param name="pressedTextColor"></param>
+        /// <param name="vector"></param>
+        /// <param name="text"></param>
+        /// <param name="key"></param>
+        protected void KeyboardPressButton (Rectangle rect, Color initialButtonColor, Color initialtextColor, Color pressedButtonColor, Color pressedTextColor, Vector2 vector, string text, Keys key)
+        {
+            if (keyState.IsKeyDown(key))
+            {
+                spriteBatch.Draw(button, rect, pressedButtonColor);
+                spriteBatch.DrawString(mainFont, text, vector, pressedTextColor);
             }
             else
             {
