@@ -17,6 +17,43 @@ namespace Timeless_Torture
             playerTexture = texture;
         }
 
+        // Properties 
+        public Rectangle Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
+
+        public int X
+        {
+            get
+            {
+                return position.X;
+            }
+            set
+            {
+                position.X = value;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return position.Y;
+            }
+            set
+            {
+                position.Y = value;
+            }
+        }
+
         /// <summary>
         /// Makes the player move, should be called in Update
         /// </summary>
