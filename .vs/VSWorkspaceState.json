@@ -1,9 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\ExternalTool",
+    "\\ExternalTool\\bin",
+    "\\ExternalTool\\bin\\Debug",
     "\\Timeless_Torture",
+    "\\Timeless_Torture\\bin",
+    "\\Timeless_Torture\\bin\\DesktopGL",
+    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU",
+    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug",
     "\\Timeless_Torture\\Content"
   ],
-  "SelectedNode": "\\Timeless_Torture\\Game1.cs",
+  "SelectedNode": "\\ExternalTool\\Properties",
   "PreviewInSolutionExplorer": false
 }

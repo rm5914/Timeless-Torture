@@ -8,13 +8,50 @@ namespace Timeless_Torture
     class Player
     {
         // FIELDS
-        private Vector2 position;
+        private Rectangle position;
         private Texture2D playerTexture;
 
-        public Player(Texture2D texture, Vector2 pos)
+        public Player(Texture2D texture, Rectangle pos)
         {
             position = pos;
             playerTexture = texture;
+        }
+
+        // Properties 
+        public Rectangle Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
+
+        public int X
+        {
+            get
+            {
+                return position.X;
+            }
+            set
+            {
+                position.X = value;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return position.Y;
+            }
+            set
+            {
+                position.Y = value;
+            }
         }
 
         /// <summary>

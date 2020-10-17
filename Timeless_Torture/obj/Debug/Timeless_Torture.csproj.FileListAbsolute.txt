@@ -1,7 +1,6 @@
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\obj\Debug\Timeless_Torture.csprojAssemblyReference.cache
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\obj\Debug\Timeless_Torture.csproj.CoreCompileInputs.cache
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player.xnb
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
 C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
@@ -30,7 +29,6 @@ C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyC
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
-C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player.xnb
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player1.xnb
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Timeless_Torture.exe
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Timeless_Torture.pdb
@@ -51,7 +49,6 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_To
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
-C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Player.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Player1.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player1.xnb
@@ -95,3 +92,13 @@ C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\obj\Debug\Timeless_Tortu
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\obj\Debug\Timeless_Torture.pdb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\PlayerSprite.xnb
+C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Pause.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\PlayerSprite.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Title.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\TT Buttons.xnb
+C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mainFont.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ItemPlaceholder.xnb
+C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ItemPlaceholder.xnb
