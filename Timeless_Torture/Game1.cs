@@ -395,7 +395,6 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         
-                        spriteBatch.Draw(texture, position, Color.White);
                         player.Draw(spriteBatch);
                         break;
                     }

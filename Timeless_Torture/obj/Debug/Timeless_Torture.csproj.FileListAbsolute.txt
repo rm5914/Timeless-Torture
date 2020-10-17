@@ -93,4 +93,5 @@ C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\obj\Debug\Timeless_Tortu
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\obj\Debug\Timeless_Torture.csproj.CopyComplete
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\obj\Debug\Timeless_Torture.exe
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\obj\Debug\Timeless_Torture.pdb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\PlayerSprite.xnb
