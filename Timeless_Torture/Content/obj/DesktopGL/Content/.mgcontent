@@ -4,11 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/Pause.png</File>
-    <File>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/Title.png</File>
-    <File>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/TT Buttons.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Pause.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Title.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/TT Buttons.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/ItemPlaceholder.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
