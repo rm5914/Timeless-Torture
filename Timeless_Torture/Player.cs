@@ -25,6 +25,11 @@ namespace Timeless_Torture
             if (keyState.IsKeyDown(Keys.W))
             {
                 position.Y -= 5;
+                int upSide = playerTexture.Height - 270;
+                if (position.Y < upSide)
+                {
+                    position.Y = upSide;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.S))
