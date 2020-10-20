@@ -15,8 +15,10 @@ namespace Timeless_Torture
     {
         bool isPickedUp;
         bool isBurned;
+        bool playerClose;
         Rectangle rectangle;
         Texture2D texture;
+        Texture2D closeTexture;
         Color color;
 
         // Constructor
@@ -27,6 +29,23 @@ namespace Timeless_Torture
             this.color = color;
             isPickedUp = false;
             isBurned = false;
+            playerClose = false;
+        }
+
+        /// <summary>
+        /// Checks to see if the player is close
+        /// </summary>
+        /// <param name="player"> The position of the player </param>
+        public void IsPlayerClose(Rectangle player)
+        {
+            if ((((player.X + player.Width / 2) + 100 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 100 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 100 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 100 < (rectangle.Y + rectangle.Height / 2)))
+            {
+                playerClose = true;
+            }
+            else
+            {
+                playerClose = false;
+            }
         }
 
         /// <summary>
@@ -34,7 +53,10 @@ namespace Timeless_Torture
         /// </summary>
         public void PickUp()
         {
-            isPickedUp = true;
+            if (playerClose)
+            {
+                isPickedUp = true;
+            }
         }
 
         /// <summary>
@@ -54,8 +76,17 @@ namespace Timeless_Torture
         {
             if (!isPickedUp && !isBurned)
             {
-                spriteBatch.Draw(texture, rectangle, Color.White);
+                if (playerClose)
+                {
+                    // The Color.DarkRed is temporary, once we get the second sprite the color will just be color and the texture will change
+                    spriteBatch.Draw(texture, rectangle, Color.DarkRed);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, rectangle, color);
+                }
             }
+            
         }
     }
 }
