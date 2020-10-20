@@ -39,6 +39,7 @@ namespace Timeless_Torture
         SpriteBatch spriteBatch;
 
         double timer;
+        double timerMax;
 
         // The player and their position
         Player player;
@@ -119,6 +120,7 @@ namespace Timeless_Torture
                 timer = 120;
             }
 
+            timerMax = timer;
             // TODO: Add your initialization logic here
             
             numGenerator = new Random();
@@ -274,6 +276,7 @@ namespace Timeless_Torture
                         {
                             previousGameState = gameState;
                             gameState = GameState.Game;
+                            GameStart();
                         }
 
                         // checking if they click the instructions button
@@ -564,5 +567,14 @@ namespace Timeless_Torture
             }
         }
 
+        /// <summary>
+        /// Used to start the game from 0
+        /// </summary>
+        protected void GameStart()
+        {
+            timer = timerMax;
+            player.X = 0;
+            player.Y = 0;
+        }
     }
 }
