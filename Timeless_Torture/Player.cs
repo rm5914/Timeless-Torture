@@ -62,21 +62,41 @@ namespace Timeless_Torture
             if (keyState.IsKeyDown(Keys.W))
             {
                 position.Y -= 5;
+                int upSide = playerTexture.Height - 250;
+                if (position.Y < upSide)
+                {
+                    position.Y = upSide;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.S))
             {
                 position.Y += 5;
+                int downSide = 1030 - playerTexture.Height;
+                if (position.Y > downSide)
+                {
+                    position.Y = downSide;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.A))
             {
                 position.X -= 5;
+                int leftSide = playerTexture.Width - 270;
+                if (position.X < leftSide)
+                {
+                    position.X = leftSide;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.D))
             {
                 position.X += 5;
+                int rightSide = 1330 - playerTexture.Width;
+                if (position.X > rightSide)
+                {
+                    position.X = rightSide;
+                }
             }
         }
 
