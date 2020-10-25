@@ -207,24 +207,6 @@ namespace Timeless_Torture
             itemPositions[6] = new ItemPosition(new Vector2(150, 550));
             itemPositions[7] = new ItemPosition(new Vector2(300, 550));
 
-            items = new Item[seventiesItems.Count];
-
-            // Picking randomly from the set positions
-            for (int  i = 0; i < items.Length; i++)
-            {
-                int position = numGenerator.Next(0, itemPositions.Length);
-
-                // Don't have the positions overlap
-                Vector2 itemVector = itemPositions[position].GetPosition();
-                while (itemVector.X == 0)
-                {
-                    position = numGenerator.Next(0, itemPositions.Length);
-                    itemVector = itemPositions[position].GetPosition();
-                }
-                
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, seventiesItems[i].Width / 3, seventiesItems[i].Width / 3), seventiesItems[i], seventiesGlow[i], Color.White);
-            }
-
             // Creating all of the buttons
 
             // Main Menu buttons
@@ -637,6 +619,34 @@ namespace Timeless_Torture
             timer = timerMax;
             player.X = 0;
             player.Y = 0;
+
+            PlaceItems(seventiesItems, seventiesGlow);
+        }
+
+        /// <summary>
+        /// Takes in 2 textures for items and places them through the selected locations
+        /// </summary>
+        /// <param name="textures"> The textures of the items in their basic form </param>
+        /// <param name="glowTextures"> The textures of the items but with a glow around them </param>
+        protected void PlaceItems(List<Texture2D> textures, List<Texture2D> glowTextures)
+        {
+            items = new Item[textures.Count];
+
+            // Picking randomly from the set positions
+            for (int i = 0; i < items.Length; i++)
+            {
+                int position = numGenerator.Next(0, itemPositions.Length);
+
+                // Don't have the positions overlap
+                Vector2 itemVector = itemPositions[position].GetPosition();
+                while (itemVector.X == 0)
+                {
+                    position = numGenerator.Next(0, itemPositions.Length);
+                    itemVector = itemPositions[position].GetPosition();
+                }
+
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 3, textures[i].Width / 3), textures[i], glowTextures[i], Color.White);
+            }
         }
     }
 }
