@@ -4,13 +4,39 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/ItemPlaceholder.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/lightsaber glow.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/lightsaber.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/Pause.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/pong machine glow.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/pong machine.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/Title.png</File>
-    <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/TT Buttons.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/ItemPlaceholder.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/lightsaber glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/lightsaber.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/mood ring glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/mood ring.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Pause.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/pong machine glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/pong machine.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/rubik cube glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/rubik cube.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/slap bracelet glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/slap bracelet.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/Title.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/TT Buttons.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/walkman glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/walkman.png</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>

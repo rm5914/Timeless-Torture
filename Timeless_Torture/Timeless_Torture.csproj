@@ -65,8 +65,16 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\mood ring glow.png" />
+    <Content Include="Content\mood ring.png" />
     <Content Include="Content\pong machine glow.png" />
     <Content Include="Content\pong machine.png" />
+    <Content Include="Content\rubik cube glow.png" />
+    <Content Include="Content\rubik cube.png" />
+    <Content Include="Content\slap bracelet glow.png" />
+    <Content Include="Content\slap bracelet.png" />
+    <Content Include="Content\walkman glow.png" />
+    <Content Include="Content\walkman.png" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
       <Link>x86\SDL2.dll</Link>
