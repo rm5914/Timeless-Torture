@@ -66,14 +66,22 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\beeper glow.png" />
+    <Content Include="Content\beeper.png" />
+    <Content Include="Content\fireplace glow.png" />
+    <Content Include="Content\fireplace.png" />
     <Content Include="Content\mood ring glow.png" />
     <Content Include="Content\mood ring.png" />
+    <Content Include="Content\play station glow.png" />
+    <Content Include="Content\play station.png" />
     <Content Include="Content\pong machine glow.png" />
     <Content Include="Content\pong machine.png" />
     <Content Include="Content\rubik cube glow.png" />
     <Content Include="Content\rubik cube.png" />
     <Content Include="Content\slap bracelet glow.png" />
     <Content Include="Content\slap bracelet.png" />
+    <Content Include="Content\tamagotchi glow.png" />
+    <Content Include="Content\tamagotchi.png" />
     <Content Include="Content\walkman glow.png" />
     <Content Include="Content\walkman.png" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
