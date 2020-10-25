@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel.Design;
 using System.Threading;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Timeless_Torture
 {
@@ -54,12 +55,25 @@ namespace Timeless_Torture
         // All of the items
         Item[] items;
 
+        // Lists to hold time-specific items
+        private List<Texture2D> seventiesItems;
+
+        // Lists to hold the glowing texture for time-specific items
+        private List<Texture2D> seventiesGlow;
+
         // Textures
         private Texture2D texture;
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
-        private Texture2D genericItem;
+
+        // item textures
+        private Texture2D lightsaber;
+        private Texture2D pongMachine;
+
+        // Glow Item Textures
+        private Texture2D lightsaberGlow;
+        private Texture2D pongMachineGlow;
 
         // Vectors for positions
         private Vector2 titlePosition;
@@ -159,7 +173,22 @@ namespace Timeless_Torture
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
-            genericItem = Content.Load<Texture2D>("ItemPlaceholder");
+
+            // Item textures
+            lightsaber = Content.Load<Texture2D>("lightsaber");
+            pongMachine = Content.Load<Texture2D>("pong machine");
+
+            seventiesItems = new List<Texture2D>();
+            seventiesItems.Add(lightsaber);
+            seventiesItems.Add(pongMachine);
+
+            // Glow textures
+            lightsaberGlow = Content.Load<Texture2D>("lightsaber glow");
+            pongMachineGlow = Content.Load<Texture2D>("pong machine glow");
+
+            seventiesGlow = new List<Texture2D>();
+            seventiesGlow.Add(lightsaberGlow);
+            seventiesGlow.Add(pongMachineGlow);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -178,7 +207,7 @@ namespace Timeless_Torture
             itemPositions[6] = new ItemPosition(new Vector2(150, 550));
             itemPositions[7] = new ItemPosition(new Vector2(300, 550));
 
-            items = new Item[5];
+            items = new Item[seventiesItems.Count];
 
             // Picking randomly from the set positions
             for (int  i = 0; i < items.Length; i++)
@@ -193,7 +222,7 @@ namespace Timeless_Torture
                     itemVector = itemPositions[position].GetPosition();
                 }
                 
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, genericItem.Width / 30, genericItem.Width / 30), genericItem, Color.White);
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, seventiesItems[i].Width / 3, seventiesItems[i].Width / 3), seventiesItems[i], seventiesGlow[i], Color.White);
             }
 
             // Creating all of the buttons
