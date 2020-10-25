@@ -68,6 +68,14 @@ namespace Timeless_Torture
             }
         }
 
+        public int Limit
+        {
+            get
+            {
+                return inventoryLimit;
+            }
+        }
+
         // End of properties
 
         /// <summary>
@@ -85,16 +93,6 @@ namespace Timeless_Torture
                 }
             }
 
-            if (keyState.IsKeyDown(Keys.S))
-            {
-                position.Y += 5;
-                int downSide = 1030 - playerTexture.Height;
-                if (position.Y > downSide)
-                {
-                    position.Y = downSide;
-                }
-            }
-
             if (keyState.IsKeyDown(Keys.A))
             {
                 position.X -= 5;
@@ -102,6 +100,16 @@ namespace Timeless_Torture
                 if (position.X < leftSide)
                 {
                     position.X = leftSide;
+                }
+            }
+
+            if (keyState.IsKeyDown(Keys.S))
+            {
+                position.Y += 5;
+                int downSide = 1030 - playerTexture.Height;
+                if (position.Y > downSide)
+                {
+                    position.Y = downSide;
                 }
             }
 
@@ -116,12 +124,24 @@ namespace Timeless_Torture
             }
         }
 
+        /// <summary>
+        /// Adds the given item to the players inventory
+        /// </summary>
+        /// <param name="item"> The item to be added </param>
         public void AddItem(Item item)
         {
             if (inventory.Count < inventoryLimit)
             {
                 inventory.Add(item);
             }
+        }
+
+        /// <summary>
+        /// Removes the first item in the inventory
+        /// </summary>
+        public void Remove()
+        {
+            inventory.RemoveAt(0);
         }
 
         /// <summary>

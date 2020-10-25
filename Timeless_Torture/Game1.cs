@@ -64,6 +64,9 @@ namespace Timeless_Torture
         // The fireplace
         Fireplace fireplace;
 
+        // A list to keep track of the item list, changes when the era changes
+        private List<Texture2D> currentEraItems;
+
         // Lists to hold time-specific items
         private List<Texture2D> seventiesItems;
         private List<Texture2D> eightiesItems;
@@ -202,6 +205,8 @@ namespace Timeless_Torture
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
+            fireplaceTexture = Content.Load<Texture2D>("fireplace");
+            fireplaceGlowTexture = Content.Load<Texture2D>("fireplace glow");
 
             // Secenties item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
@@ -250,7 +255,7 @@ namespace Timeless_Torture
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
 
             // Fireplace
-            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(600, 600, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
 
             // All of the item positions
             itemPositions = new ItemPosition[8];
@@ -262,6 +267,9 @@ namespace Timeless_Torture
             itemPositions[5] = new ItemPosition(new Vector2(550, 150));
             itemPositions[6] = new ItemPosition(new Vector2(150, 550));
             itemPositions[7] = new ItemPosition(new Vector2(300, 550));
+
+            // Setting the current era
+            currentEraItems = seventiesItems;
 
             // Creating all of the buttons
 
@@ -451,26 +459,34 @@ namespace Timeless_Torture
                             gameState = GameState.GameOver;
                         }
 
+                        // Checking if they want to pause
                         if (SingleKeyPress(Keys.Escape))
                         {
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
 
+                        // Checking if they click the fireplace
                         if (SingleKeyPress(Keys.E))
                         {
                             for (int i = 0; i < items.Length; i++)
                             {
-                                if (items[i].PickUp())
+                                if (player.Inventory.Count < player.Limit && items[i].PickUp())
                                 {
-                                    pickupCount++;
+                                    player.AddItem(items[i]);
                                     return;
                                 }
                             }
+                        }
 
-                            if (fireplace.IsPlayerClose(player.Position) && player.Inventory.Count != 0)
+                        // Checking if they click the fireplace
+                        if (SingleKeyPress(Keys.F) && player.Inventory.Count != 0)
+                        {
+                            fireplace.BurnItem(player);
+
+                            if (fireplace.BurnedItems == currentEraItems.Count)
                             {
-
+                                NextLevel();
                             }
                         }
                         player.MovePlayer(keyState);
@@ -611,6 +627,8 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
+                        fireplace.IsPlayerClose(player.Position);
+                        fireplace.Draw(spriteBatch);
 
                         for (int i = 0; i < items.Length; i++)
                         {
@@ -731,21 +749,25 @@ namespace Timeless_Torture
                 case 1:
                     {
                         PlaceItems(eightiesItems, eightiesGlow);
+                        currentEraItems = eightiesItems;
                         break;
                     }
                 case 2:
                     {
                         PlaceItems(ninetiesItems, ninetiesGlow);
+                        currentEraItems = ninetiesItems;
                         break;
                     }
                 case 3:
                     {
                         PlaceItems(zerosItems, zerosGlow);
+                        currentEraItems = zerosItems;
                         break;
                     }
                 case 4:
                     {
                         PlaceItems(tensItems, tensGlow);
+                        currentEraItems = tensItems;
                         break;
                     }
                 case 5:

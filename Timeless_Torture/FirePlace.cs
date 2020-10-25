@@ -44,14 +44,15 @@ namespace Timeless_Torture
         // End of  properties
 
         /// <summary>
-        /// Burns the given item if the player is close
+        /// Burns the first item the player has
         /// </summary>
-        /// <param name="item"> The item to be burned </param>
-        public void BurnItem(Item item)
+        /// <param name="player"> The item to be burned </param>
+        public void BurnItem(Player player)
         {
             if (playerClose)
             {
-                item.Burn();
+                player.Inventory[0].Burn();
+                player.Remove();
                 burnedItems++;
             }
         }
@@ -68,17 +69,15 @@ namespace Timeless_Torture
         /// Checks if the player is close to the fireplace
         /// </summary>
         /// <param name="player"></param>
-        public bool IsPlayerClose(Rectangle player)
+        public void IsPlayerClose(Rectangle player)
         {
             if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))
             {
                 playerClose = true;
-                return true;
             }
             else
             {
                 playerClose = false;
-                return false;
             }
         }
 
