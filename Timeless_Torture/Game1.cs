@@ -14,7 +14,7 @@ namespace Timeless_Torture
      
     //enum GameState
     enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
-
+    
     public class Game1 : Game
     {
         // FIELDS
@@ -46,13 +46,13 @@ namespace Timeless_Torture
         private Rectangle playerPosition;
 
         // Item positions
-        Vector2[] itemPositions;
+        ItemPosition[] itemPositions;
 
         // Random Number Generator
         Random numGenerator;
 
         // All of the items
-        Item placeholder;
+        Item[] items;
 
         // Textures
         private Texture2D texture;
@@ -168,13 +168,33 @@ namespace Timeless_Torture
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
 
             // All of the item positions
-            itemPositions = new Vector2[3];
-            itemPositions[0] = new Vector2(50, 50);
-            itemPositions[1] = new Vector2(300, 300);
-            itemPositions[2] = new Vector2(550, 550);
+            itemPositions = new ItemPosition[8];
+            itemPositions[0] = new ItemPosition(new Vector2(150, 150));
+            itemPositions[1] = new ItemPosition(new Vector2(300, 300));
+            itemPositions[2] = new ItemPosition(new Vector2(550, 550));
+            itemPositions[3] = new ItemPosition(new Vector2(150, 300));
+            itemPositions[4] = new ItemPosition(new Vector2(300, 150));
+            itemPositions[5] = new ItemPosition(new Vector2(550, 150));
+            itemPositions[6] = new ItemPosition(new Vector2(150, 550));
+            itemPositions[7] = new ItemPosition(new Vector2(300, 550));
 
-            int position = numGenerator.Next(0, itemPositions.Length);
-            placeholder = new Item(new Rectangle((int)itemPositions[position].X, (int)itemPositions[position].Y, genericItem.Width / 25, genericItem.Height / 25), genericItem, Color.White);
+            items = new Item[5];
+
+            // Picking randomly from the set positions
+            for (int  i = 0; i < items.Length; i++)
+            {
+                int position = numGenerator.Next(0, itemPositions.Length);
+
+                // Don't have the positions overlap
+                Vector2 itemVector = itemPositions[position].GetPosition();
+                while (itemVector.X == 0)
+                {
+                    position = numGenerator.Next(0, itemPositions.Length);
+                    itemVector = itemPositions[position].GetPosition();
+                }
+                
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, genericItem.Width / 30, genericItem.Width / 30), genericItem, Color.White);
+            }
 
             // Creating all of the buttons
 
@@ -369,6 +389,14 @@ namespace Timeless_Torture
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
+
+                        if (SingleKeyPress(Keys.E))
+                        {
+                            for (int i = 0; i < items.Length; i++)
+                            {
+                                items[i].PickUp();
+                            }
+                        }
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -507,7 +535,12 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
-                        placeholder.Draw(spriteBatch);
+
+                        for (int i = 0; i < items.Length; i++)
+                        {
+                            items[i].IsPlayerClose(player.Position);
+                            items[i].Draw(spriteBatch);
+                        }
 
                         break;
                     }
