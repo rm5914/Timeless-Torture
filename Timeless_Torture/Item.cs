@@ -22,10 +22,11 @@ namespace Timeless_Torture
         Color color;
 
         // Constructor
-        public Item(Rectangle rectangle, Texture2D texture, Color color)
+        public Item(Rectangle rectangle, Texture2D texture, Texture2D closeTexture, Color color)
         {
             this.rectangle = rectangle;
             this.texture = texture;
+            this.closeTexture = closeTexture;
             this.color = color;
             isPickedUp = false;
             isBurned = false;
@@ -38,7 +39,7 @@ namespace Timeless_Torture
         /// <param name="player"> The position of the player </param>
         public void IsPlayerClose(Rectangle player)
         {
-            if ((((player.X + player.Width / 2) + 100 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 100 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 100 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 100 < (rectangle.Y + rectangle.Height / 2)))
+            if ((((player.X + player.Width / 2) + 100 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 100 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 110 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 110 < (rectangle.Y + rectangle.Height / 2)))
             {
                 playerClose = true;
             }
@@ -79,7 +80,7 @@ namespace Timeless_Torture
                 if (playerClose)
                 {
                     // The Color.DarkRed is temporary, once we get the second sprite the color will just be color and the texture will change
-                    spriteBatch.Draw(texture, rectangle, Color.DarkRed);
+                    spriteBatch.Draw(closeTexture, rectangle, color);
                 }
                 else
                 {
