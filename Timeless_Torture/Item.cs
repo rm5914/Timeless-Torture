@@ -52,12 +52,14 @@ namespace Timeless_Torture
         /// <summary>
         /// Picks up the item
         /// </summary>
-        public void PickUp()
+        public bool PickUp()
         {
             if (playerClose)
             {
                 isPickedUp = true;
+                return true;
             }
+            return false;
         }
 
         /// <summary>

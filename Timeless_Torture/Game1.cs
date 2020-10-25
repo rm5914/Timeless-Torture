@@ -42,6 +42,12 @@ namespace Timeless_Torture
         double timer;
         double timerMax;
 
+        // Keeps track of the current level
+        int currentLevel;
+
+        // TEMPORARY, keeps track of the amount of items that have been picked up to help progress the game while we can't burn items
+        int pickupCount;
+
         // The player and their position
         Player player;
         private Rectangle playerPosition;
@@ -57,9 +63,17 @@ namespace Timeless_Torture
 
         // Lists to hold time-specific items
         private List<Texture2D> seventiesItems;
+        private List<Texture2D> eightiesItems;
+        private List<Texture2D> ninetiesItems;
+        private List<Texture2D> zerosItems;
+        private List<Texture2D> tensItems;
 
         // Lists to hold the glowing texture for time-specific items
         private List<Texture2D> seventiesGlow;
+        private List<Texture2D> eightiesGlow;
+        private List<Texture2D> ninetiesGlow;
+        private List<Texture2D> zerosGlow;
+        private List<Texture2D> tensGlow;
 
         // Textures
         private Texture2D texture;
@@ -70,10 +84,20 @@ namespace Timeless_Torture
         // item textures
         private Texture2D lightsaber;
         private Texture2D pongMachine;
+        private Texture2D moodRing;
+
+        private Texture2D slapBracelet;
+        private Texture2D walkman;
+        private Texture2D rubikCube;
 
         // Glow Item Textures
         private Texture2D lightsaberGlow;
         private Texture2D pongMachineGlow;
+        private Texture2D moodRingGlow;
+
+        private Texture2D slapBraceletGlow;
+        private Texture2D walkmanGlow;
+        private Texture2D rubikCubeGlow;
 
         // Vectors for positions
         private Vector2 titlePosition;
@@ -167,28 +191,52 @@ namespace Timeless_Torture
             // Making the player 
             texture = Content.Load<Texture2D>("PlayerSprite");
             playerPosition = new Rectangle(0, 0, texture.Width / 2, texture.Height / 2);
-            player = new Player(texture, playerPosition);
+            player = new Player(texture, playerPosition, 1);
 
             // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
 
-            // Item textures
+            // Secenties item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
             pongMachine = Content.Load<Texture2D>("pong machine");
+            moodRing = Content.Load<Texture2D>("mood ring");
 
             seventiesItems = new List<Texture2D>();
             seventiesItems.Add(lightsaber);
             seventiesItems.Add(pongMachine);
+            seventiesItems.Add(moodRing);
 
-            // Glow textures
+            // Eighties item textures
+            slapBracelet = Content.Load<Texture2D>("slap bracelet");
+            walkman = Content.Load<Texture2D>("walkman");
+            rubikCube = Content.Load<Texture2D>("rubik cube");
+
+            eightiesItems = new List<Texture2D>();
+            eightiesItems.Add(slapBracelet);
+            eightiesItems.Add(walkman);
+            eightiesItems.Add(rubikCube);
+
+            // Seventies glow textures
             lightsaberGlow = Content.Load<Texture2D>("lightsaber glow");
             pongMachineGlow = Content.Load<Texture2D>("pong machine glow");
+            moodRingGlow = Content.Load<Texture2D>("mood ring glow");
 
             seventiesGlow = new List<Texture2D>();
             seventiesGlow.Add(lightsaberGlow);
             seventiesGlow.Add(pongMachineGlow);
+            seventiesGlow.Add(moodRingGlow);
+
+            // Eighties glow textures
+            slapBraceletGlow = Content.Load<Texture2D>("slap bracelet glow");
+            walkmanGlow = Content.Load<Texture2D>("walkman glow");
+            rubikCubeGlow = Content.Load<Texture2D>("rubik cube glow");
+
+            eightiesGlow = new List<Texture2D>();
+            eightiesGlow.Add(slapBraceletGlow);
+            eightiesGlow.Add(walkmanGlow);
+            eightiesGlow.Add(rubikCubeGlow);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -405,7 +453,16 @@ namespace Timeless_Torture
                         {
                             for (int i = 0; i < items.Length; i++)
                             {
-                                items[i].PickUp();
+                                if (items[i].PickUp())
+                                {
+                                    pickupCount++;
+
+                                if (pickupCount == 3)
+                                    {
+                                        NextLevel();
+                                    }
+                                    return;
+                                }
                             }
                         }
                         player.MovePlayer(keyState);
@@ -619,7 +676,8 @@ namespace Timeless_Torture
             timer = timerMax;
             player.X = 0;
             player.Y = 0;
-
+            currentLevel = 0;
+            pickupCount = 0;
             PlaceItems(seventiesItems, seventiesGlow);
         }
 
@@ -644,8 +702,48 @@ namespace Timeless_Torture
                     position = numGenerator.Next(0, itemPositions.Length);
                     itemVector = itemPositions[position].GetPosition();
                 }
-
                 items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 3, textures[i].Width / 3), textures[i], glowTextures[i], Color.White);
+            }
+        }
+
+        /// <summary>
+        /// Starts the next level of the game
+        /// </summary>
+        protected void NextLevel()
+        {
+            timer = timerMax;
+            player.X = 0;
+            player.Y = 0;
+            pickupCount = 0;
+            currentLevel++;
+
+            switch (currentLevel)
+            {
+                case 1:
+                    {
+                        PlaceItems(eightiesItems, eightiesGlow);
+                        break;
+                    }
+                case 2:
+                    {
+                        PlaceItems(ninetiesItems, ninetiesGlow);
+                        break;
+                    }
+                case 3:
+                    {
+                        PlaceItems(zerosItems, zerosGlow);
+                        break;
+                    }
+                case 4:
+                    {
+                        PlaceItems(tensItems, tensGlow);
+                        break;
+                    }
+                case 5:
+                    {
+                        // Victory screen
+                        break;
+                    }
             }
         }
     }

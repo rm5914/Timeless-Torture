@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using System;
 
 namespace Timeless_Torture
@@ -10,11 +11,16 @@ namespace Timeless_Torture
         // FIELDS
         private Rectangle position;
         private Texture2D playerTexture;
+        private List<Item> inventory;
+        private int inventoryLimit;
 
-        public Player(Texture2D texture, Rectangle pos)
+        // Constructor
+        public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
         {
             position = pos;
             playerTexture = texture;
+            inventory = new List<Item>();
+            this.inventoryLimit = inventoryLimit;
         }
 
         // Properties 
@@ -53,6 +59,16 @@ namespace Timeless_Torture
                 position.Y = value;
             }
         }
+
+        public List<Item> Inventory
+        {
+            get
+            {
+                return inventory;
+            }
+        }
+
+        // End of properties
 
         /// <summary>
         /// Makes the player move, should be called in Update
@@ -100,6 +116,18 @@ namespace Timeless_Torture
             }
         }
 
+        public void AddItem(Item item)
+        {
+            if (inventory.Count < inventoryLimit)
+            {
+                inventory.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Draws the player to the screen
+        /// </summary>
+        /// <param name="spriteBatch"> The spritebatch used to draw the player </param>
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(playerTexture, position, Color.White);
