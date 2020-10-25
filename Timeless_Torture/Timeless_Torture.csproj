@@ -65,6 +65,8 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\pong machine glow.png" />
+    <Content Include="Content\pong machine.png" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
       <Link>x86\SDL2.dll</Link>
@@ -111,6 +113,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <Content Include="Content\lightsaber glow.png" />
+    <Content Include="Content\lightsaber.png" />
     <Content Include="Content\mainFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
