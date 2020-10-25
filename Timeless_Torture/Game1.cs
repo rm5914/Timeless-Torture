@@ -61,6 +61,9 @@ namespace Timeless_Torture
         // All of the items
         Item[] items;
 
+        // The fireplace
+        Fireplace fireplace;
+
         // Lists to hold time-specific items
         private List<Texture2D> seventiesItems;
         private List<Texture2D> eightiesItems;
@@ -80,6 +83,8 @@ namespace Timeless_Torture
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
+        private Texture2D fireplaceTexture;
+        private Texture2D fireplaceGlowTexture;
 
         // item textures
         private Texture2D lightsaber;
@@ -162,7 +167,7 @@ namespace Timeless_Torture
             // TODO: Add your initialization logic here
             
             numGenerator = new Random();
-            
+
             // Making the initial Game State the menu
             gameState = GameState.Menu;
 
@@ -243,6 +248,9 @@ namespace Timeless_Torture
 
             // All positions
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
+
+            // Fireplace
+            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(600, 600, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
 
             // All of the item positions
             itemPositions = new ItemPosition[8];
@@ -456,13 +464,13 @@ namespace Timeless_Torture
                                 if (items[i].PickUp())
                                 {
                                     pickupCount++;
-
-                                if (pickupCount == 3)
-                                    {
-                                        NextLevel();
-                                    }
                                     return;
                                 }
+                            }
+
+                            if (fireplace.IsPlayerClose(player.Position) && player.Inventory.Count != 0)
+                            {
+
                             }
                         }
                         player.MovePlayer(keyState);
@@ -715,6 +723,7 @@ namespace Timeless_Torture
             player.X = 0;
             player.Y = 0;
             pickupCount = 0;
+            fireplace.Reset();
             currentLevel++;
 
             switch (currentLevel)
