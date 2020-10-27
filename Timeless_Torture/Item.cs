@@ -33,28 +33,36 @@ namespace Timeless_Torture
             playerClose = false;
         }
 
-        /// <summary>
-        /// Checks to see if the player is close
-        /// </summary>
-        /// <param name="player"> The position of the player </param>
-        public void IsPlayerClose(Rectangle player)
+        // Start of Properties
+
+        public Rectangle Position
         {
-            if ((((player.X + player.Width / 2) + 100 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 100 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 110 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 110 < (rectangle.Y + rectangle.Height / 2)))
+            get
             {
-                playerClose = true;
-            }
-            else
-            {
-                playerClose = false;
+                return rectangle;
             }
         }
+
+        public bool PlayerClose
+        {
+            get
+            {
+                return playerClose;
+            }
+            set
+            {
+                playerClose = value;
+            }
+        }
+
+        // End of Properties
 
         /// <summary>
         /// Picks up the item
         /// </summary>
         public bool PickUp()
         {
-            if (playerClose)
+            if (playerClose && !isBurned && !isPickedUp)
             {
                 isPickedUp = true;
                 return true;

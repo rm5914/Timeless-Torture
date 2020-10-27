@@ -90,6 +90,18 @@ namespace Timeless_Torture
             }
         }
 
+        public bool IsPressed
+        {
+            get
+            {
+                return isPressed;
+            }
+            set
+            {
+                isPressed = value;
+            }
+        }
+
         // End of properties
        
 

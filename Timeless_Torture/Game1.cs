@@ -51,9 +51,6 @@ namespace Timeless_Torture
         // Keeps track of the current level
         int currentLevel;
 
-        // TEMPORARY, keeps track of the amount of items that have been picked up to help progress the game while we can't burn items
-        int pickupCount;
-
         // The player and their position
         Player player;
         private Rectangle playerPosition;
@@ -184,6 +181,7 @@ namespace Timeless_Torture
             }
 
             timerMax = timer;
+            difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
             
             numGenerator = new Random();
@@ -370,16 +368,24 @@ namespace Timeless_Torture
             // Options Buttons
 
             // Difficulty Button
-            difficultyButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "DIFFICULTY",
+            difficultyButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 5 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "DIFFICULTY",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
             difficultyButton.TextPosition = new Vector2(difficultyButton.X + 15 * difficultyButton.Position.Width / 50, difficultyButton.Y + difficultyButton.Position.Height / 4);
 
             // Easy Difficulty Button
-            easyDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "EASY",
+            easyDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 -  button.Width, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "EASY",
             mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
-            difficultyButton.TextPosition = new Vector2(difficultyButton.X + 15 * difficultyButton.Position.Width / 50, difficultyButton.Y + difficultyButton.Position.Height / 4);
-            //mediumDifficulty;
-            //hardDifficulty;
+            easyDifficulty.TextPosition = new Vector2(easyDifficulty.X + 9 * easyDifficulty.Position.Width / 25, easyDifficulty.Y + easyDifficulty.Position.Height / 4);
+
+            // Medium Difficulty Button
+            mediumDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - button.Width, 7 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "MEDIUM",
+            mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            mediumDifficulty.TextPosition = new Vector2(mediumDifficulty.X + 7 * mediumDifficulty.Position.Width / 25, mediumDifficulty.Y + mediumDifficulty.Position.Height / 4); ;
+
+            // Hard Difficulty Button
+            hardDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - button.Width, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "HARD",
+            mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            hardDifficulty.TextPosition = new Vector2(hardDifficulty.X + 9 * hardDifficulty.Position.Width / 25, hardDifficulty.Y + hardDifficulty.Position.Height / 4); ;
     }
 
         /// <summary>
@@ -501,27 +507,26 @@ namespace Timeless_Torture
                             gameState = GameState.Pause;
                         }
 
-                        // Checking if they click the fireplace
+                        // Checcking if they use the interact button
                         if (SingleKeyPress(Keys.E))
                         {
                             for (int i = 0; i < items.Length; i++)
                             {
+                                // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
+                                if (player.Inventory.Count != 0)
+                                {
+                                    fireplace.BurnItem(player);
+
+                                    if (fireplace.BurnedItems == currentEraItems.Count)
+                                    {
+                                        SpawnPortal();
+                                    }
+                                }
                                 if (player.Inventory.Count < player.Limit && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
                                     return;
                                 }
-                            }
-                        }
-
-                        // Checking if they click the fireplace
-                        if (SingleKeyPress(Keys.F) && player.Inventory.Count != 0)
-                        {
-                            fireplace.BurnItem(player);
-
-                            if (fireplace.BurnedItems == currentEraItems.Count)
-                            {
-                                SpawnPortal();
                             }
                         }
 
@@ -662,9 +667,55 @@ namespace Timeless_Torture
                         backButton.PressButton(mouseState);
                         backButton.Draw(spriteBatch);
 
+                        // Making the difficulty button stay pressed after 1 click
+                        if (difficultyButton.MouseClick(mouseState, previousMouseState))
+                        {
+                            difficultyButton.IsPressed = !difficultyButton.IsPressed;
+                        }
+
                         // Difficulty Button
-                        difficultyButton.PressButton(mouseState);
                         difficultyButton.Draw(spriteBatch);
+
+                        // Displays all difficulty options only if the Difficulty button is clicked
+                        if (difficultyButton.IsPressed)
+                        {
+                            // Easy Difficulty Button
+                            if (easyDifficulty.MouseClick(mouseState, previousMouseState))
+                            {
+                                easyDifficulty.IsPressed = !easyDifficulty.IsPressed;
+                                mediumDifficulty.IsPressed = false;
+                                hardDifficulty.IsPressed = false;
+
+                                difficulty = Difficulty.Easy;
+                            }
+                            else if (mediumDifficulty.MouseClick(mouseState, previousMouseState))
+                            {
+                                easyDifficulty.IsPressed = false;
+                                mediumDifficulty.IsPressed = !mediumDifficulty.IsPressed;
+                                hardDifficulty.IsPressed = false;
+
+                                difficulty = Difficulty.Medium;
+                            }
+                            else if (hardDifficulty.MouseClick(mouseState, previousMouseState))
+                            {
+                                easyDifficulty.IsPressed = false;
+                                mediumDifficulty.IsPressed = false;
+                                hardDifficulty.IsPressed = !hardDifficulty.IsPressed;
+
+                                difficulty = Difficulty.Hard;
+                            }
+
+                            // Easy Difficulty Button
+                            easyDifficulty.Draw(spriteBatch);
+
+                            // Medium Difficulty Button
+                            mediumDifficulty.Draw(spriteBatch);
+
+                            // Hard Difficulty Button
+                            hardDifficulty.Draw(spriteBatch);
+
+                        }
+
                         break;
                     }
 
@@ -674,12 +725,12 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
-                        fireplace.IsPlayerClose(player.Position);
-                        fireplace.Draw(spriteBatch, player.Position);
+                        fireplace.PlayerClose = IsPlayerClose(player.Position, fireplace.Position);
+                        fireplace.Draw(spriteBatch);
 
                         for (int i = 0; i < items.Length; i++)
                         {
-                            items[i].IsPlayerClose(player.Position);
+                            items[i].PlayerClose = IsPlayerClose(player.Position, items[i].Position);
                             items[i].Draw(spriteBatch);
                         }
 
@@ -716,7 +767,7 @@ namespace Timeless_Torture
 
                 case GameState.GameOver:
                     {
-                        spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
+                        spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 3, 0), Color.Black);
                         break;
                     }
             }
@@ -752,26 +803,30 @@ namespace Timeless_Torture
             player.X = 0;
             player.Y = 0;
             currentLevel = 0;
-            pickupCount = 0;
 
             if (difficulty == Difficulty.Easy)
             {
                 timerMax = 180;
                 player.XMovement = 7;
                 player.YMovement = 7;
+                player.InventoryLimit = 2;
             }
             else if (difficulty == Difficulty.Medium)
             {
                 timerMax = 120;
                 player.XMovement = 5;
                 player.YMovement = 5;
+                player.InventoryLimit = 1;
             }
             else if (difficulty == Difficulty.Hard)
             {
                 timerMax = 60;
                 player.XMovement = 4;
                 player.YMovement = 4;
+                player.InventoryLimit = 1;
             }
+
+            timer = timerMax;
 
             PlaceItems(seventiesItems, seventiesGlow);
         }
@@ -817,7 +872,6 @@ namespace Timeless_Torture
             timer = timerMax;
             player.X = 0;
             player.Y = 0;
-            pickupCount = 0;
             fireplace.Reset();
             currentLevel++;
             shouldSpawnPortal = false;
@@ -855,6 +909,11 @@ namespace Timeless_Torture
             }
         }
 
+        /// <summary>
+        /// Checks if the player is close to the given object
+        /// </summary>
+        /// <param name="player"> The player character </param>
+        /// <param name="rectangle"> The object the player is close to </param>
         public bool IsPlayerClose(Rectangle player, Rectangle rectangle)
         {
             if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))

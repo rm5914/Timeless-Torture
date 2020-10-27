@@ -104,6 +104,18 @@ namespace Timeless_Torture
             }
         }
 
+        public int InventoryLimit
+        {
+            get
+            {
+                return inventoryLimit;
+            }
+            set
+            {
+                inventoryLimit = value;
+            }
+        }
+
         // End of properties
 
         /// <summary>
