@@ -4,10 +4,16 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/amazon echo glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/amazon echo.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/beeper glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/beeper.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/club penguin glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/club penguin.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/door glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/door.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/facebook logo glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/facebook logo.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/fireplace glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/fireplace.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/ipod touch glow.png</File>
@@ -21,6 +27,7 @@
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/play station.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/pong machine glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/pong machine.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/portal.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/rubik cube glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/rubik cube.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/slap bracelet glow.png</File>
@@ -31,10 +38,21 @@
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/TT Buttons.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/walkman glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/walkman.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/wii remote glow.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/wii remote.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/zoopal plate glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/zoopal plate.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
