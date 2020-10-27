@@ -22,7 +22,7 @@ namespace Timeless_Torture
     public class Game1 : Game
     {
         // FIELDS
-
+        
         //enum as data type
         GameState gameState;
         GameState previousGameState;
