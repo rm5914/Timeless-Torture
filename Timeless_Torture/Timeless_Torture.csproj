@@ -43,8 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
+    <Compile Include="Fireplace.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemPosition.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +66,30 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\beeper glow.png" />
+    <Content Include="Content\beeper.png" />
+    <Content Include="Content\club penguin glow.png" />
+    <Content Include="Content\club penguin.png" />
+    <Content Include="Content\fireplace glow.png" />
+    <Content Include="Content\fireplace.png" />
+    <Content Include="Content\ipod touch glow.png" />
+    <Content Include="Content\ipod touch.png" />
+    <Content Include="Content\mood ring glow.png" />
+    <Content Include="Content\mood ring.png" />
+    <Content Include="Content\play station glow.png" />
+    <Content Include="Content\play station.png" />
+    <Content Include="Content\pong machine glow.png" />
+    <Content Include="Content\pong machine.png" />
+    <Content Include="Content\rubik cube glow.png" />
+    <Content Include="Content\rubik cube.png" />
+    <Content Include="Content\slap bracelet glow.png" />
+    <Content Include="Content\slap bracelet.png" />
+    <Content Include="Content\tamagotchi glow.png" />
+    <Content Include="Content\tamagotchi.png" />
+    <Content Include="Content\walkman glow.png" />
+    <Content Include="Content\walkman.png" />
+    <Content Include="Content\zoopal plate glow.png" />
+    <Content Include="Content\zoopal plate.png" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
       <Link>x86\SDL2.dll</Link>
@@ -110,6 +136,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <Content Include="Content\lightsaber glow.png" />
+    <Content Include="Content\lightsaber.png" />
     <Content Include="Content\mainFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

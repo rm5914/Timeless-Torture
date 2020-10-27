@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel.Design;
 using System.Threading;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Timeless_Torture
 {
@@ -14,7 +15,7 @@ namespace Timeless_Torture
      
     //enum GameState
     enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
-
+    
     public class Game1 : Game
     {
         // FIELDS
@@ -41,25 +42,70 @@ namespace Timeless_Torture
         double timer;
         double timerMax;
 
+        // Keeps track of the current level
+        int currentLevel;
+
+        // TEMPORARY, keeps track of the amount of items that have been picked up to help progress the game while we can't burn items
+        int pickupCount;
+
         // The player and their position
         Player player;
         private Rectangle playerPosition;
 
         // Item positions
-        Vector2[] itemPositions;
+        ItemPosition[] itemPositions;
 
         // Random Number Generator
         Random numGenerator;
 
         // All of the items
-        Item placeholder;
+        Item[] items;
+
+        // The fireplace
+        Fireplace fireplace;
+
+        // A list to keep track of the item list, changes when the era changes
+        private List<Texture2D> currentEraItems;
+
+        // Lists to hold time-specific items
+        private List<Texture2D> seventiesItems;
+        private List<Texture2D> eightiesItems;
+        private List<Texture2D> ninetiesItems;
+        private List<Texture2D> zerosItems;
+        private List<Texture2D> tensItems;
+
+        // Lists to hold the glowing texture for time-specific items
+        private List<Texture2D> seventiesGlow;
+        private List<Texture2D> eightiesGlow;
+        private List<Texture2D> ninetiesGlow;
+        private List<Texture2D> zerosGlow;
+        private List<Texture2D> tensGlow;
 
         // Textures
         private Texture2D texture;
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
-        private Texture2D genericItem;
+        private Texture2D fireplaceTexture;
+        private Texture2D fireplaceGlowTexture;
+
+        // item textures
+        private Texture2D lightsaber;
+        private Texture2D pongMachine;
+        private Texture2D moodRing;
+
+        private Texture2D slapBracelet;
+        private Texture2D walkman;
+        private Texture2D rubikCube;
+
+        // Glow Item Textures
+        private Texture2D lightsaberGlow;
+        private Texture2D pongMachineGlow;
+        private Texture2D moodRingGlow;
+
+        private Texture2D slapBraceletGlow;
+        private Texture2D walkmanGlow;
+        private Texture2D rubikCubeGlow;
 
         // Vectors for positions
         private Vector2 titlePosition;
@@ -124,7 +170,7 @@ namespace Timeless_Torture
             // TODO: Add your initialization logic here
             
             numGenerator = new Random();
-            
+
             // Making the initial Game State the menu
             gameState = GameState.Menu;
 
@@ -153,13 +199,54 @@ namespace Timeless_Torture
             // Making the player 
             texture = Content.Load<Texture2D>("PlayerSprite");
             playerPosition = new Rectangle(0, 0, texture.Width / 2, texture.Height / 2);
-            player = new Player(texture, playerPosition);
+            player = new Player(texture, playerPosition, 1);
 
             // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
-            genericItem = Content.Load<Texture2D>("ItemPlaceholder");
+            fireplaceTexture = Content.Load<Texture2D>("fireplace");
+            fireplaceGlowTexture = Content.Load<Texture2D>("fireplace glow");
+
+            // Secenties item textures
+            lightsaber = Content.Load<Texture2D>("lightsaber");
+            pongMachine = Content.Load<Texture2D>("pong machine");
+            moodRing = Content.Load<Texture2D>("mood ring");
+
+            seventiesItems = new List<Texture2D>();
+            seventiesItems.Add(lightsaber);
+            seventiesItems.Add(pongMachine);
+            seventiesItems.Add(moodRing);
+
+            // Eighties item textures
+            slapBracelet = Content.Load<Texture2D>("slap bracelet");
+            walkman = Content.Load<Texture2D>("walkman");
+            rubikCube = Content.Load<Texture2D>("rubik cube");
+
+            eightiesItems = new List<Texture2D>();
+            eightiesItems.Add(slapBracelet);
+            eightiesItems.Add(walkman);
+            eightiesItems.Add(rubikCube);
+
+            // Seventies glow textures
+            lightsaberGlow = Content.Load<Texture2D>("lightsaber glow");
+            pongMachineGlow = Content.Load<Texture2D>("pong machine glow");
+            moodRingGlow = Content.Load<Texture2D>("mood ring glow");
+
+            seventiesGlow = new List<Texture2D>();
+            seventiesGlow.Add(lightsaberGlow);
+            seventiesGlow.Add(pongMachineGlow);
+            seventiesGlow.Add(moodRingGlow);
+
+            // Eighties glow textures
+            slapBraceletGlow = Content.Load<Texture2D>("slap bracelet glow");
+            walkmanGlow = Content.Load<Texture2D>("walkman glow");
+            rubikCubeGlow = Content.Load<Texture2D>("rubik cube glow");
+
+            eightiesGlow = new List<Texture2D>();
+            eightiesGlow.Add(slapBraceletGlow);
+            eightiesGlow.Add(walkmanGlow);
+            eightiesGlow.Add(rubikCubeGlow);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -167,14 +254,22 @@ namespace Timeless_Torture
             // All positions
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
 
-            // All of the item positions
-            itemPositions = new Vector2[3];
-            itemPositions[0] = new Vector2(50, 50);
-            itemPositions[1] = new Vector2(300, 300);
-            itemPositions[2] = new Vector2(550, 550);
+            // Fireplace
+            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
 
-            int position = numGenerator.Next(0, itemPositions.Length);
-            placeholder = new Item(new Rectangle((int)itemPositions[position].X, (int)itemPositions[position].Y, genericItem.Width / 25, genericItem.Height / 25), genericItem, Color.White);
+            // All of the item positions
+            itemPositions = new ItemPosition[8];
+            itemPositions[0] = new ItemPosition(new Vector2(150, 150));
+            itemPositions[1] = new ItemPosition(new Vector2(300, 300));
+            itemPositions[2] = new ItemPosition(new Vector2(550, 550));
+            itemPositions[3] = new ItemPosition(new Vector2(150, 300));
+            itemPositions[4] = new ItemPosition(new Vector2(300, 150));
+            itemPositions[5] = new ItemPosition(new Vector2(550, 150));
+            itemPositions[6] = new ItemPosition(new Vector2(150, 550));
+            itemPositions[7] = new ItemPosition(new Vector2(300, 550));
+
+            // Setting the current era
+            currentEraItems = seventiesItems;
 
             // Creating all of the buttons
 
@@ -364,10 +459,35 @@ namespace Timeless_Torture
                             gameState = GameState.GameOver;
                         }
 
+                        // Checking if they want to pause
                         if (SingleKeyPress(Keys.Escape))
                         {
                             previousGameState = gameState;
                             gameState = GameState.Pause;
+                        }
+
+                        // Checking if they click the fireplace
+                        if (SingleKeyPress(Keys.E))
+                        {
+                            for (int i = 0; i < items.Length; i++)
+                            {
+                                if (player.Inventory.Count < player.Limit && items[i].PickUp())
+                                {
+                                    player.AddItem(items[i]);
+                                    return;
+                                }
+                            }
+                        }
+
+                        // Checking if they click the fireplace
+                        if (SingleKeyPress(Keys.F) && player.Inventory.Count != 0)
+                        {
+                            fireplace.BurnItem(player);
+
+                            if (fireplace.BurnedItems == currentEraItems.Count)
+                            {
+                                NextLevel();
+                            }
                         }
                         player.MovePlayer(keyState);
                         break;
@@ -507,7 +627,14 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
-                        placeholder.Draw(spriteBatch);
+                        fireplace.IsPlayerClose(player.Position);
+                        fireplace.Draw(spriteBatch);
+
+                        for (int i = 0; i < items.Length; i++)
+                        {
+                            items[i].IsPlayerClose(player.Position);
+                            items[i].Draw(spriteBatch);
+                        }
 
                         break;
                     }
@@ -575,6 +702,80 @@ namespace Timeless_Torture
             timer = timerMax;
             player.X = 0;
             player.Y = 0;
+            currentLevel = 0;
+            pickupCount = 0;
+            PlaceItems(seventiesItems, seventiesGlow);
+        }
+
+        /// <summary>
+        /// Takes in 2 textures for items and places them through the selected locations
+        /// </summary>
+        /// <param name="textures"> The textures of the items in their basic form </param>
+        /// <param name="glowTextures"> The textures of the items but with a glow around them </param>
+        protected void PlaceItems(List<Texture2D> textures, List<Texture2D> glowTextures)
+        {
+            items = new Item[textures.Count];
+
+            // Picking randomly from the set positions
+            for (int i = 0; i < items.Length; i++)
+            {
+                int position = numGenerator.Next(0, itemPositions.Length);
+
+                // Don't have the positions overlap
+                Vector2 itemVector = itemPositions[position].GetPosition();
+                while (itemVector.X == 0)
+                {
+                    position = numGenerator.Next(0, itemPositions.Length);
+                    itemVector = itemPositions[position].GetPosition();
+                }
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 3, textures[i].Width / 3), textures[i], glowTextures[i], Color.White);
+            }
+        }
+
+        /// <summary>
+        /// Starts the next level of the game
+        /// </summary>
+        protected void NextLevel()
+        {
+            timer = timerMax;
+            player.X = 0;
+            player.Y = 0;
+            pickupCount = 0;
+            fireplace.Reset();
+            currentLevel++;
+
+            switch (currentLevel)
+            {
+                case 1:
+                    {
+                        PlaceItems(eightiesItems, eightiesGlow);
+                        currentEraItems = eightiesItems;
+                        break;
+                    }
+                case 2:
+                    {
+                        PlaceItems(ninetiesItems, ninetiesGlow);
+                        currentEraItems = ninetiesItems;
+                        break;
+                    }
+                case 3:
+                    {
+                        PlaceItems(zerosItems, zerosGlow);
+                        currentEraItems = zerosItems;
+                        break;
+                    }
+                case 4:
+                    {
+                        PlaceItems(tensItems, tensGlow);
+                        currentEraItems = tensItems;
+                        break;
+                    }
+                case 5:
+                    {
+                        // Victory screen
+                        break;
+                    }
+            }
         }
     }
 }

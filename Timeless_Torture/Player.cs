@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using System;
 
 namespace Timeless_Torture
@@ -10,11 +11,16 @@ namespace Timeless_Torture
         // FIELDS
         private Rectangle position;
         private Texture2D playerTexture;
+        private List<Item> inventory;
+        private int inventoryLimit;
 
-        public Player(Texture2D texture, Rectangle pos)
+        // Constructor
+        public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
         {
             position = pos;
             playerTexture = texture;
+            inventory = new List<Item>();
+            this.inventoryLimit = inventoryLimit;
         }
 
         // Properties 
@@ -54,6 +60,24 @@ namespace Timeless_Torture
             }
         }
 
+        public List<Item> Inventory
+        {
+            get
+            {
+                return inventory;
+            }
+        }
+
+        public int Limit
+        {
+            get
+            {
+                return inventoryLimit;
+            }
+        }
+
+        // End of properties
+
         /// <summary>
         /// Makes the player move, should be called in Update
         /// </summary>
@@ -62,24 +86,68 @@ namespace Timeless_Torture
             if (keyState.IsKeyDown(Keys.W))
             {
                 position.Y -= 5;
-            }
-
-            if (keyState.IsKeyDown(Keys.S))
-            {
-                position.Y += 5;
+                int upSide = playerTexture.Height - 250;
+                if (position.Y < upSide)
+                {
+                    position.Y = upSide;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.A))
             {
                 position.X -= 5;
+                int leftSide = playerTexture.Width - 270;
+                if (position.X < leftSide)
+                {
+                    position.X = leftSide;
+                }
+            }
+
+            if (keyState.IsKeyDown(Keys.S))
+            {
+                position.Y += 5;
+                int downSide = 1030 - playerTexture.Height;
+                if (position.Y > downSide)
+                {
+                    position.Y = downSide;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.D))
             {
                 position.X += 5;
+                int rightSide = 1330 - playerTexture.Width;
+                if (position.X > rightSide)
+                {
+                    position.X = rightSide;
+                }
             }
         }
 
+        /// <summary>
+        /// Adds the given item to the players inventory
+        /// </summary>
+        /// <param name="item"> The item to be added </param>
+        public void AddItem(Item item)
+        {
+            if (inventory.Count < inventoryLimit)
+            {
+                inventory.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Removes the first item in the inventory
+        /// </summary>
+        public void Remove()
+        {
+            inventory.RemoveAt(0);
+        }
+
+        /// <summary>
+        /// Draws the player to the screen
+        /// </summary>
+        /// <param name="spriteBatch"> The spritebatch used to draw the player </param>
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(playerTexture, position, Color.White);
