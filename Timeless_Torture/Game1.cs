@@ -15,6 +15,9 @@ namespace Timeless_Torture
      
     //enum GameState
     enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
+
+    // Used to control the difficulty of the game, only affects the game when the game starts
+    enum Difficulty { Easy, Medium, Hard};
     
     public class Game1 : Game
     {
@@ -23,6 +26,9 @@ namespace Timeless_Torture
         //enum as data type
         GameState gameState;
         GameState previousGameState;
+
+        // Difficulty of the game
+        Difficulty difficulty;
 
         //keyboard state
         KeyboardState keyState;
@@ -128,6 +134,12 @@ namespace Timeless_Torture
         private Button instructionsAButton;
         private Button instructionsSButton;
         private Button instructionsDButton;
+
+        // Options buttons
+        private Button difficultyButton;
+        private Button easyDifficulty;
+        private Button mediumDifficulty;
+        private Button hardDifficulty;
 
         // CONSTRUCTOR
         public Game1()
@@ -345,7 +357,21 @@ namespace Timeless_Torture
             instructionsDButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), button, "D",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
             instructionsDButton.TextPosition = new Vector2(instructionsDButton.X + instructionsDButton.Position.Width / 3, instructionsDButton.Y + instructionsDButton.Position.Height / 5); ;
-        }
+
+            // Options Buttons
+
+            // Difficulty Button
+            difficultyButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "DIFFICULTY",
+                mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            difficultyButton.TextPosition = new Vector2(difficultyButton.X + 15 * difficultyButton.Position.Width / 50, difficultyButton.Y + difficultyButton.Position.Height / 4);
+
+            // Easy Difficulty Button
+            easyDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "EASY",
+            mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            difficultyButton.TextPosition = new Vector2(difficultyButton.X + 15 * difficultyButton.Position.Width / 50, difficultyButton.Y + difficultyButton.Position.Height / 4);
+            //mediumDifficulty;
+            //hardDifficulty;
+    }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -614,10 +640,15 @@ namespace Timeless_Torture
 
                 case GameState.Options:
                     {
+                        GraphicsDevice.Clear(Color.Black);
+
                         // Back Button
                         backButton.PressButton(mouseState);
                         backButton.Draw(spriteBatch);
 
+                        // Difficulty Button
+                        difficultyButton.PressButton(mouseState);
+                        difficultyButton.Draw(spriteBatch);
                         break;
                     }
 
@@ -699,11 +730,30 @@ namespace Timeless_Torture
         /// </summary>
         protected void GameStart()
         {
-            timer = timerMax;
             player.X = 0;
             player.Y = 0;
             currentLevel = 0;
             pickupCount = 0;
+
+            if (difficulty == Difficulty.Easy)
+            {
+                timerMax = 180;
+                player.XMovement = 7;
+                player.YMovement = 7;
+            }
+            else if (difficulty == Difficulty.Medium)
+            {
+                timerMax = 120;
+                player.XMovement = 5;
+                player.YMovement = 5;
+            }
+            else if (difficulty == Difficulty.Hard)
+            {
+                timerMax = 60;
+                player.XMovement = 4;
+                player.YMovement = 4;
+            }
+
             PlaceItems(seventiesItems, seventiesGlow);
         }
 
