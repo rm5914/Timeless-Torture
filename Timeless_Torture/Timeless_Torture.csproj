@@ -68,8 +68,12 @@
   <ItemGroup>
     <Content Include="Content\beeper glow.png" />
     <Content Include="Content\beeper.png" />
+    <Content Include="Content\club penguin glow.png" />
+    <Content Include="Content\club penguin.png" />
     <Content Include="Content\fireplace glow.png" />
     <Content Include="Content\fireplace.png" />
+    <Content Include="Content\ipod touch glow.png" />
+    <Content Include="Content\ipod touch.png" />
     <Content Include="Content\mood ring glow.png" />
     <Content Include="Content\mood ring.png" />
     <Content Include="Content\play station glow.png" />
@@ -84,6 +88,8 @@
     <Content Include="Content\tamagotchi.png" />
     <Content Include="Content\walkman glow.png" />
     <Content Include="Content\walkman.png" />
+    <Content Include="Content\zoopal plate glow.png" />
+    <Content Include="Content\zoopal plate.png" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
       <Link>x86\SDL2.dll</Link>

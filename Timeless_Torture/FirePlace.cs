@@ -13,7 +13,6 @@ namespace Timeless_Torture
 {
     class Fireplace
     {
-        private bool playerClose;
         private int burnedItems;
         private Texture2D texture;
         private Texture2D glowTexture;
@@ -23,7 +22,6 @@ namespace Timeless_Torture
         // Constructor
         public Fireplace (Texture2D texture, Texture2D glowTexture, Rectangle rectangle, Color color)
         {
-            playerClose = false;
             burnedItems = 0;
             this.texture = texture;
             this.glowTexture = glowTexture;
@@ -49,7 +47,7 @@ namespace Timeless_Torture
         /// <param name="player"> The item to be burned </param>
         public void BurnItem(Player player)
         {
-            if (playerClose)
+            if (IsPlayerClose(player.Position))
             {
                 player.Inventory[0].Burn();
                 player.Remove();
@@ -69,15 +67,15 @@ namespace Timeless_Torture
         /// Checks if the player is close to the fireplace
         /// </summary>
         /// <param name="player"></param>
-        public void IsPlayerClose(Rectangle player)
+        public bool IsPlayerClose(Rectangle player)
         {
             if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))
             {
-                playerClose = true;
+                return true;
             }
             else
             {
-                playerClose = false;
+                return false;
             }
         }
 
@@ -85,9 +83,9 @@ namespace Timeless_Torture
         /// Draws the fireplace
         /// </summary>
         /// <param name="spriteBatch">  </param>
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle player)
         {
-            if (playerClose)
+            if (IsPlayerClose(player))
             {
                 spriteBatch.Draw(glowTexture, rectangle, color);
             }

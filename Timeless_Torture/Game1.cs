@@ -70,6 +70,10 @@ namespace Timeless_Torture
         // The fireplace
         Fireplace fireplace;
 
+        // portal stuff
+        bool shouldSpawnPortal = false;
+        Rectangle portalRectangle;
+
         // A list to keep track of the item list, changes when the era changes
         private List<Texture2D> currentEraItems;
 
@@ -94,6 +98,7 @@ namespace Timeless_Torture
         private Texture2D pauseTitle;
         private Texture2D fireplaceTexture;
         private Texture2D fireplaceGlowTexture;
+        private Texture2D portal;
 
         // item textures
         private Texture2D lightsaber;
@@ -219,6 +224,7 @@ namespace Timeless_Torture
             pauseTitle = Content.Load<Texture2D>("Pause");
             fireplaceTexture = Content.Load<Texture2D>("fireplace");
             fireplaceGlowTexture = Content.Load<Texture2D>("fireplace glow");
+            portal = Content.Load<Texture2D>("portal");
 
             // Secenties item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
@@ -268,6 +274,9 @@ namespace Timeless_Torture
 
             // Fireplace
             fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+
+            // portal "hitbox"
+            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
 
             // All of the item positions
             itemPositions = new ItemPosition[8];
@@ -512,9 +521,16 @@ namespace Timeless_Torture
 
                             if (fireplace.BurnedItems == currentEraItems.Count)
                             {
-                                NextLevel();
+                                SpawnPortal();
                             }
                         }
+
+                        if (SingleKeyPress(Keys.Enter) && IsPlayerClose(player.Position, portalRectangle)==true)
+                        {
+                            NextLevel();
+                        }
+                            
+
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -659,13 +675,16 @@ namespace Timeless_Torture
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
                         fireplace.IsPlayerClose(player.Position);
-                        fireplace.Draw(spriteBatch);
+                        fireplace.Draw(spriteBatch, player.Position);
 
                         for (int i = 0; i < items.Length; i++)
                         {
                             items[i].IsPlayerClose(player.Position);
                             items[i].Draw(spriteBatch);
                         }
+
+                        if(shouldSpawnPortal==true)
+                            spriteBatch.Draw(portal, portalRectangle, Color.White);
 
                         break;
                     }
@@ -783,6 +802,14 @@ namespace Timeless_Torture
         }
 
         /// <summary>
+        /// Spawns the portal to allow access to the next level/era
+        /// </summary>
+        protected void SpawnPortal()
+        {
+            shouldSpawnPortal = true;
+        }
+
+        /// <summary>
         /// Starts the next level of the game
         /// </summary>
         protected void NextLevel()
@@ -793,7 +820,7 @@ namespace Timeless_Torture
             pickupCount = 0;
             fireplace.Reset();
             currentLevel++;
-
+            shouldSpawnPortal = false;
             switch (currentLevel)
             {
                 case 1:
@@ -825,6 +852,18 @@ namespace Timeless_Torture
                         // Victory screen
                         break;
                     }
+            }
+        }
+
+        public bool IsPlayerClose(Rectangle player, Rectangle rectangle)
+        {
+            if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

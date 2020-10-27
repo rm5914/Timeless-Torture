@@ -17,3 +17,13 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\ExternalToo
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\ExternalTool\obj\Debug\ExternalTool.csproj.GenerateResource.cache
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\ExternalTool\obj\Debug\ExternalTool.exe
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\ExternalTool\obj\Debug\ExternalTool.pdb
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\bin\Debug\ExternalTool.exe.config
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\bin\Debug\ExternalTool.exe
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\bin\Debug\ExternalTool.pdb
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.csprojAssemblyReference.cache
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.Form1.resources
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.Properties.Resources.resources
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.csproj.GenerateResource.cache
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.csproj.CoreCompileInputs.cache
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.exe
+C:\Users\FR35H\Desktop\School\106\Game\ExternalTool\obj\Debug\ExternalTool.pdb
