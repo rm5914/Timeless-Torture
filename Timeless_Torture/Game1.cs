@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
 using System.Threading;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Timeless_Torture
 {
@@ -14,13 +16,19 @@ namespace Timeless_Torture
     //enum GameState
     enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
 
+    // Used to control the difficulty of the game, only affects the game when the game starts
+    enum Difficulty { Easy, Medium, Hard};
+    
     public class Game1 : Game
     {
         // FIELDS
-
+        
         //enum as data type
         GameState gameState;
         GameState previousGameState;
+
+        // Difficulty of the game
+        Difficulty difficulty;
 
         //keyboard state
         KeyboardState keyState;
@@ -36,17 +44,78 @@ namespace Timeless_Torture
         // Basic game stuff
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         double timer;
+        double timerMax;
+
+        // Keeps track of the current level
+        int currentLevel;
+
+        // The player and their position
         Player player;
+        private Rectangle playerPosition;
+
+        // Item positions
+        ItemPosition[] itemPositions;
+
+        // Random Number Generator
+        Random numGenerator;
+
+        // All of the items
+        Item[] items;
+
+        // The fireplace
+        Fireplace fireplace;
+
+        // portal stuff
+        bool shouldSpawnPortal = false;
+        Rectangle portalRectangle;
+
+        // A list to keep track of the item list, changes when the era changes
+        private List<Texture2D> currentEraItems;
+
+        // Lists to hold time-specific items
+        private List<Texture2D> seventiesItems;
+        private List<Texture2D> eightiesItems;
+        private List<Texture2D> ninetiesItems;
+        private List<Texture2D> zerosItems;
+        private List<Texture2D> tensItems;
+
+        // Lists to hold the glowing texture for time-specific items
+        private List<Texture2D> seventiesGlow;
+        private List<Texture2D> eightiesGlow;
+        private List<Texture2D> ninetiesGlow;
+        private List<Texture2D> zerosGlow;
+        private List<Texture2D> tensGlow;
 
         // Textures
         private Texture2D texture;
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
+        private Texture2D fireplaceTexture;
+        private Texture2D fireplaceGlowTexture;
+        private Texture2D portal;
 
-        // positions
-        private Vector2 position;
+        // item textures
+        private Texture2D lightsaber;
+        private Texture2D pongMachine;
+        private Texture2D moodRing;
+
+        private Texture2D slapBracelet;
+        private Texture2D walkman;
+        private Texture2D rubikCube;
+
+        // Glow Item Textures
+        private Texture2D lightsaberGlow;
+        private Texture2D pongMachineGlow;
+        private Texture2D moodRingGlow;
+
+        private Texture2D slapBraceletGlow;
+        private Texture2D walkmanGlow;
+        private Texture2D rubikCubeGlow;
+
+        // Vectors for positions
         private Vector2 titlePosition;
 
         // Main menu buttons
@@ -68,6 +137,12 @@ namespace Timeless_Torture
         private Button instructionsSButton;
         private Button instructionsDButton;
 
+        // Options buttons
+        private Button difficultyButton;
+        private Button easyDifficulty;
+        private Button mediumDifficulty;
+        private Button hardDifficulty;
+
         // CONSTRUCTOR
         public Game1()
         {
@@ -86,9 +161,31 @@ namespace Timeless_Torture
         /// </summary>
         protected override void Initialize()
         {
+            // Tries to read in the file data
+            try
+            {
+            // Getting the directory to find the file
+            string path = Directory.GetParent(
+            Directory.GetCurrentDirectory()).Parent.FullName;
+            path = path.Substring(0, path.Length - 31);
+
+            // Making the timer the legnth selected by user input
+            StreamReader sr = new StreamReader(path + @"\ExternalTool\bin\Debug\timer.txt");
+            timer = int.Parse(sr.ReadLine());
+            sr.Close();
+            }
+            catch
+            {
+                // Base timer if the file doesn't give one
+                timer = 120;
+            }
+
+            timerMax = timer;
+            difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
-            timer = 10;
             
+            numGenerator = new Random();
+
             // Making the initial Game State the menu
             gameState = GameState.Menu;
 
@@ -109,23 +206,89 @@ namespace Timeless_Torture
         /// </summary>
         protected override void LoadContent()
         {
+           
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // All of the textures, also initializing the player
+            // Making the player 
             texture = Content.Load<Texture2D>("PlayerSprite");
-            player = new Player(texture, position);
+            playerPosition = new Rectangle(0, 0, texture.Width / 2, texture.Height / 2);
+            player = new Player(texture, playerPosition, 1);
 
+            // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
+            fireplaceTexture = Content.Load<Texture2D>("fireplace");
+            fireplaceGlowTexture = Content.Load<Texture2D>("fireplace glow");
+            portal = Content.Load<Texture2D>("portal");
+
+            // Secenties item textures
+            lightsaber = Content.Load<Texture2D>("lightsaber");
+            pongMachine = Content.Load<Texture2D>("pong machine");
+            moodRing = Content.Load<Texture2D>("mood ring");
+
+            seventiesItems = new List<Texture2D>();
+            seventiesItems.Add(lightsaber);
+            seventiesItems.Add(pongMachine);
+            seventiesItems.Add(moodRing);
+
+            // Eighties item textures
+            slapBracelet = Content.Load<Texture2D>("slap bracelet");
+            walkman = Content.Load<Texture2D>("walkman");
+            rubikCube = Content.Load<Texture2D>("rubik cube");
+
+            eightiesItems = new List<Texture2D>();
+            eightiesItems.Add(slapBracelet);
+            eightiesItems.Add(walkman);
+            eightiesItems.Add(rubikCube);
+
+            // Seventies glow textures
+            lightsaberGlow = Content.Load<Texture2D>("lightsaber glow");
+            pongMachineGlow = Content.Load<Texture2D>("pong machine glow");
+            moodRingGlow = Content.Load<Texture2D>("mood ring glow");
+
+            seventiesGlow = new List<Texture2D>();
+            seventiesGlow.Add(lightsaberGlow);
+            seventiesGlow.Add(pongMachineGlow);
+            seventiesGlow.Add(moodRingGlow);
+
+            // Eighties glow textures
+            slapBraceletGlow = Content.Load<Texture2D>("slap bracelet glow");
+            walkmanGlow = Content.Load<Texture2D>("walkman glow");
+            rubikCubeGlow = Content.Load<Texture2D>("rubik cube glow");
+
+            eightiesGlow = new List<Texture2D>();
+            eightiesGlow.Add(slapBraceletGlow);
+            eightiesGlow.Add(walkmanGlow);
+            eightiesGlow.Add(rubikCubeGlow);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
 
             // All positions
-            position = new Vector2(0, 0);
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
+
+            // Fireplace
+            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+
+            // portal "hitbox"
+            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
+
+            // All of the item positions
+            itemPositions = new ItemPosition[8];
+            itemPositions[0] = new ItemPosition(new Vector2(150, 150));
+            itemPositions[1] = new ItemPosition(new Vector2(300, 300));
+            itemPositions[2] = new ItemPosition(new Vector2(550, 550));
+            itemPositions[3] = new ItemPosition(new Vector2(150, 300));
+            itemPositions[4] = new ItemPosition(new Vector2(300, 150));
+            itemPositions[5] = new ItemPosition(new Vector2(550, 150));
+            itemPositions[6] = new ItemPosition(new Vector2(150, 550));
+            itemPositions[7] = new ItemPosition(new Vector2(300, 550));
+
+            // Setting the current era
+            currentEraItems = seventiesItems;
 
             // Creating all of the buttons
 
@@ -201,7 +364,29 @@ namespace Timeless_Torture
             instructionsDButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), button, "D",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
             instructionsDButton.TextPosition = new Vector2(instructionsDButton.X + instructionsDButton.Position.Width / 3, instructionsDButton.Y + instructionsDButton.Position.Height / 5); ;
-        }
+
+            // Options Buttons
+
+            // Difficulty Button
+            difficultyButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 5 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "DIFFICULTY",
+                mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            difficultyButton.TextPosition = new Vector2(difficultyButton.X + 15 * difficultyButton.Position.Width / 50, difficultyButton.Y + difficultyButton.Position.Height / 4);
+
+            // Easy Difficulty Button
+            easyDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 -  button.Width, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "EASY",
+            mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            easyDifficulty.TextPosition = new Vector2(easyDifficulty.X + 9 * easyDifficulty.Position.Width / 25, easyDifficulty.Y + easyDifficulty.Position.Height / 4);
+
+            // Medium Difficulty Button
+            mediumDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - button.Width, 7 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "MEDIUM",
+            mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            mediumDifficulty.TextPosition = new Vector2(mediumDifficulty.X + 7 * mediumDifficulty.Position.Width / 25, mediumDifficulty.Y + mediumDifficulty.Position.Height / 4); ;
+
+            // Hard Difficulty Button
+            hardDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - button.Width, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "HARD",
+            mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            hardDifficulty.TextPosition = new Vector2(hardDifficulty.X + 9 * hardDifficulty.Position.Width / 25, hardDifficulty.Y + hardDifficulty.Position.Height / 4); ;
+    }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -227,6 +412,7 @@ namespace Timeless_Torture
                         {
                             previousGameState = gameState;
                             gameState = GameState.Game;
+                            GameStart();
                         }
 
                         // checking if they click the instructions button
@@ -314,11 +500,42 @@ namespace Timeless_Torture
                             gameState = GameState.GameOver;
                         }
 
+                        // Checking if they want to pause
                         if (SingleKeyPress(Keys.Escape))
                         {
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
+
+                        // Checcking if they use the interact button
+                        if (SingleKeyPress(Keys.E))
+                        {
+                            for (int i = 0; i < items.Length; i++)
+                            {
+                                // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
+                                if (player.Inventory.Count != 0)
+                                {
+                                    fireplace.BurnItem(player);
+
+                                    if (fireplace.BurnedItems == currentEraItems.Count)
+                                    {
+                                        SpawnPortal();
+                                    }
+                                }
+                                if (player.Inventory.Count < player.Limit && items[i].PickUp())
+                                {
+                                    player.AddItem(items[i]);
+                                    return;
+                                }
+                            }
+                        }
+
+                        if (SingleKeyPress(Keys.Enter) && IsPlayerClose(player.Position, portalRectangle)==true)
+                        {
+                            NextLevel();
+                        }
+                            
+
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -444,9 +661,60 @@ namespace Timeless_Torture
 
                 case GameState.Options:
                     {
+                        GraphicsDevice.Clear(Color.Black);
+
                         // Back Button
                         backButton.PressButton(mouseState);
                         backButton.Draw(spriteBatch);
+
+                        // Making the difficulty button stay pressed after 1 click
+                        if (difficultyButton.MouseClick(mouseState, previousMouseState))
+                        {
+                            difficultyButton.IsPressed = !difficultyButton.IsPressed;
+                        }
+
+                        // Difficulty Button
+                        difficultyButton.Draw(spriteBatch);
+
+                        // Displays all difficulty options only if the Difficulty button is clicked
+                        if (difficultyButton.IsPressed)
+                        {
+                            // Easy Difficulty Button
+                            if (easyDifficulty.MouseClick(mouseState, previousMouseState))
+                            {
+                                easyDifficulty.IsPressed = !easyDifficulty.IsPressed;
+                                mediumDifficulty.IsPressed = false;
+                                hardDifficulty.IsPressed = false;
+
+                                difficulty = Difficulty.Easy;
+                            }
+                            else if (mediumDifficulty.MouseClick(mouseState, previousMouseState))
+                            {
+                                easyDifficulty.IsPressed = false;
+                                mediumDifficulty.IsPressed = !mediumDifficulty.IsPressed;
+                                hardDifficulty.IsPressed = false;
+
+                                difficulty = Difficulty.Medium;
+                            }
+                            else if (hardDifficulty.MouseClick(mouseState, previousMouseState))
+                            {
+                                easyDifficulty.IsPressed = false;
+                                mediumDifficulty.IsPressed = false;
+                                hardDifficulty.IsPressed = !hardDifficulty.IsPressed;
+
+                                difficulty = Difficulty.Hard;
+                            }
+
+                            // Easy Difficulty Button
+                            easyDifficulty.Draw(spriteBatch);
+
+                            // Medium Difficulty Button
+                            mediumDifficulty.Draw(spriteBatch);
+
+                            // Hard Difficulty Button
+                            hardDifficulty.Draw(spriteBatch);
+
+                        }
 
                         break;
                     }
@@ -457,6 +725,18 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
                         player.Draw(spriteBatch);
+                        fireplace.PlayerClose = IsPlayerClose(player.Position, fireplace.Position);
+                        fireplace.Draw(spriteBatch);
+
+                        for (int i = 0; i < items.Length; i++)
+                        {
+                            items[i].PlayerClose = IsPlayerClose(player.Position, items[i].Position);
+                            items[i].Draw(spriteBatch);
+                        }
+
+                        if(shouldSpawnPortal==true)
+                            spriteBatch.Draw(portal, portalRectangle, Color.White);
+
                         break;
                     }
                 case GameState.Pause:
@@ -464,7 +744,7 @@ namespace Timeless_Torture
                         // Making the background
                         spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
 
-                        // Pause titel
+                        // Pause title
                         spriteBatch.Draw(pauseTitle, titlePosition, Color.White);
 
                         // Continue Button
@@ -487,7 +767,7 @@ namespace Timeless_Torture
 
                 case GameState.GameOver:
                     {
-                        spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
+                        spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 3, 0), Color.Black);
                         break;
                     }
             }
@@ -515,5 +795,135 @@ namespace Timeless_Torture
             }
         }
 
+        /// <summary>
+        /// Used to start the game from 0
+        /// </summary>
+        protected void GameStart()
+        {
+            player.X = 0;
+            player.Y = 0;
+            currentLevel = 0;
+
+            if (difficulty == Difficulty.Easy)
+            {
+                timerMax = 180;
+                player.XMovement = 7;
+                player.YMovement = 7;
+                player.InventoryLimit = 2;
+            }
+            else if (difficulty == Difficulty.Medium)
+            {
+                timerMax = 120;
+                player.XMovement = 5;
+                player.YMovement = 5;
+                player.InventoryLimit = 1;
+            }
+            else if (difficulty == Difficulty.Hard)
+            {
+                timerMax = 60;
+                player.XMovement = 4;
+                player.YMovement = 4;
+                player.InventoryLimit = 1;
+            }
+
+            timer = timerMax;
+
+            PlaceItems(seventiesItems, seventiesGlow);
+        }
+
+        /// <summary>
+        /// Takes in 2 textures for items and places them through the selected locations
+        /// </summary>
+        /// <param name="textures"> The textures of the items in their basic form </param>
+        /// <param name="glowTextures"> The textures of the items but with a glow around them </param>
+        protected void PlaceItems(List<Texture2D> textures, List<Texture2D> glowTextures)
+        {
+            items = new Item[textures.Count];
+
+            // Picking randomly from the set positions
+            for (int i = 0; i < items.Length; i++)
+            {
+                int position = numGenerator.Next(0, itemPositions.Length);
+
+                // Don't have the positions overlap
+                Vector2 itemVector = itemPositions[position].GetPosition();
+                while (itemVector.X == 0)
+                {
+                    position = numGenerator.Next(0, itemPositions.Length);
+                    itemVector = itemPositions[position].GetPosition();
+                }
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 3, textures[i].Width / 3), textures[i], glowTextures[i], Color.White);
+            }
+        }
+
+        /// <summary>
+        /// Spawns the portal to allow access to the next level/era
+        /// </summary>
+        protected void SpawnPortal()
+        {
+            shouldSpawnPortal = true;
+        }
+
+        /// <summary>
+        /// Starts the next level of the game
+        /// </summary>
+        protected void NextLevel()
+        {
+            timer = timerMax;
+            player.X = 0;
+            player.Y = 0;
+            fireplace.Reset();
+            currentLevel++;
+            shouldSpawnPortal = false;
+            switch (currentLevel)
+            {
+                case 1:
+                    {
+                        PlaceItems(eightiesItems, eightiesGlow);
+                        currentEraItems = eightiesItems;
+                        break;
+                    }
+                case 2:
+                    {
+                        PlaceItems(ninetiesItems, ninetiesGlow);
+                        currentEraItems = ninetiesItems;
+                        break;
+                    }
+                case 3:
+                    {
+                        PlaceItems(zerosItems, zerosGlow);
+                        currentEraItems = zerosItems;
+                        break;
+                    }
+                case 4:
+                    {
+                        PlaceItems(tensItems, tensGlow);
+                        currentEraItems = tensItems;
+                        break;
+                    }
+                case 5:
+                    {
+                        // Victory screen
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Checks if the player is close to the given object
+        /// </summary>
+        /// <param name="player"> The player character </param>
+        /// <param name="rectangle"> The object the player is close to </param>
+        public bool IsPlayerClose(Rectangle player, Rectangle rectangle)
+        {
+            if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
