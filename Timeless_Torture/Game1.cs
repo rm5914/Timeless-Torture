@@ -64,6 +64,10 @@ namespace Timeless_Torture
         // All of the items
         Item[] items;
 
+        // Room width and height (block wise)
+        int width;
+        int height;
+
         // The fireplace
         Fireplace fireplace;
 
@@ -162,23 +166,28 @@ namespace Timeless_Torture
         protected override void Initialize()
         {
             // Tries to read in the file data
-            try
-            {
+
             // Getting the directory to find the file
-            string path = Directory.GetParent(
-            Directory.GetCurrentDirectory()).Parent.FullName;
-            path = path.Substring(0, path.Length - 31);
+            //string path = Directory.GetParent(
+            //Directory.GetCurrentDirectory()).Parent.FullName;
+            //path = path.Substring(0, path.Length - 31);
 
             // Making the timer the legnth selected by user input
-            StreamReader sr = new StreamReader(path + @"\ExternalTool\bin\Debug\timer.txt");
-            timer = int.Parse(sr.ReadLine());
-            sr.Close();
-            }
-            catch
+            StreamReader sr = new StreamReader("FirstLevel.level");
+            width = int.Parse(sr.ReadLine());
+            height = int.Parse(sr.ReadLine());
+
+            String[,] level = new string[height, width];
+
+            for (int i = 0; i < height; i++)
             {
-                // Base timer if the file doesn't give one
-                timer = 120;
+                for (int j = 0; j < width; j++)
+                {
+                    level[i, j] = sr.ReadLine();
+                    Console.WriteLine(level[i, j] + (i + j));
+                }
             }
+            sr.Close();
 
             timerMax = timer;
             difficulty = Difficulty.Medium;
