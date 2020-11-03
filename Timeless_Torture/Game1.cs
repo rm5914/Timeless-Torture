@@ -171,8 +171,8 @@ namespace Timeless_Torture
             //string path = Directory.GetParent(
             //Directory.GetCurrentDirectory()).Parent.FullName;
             //path = path.Substring(0, path.Length - 31);
-
-            // Making the timer the legnth selected by user input
+             
+            // Reeading in the maps and their data
             StreamReader sr = new StreamReader("FirstLevel.level");
             width = int.Parse(sr.ReadLine());
             height = int.Parse(sr.ReadLine());
