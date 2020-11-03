@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/club penguin glow.png</SourceFile>
-  <SourceTime>2020-10-27T12:45:54.2320712-04:00</SourceTime>
-  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/Content/club penguin glow.xnb</DestFile>
-  <DestTime>2020-10-27T13:07:54.3841663-04:00</DestTime>
+  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/club penguin glow.png</SourceFile>
+  <SourceTime>2020-10-25T18:08:55.7829599-04:00</SourceTime>
+  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Content/club penguin glow.xnb</DestFile>
+  <DestTime>2020-10-27T15:33:38.6131553-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
