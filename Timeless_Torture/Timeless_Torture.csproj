@@ -85,6 +85,7 @@
     <Content Include="Content\mood ring.png" />
     <Content Include="Content\play station glow.png" />
     <Content Include="Content\play station.png" />
+    <Content Include="Content\player.png" />
     <Content Include="Content\pong machine glow.png" />
     <Content Include="Content\pong machine.png" />
     <Content Include="Content\rubik cube glow.png" />
