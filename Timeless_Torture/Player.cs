@@ -13,6 +13,8 @@ namespace Timeless_Torture
         private Texture2D playerTexture;
         private List<Item> inventory;
         private int inventoryLimit;
+        private int playerMovementX;
+        private int playerMovementY;
 
         // Constructor
         public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
@@ -21,6 +23,8 @@ namespace Timeless_Torture
             playerTexture = texture;
             inventory = new List<Item>();
             this.inventoryLimit = inventoryLimit;
+            playerMovementX = 5;
+            playerMovementY = 5;
         }
 
         // Properties 
@@ -76,6 +80,42 @@ namespace Timeless_Torture
             }
         }
 
+        public int XMovement
+        {
+            get
+            {
+                return playerMovementX;
+            }
+            set
+            {
+                playerMovementX = value;
+            }
+        }
+
+        public int YMovement
+        {
+            get
+            {
+                return playerMovementY;
+            }
+            set
+            {
+                playerMovementY = value;
+            }
+        }
+
+        public int InventoryLimit
+        {
+            get
+            {
+                return inventoryLimit;
+            }
+            set
+            {
+                inventoryLimit = value;
+            }
+        }
+
         // End of properties
 
         /// <summary>
@@ -85,7 +125,7 @@ namespace Timeless_Torture
         {
             if (keyState.IsKeyDown(Keys.W))
             {
-                position.Y -= 5;
+                position.Y -= playerMovementY;
                 int upSide = playerTexture.Height - 250;
                 if (position.Y < upSide)
                 {
@@ -95,7 +135,7 @@ namespace Timeless_Torture
 
             if (keyState.IsKeyDown(Keys.A))
             {
-                position.X -= 5;
+                position.X -= playerMovementX;
                 int leftSide = playerTexture.Width - 270;
                 if (position.X < leftSide)
                 {
@@ -105,7 +145,7 @@ namespace Timeless_Torture
 
             if (keyState.IsKeyDown(Keys.S))
             {
-                position.Y += 5;
+                position.Y += playerMovementY;
                 int downSide = 1030 - playerTexture.Height;
                 if (position.Y > downSide)
                 {
@@ -115,7 +155,7 @@ namespace Timeless_Torture
 
             if (keyState.IsKeyDown(Keys.D))
             {
-                position.X += 5;
+                position.X += playerMovementX;
                 int rightSide = 1330 - playerTexture.Width;
                 if (position.X > rightSide)
                 {

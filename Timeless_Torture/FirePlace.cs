@@ -13,6 +13,7 @@ namespace Timeless_Torture
 {
     class Fireplace
     {
+        private bool playerClose;
         private int burnedItems;
         private Texture2D texture;
         private Texture2D glowTexture;
@@ -22,6 +23,7 @@ namespace Timeless_Torture
         // Constructor
         public Fireplace (Texture2D texture, Texture2D glowTexture, Rectangle rectangle, Color color)
         {
+            playerClose = false;
             burnedItems = 0;
             this.texture = texture;
             this.glowTexture = glowTexture;
@@ -39,6 +41,26 @@ namespace Timeless_Torture
             }
         }
 
+        public bool PlayerClose
+        {
+            get
+            {
+                return playerClose;
+            }
+            set
+            {
+                playerClose = value;
+            }
+        }
+
+        public Rectangle Position
+        {
+            get
+            {
+                return rectangle;
+            }
+        }
+
         // End of  properties
 
         /// <summary>
@@ -47,7 +69,7 @@ namespace Timeless_Torture
         /// <param name="player"> The item to be burned </param>
         public void BurnItem(Player player)
         {
-            if (IsPlayerClose(player.Position))
+            if (playerClose)
             {
                 player.Inventory[0].Burn();
                 player.Remove();
@@ -64,28 +86,12 @@ namespace Timeless_Torture
         }
 
         /// <summary>
-        /// Checks if the player is close to the fireplace
-        /// </summary>
-        /// <param name="player"></param>
-        public bool IsPlayerClose(Rectangle player)
-        {
-            if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Draws the fireplace
         /// </summary>
         /// <param name="spriteBatch">  </param>
-        public void Draw(SpriteBatch spriteBatch, Rectangle player)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            if (IsPlayerClose(player))
+            if (playerClose)
             {
                 spriteBatch.Draw(glowTexture, rectangle, color);
             }

@@ -66,18 +66,26 @@
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\amazon echo glow.png" />
+    <Content Include="Content\amazon echo.png" />
     <Content Include="Content\beeper glow.png" />
     <Content Include="Content\beeper.png" />
     <Content Include="Content\club penguin glow.png" />
     <Content Include="Content\club penguin.png" />
+    <Content Include="Content\door glow.png" />
+    <Content Include="Content\door.png" />
+    <Content Include="Content\facebook logo glow.png" />
+    <Content Include="Content\facebook logo.png" />
     <Content Include="Content\fireplace glow.png" />
     <Content Include="Content\fireplace.png" />
+    <Content Include="Content\floor pattern.png" />
     <Content Include="Content\ipod touch glow.png" />
     <Content Include="Content\ipod touch.png" />
     <Content Include="Content\mood ring glow.png" />
     <Content Include="Content\mood ring.png" />
     <Content Include="Content\play station glow.png" />
     <Content Include="Content\play station.png" />
+    <Content Include="Content\player.png" />
     <Content Include="Content\pong machine glow.png" />
     <Content Include="Content\pong machine.png" />
     <Content Include="Content\rubik cube glow.png" />
@@ -88,6 +96,8 @@
     <Content Include="Content\tamagotchi.png" />
     <Content Include="Content\walkman glow.png" />
     <Content Include="Content\walkman.png" />
+    <Content Include="Content\wii remote glow.png" />
+    <Content Include="Content\wii remote.png" />
     <Content Include="Content\zoopal plate glow.png" />
     <Content Include="Content\zoopal plate.png" />
     <MonoGameContentReference Include="Content\Content.mgcb" />
