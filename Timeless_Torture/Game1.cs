@@ -191,7 +191,6 @@ namespace Timeless_Torture
             Content.RootDirectory = "Content";
         }
 
-
         // CORE GAME METHODS
 
         /// <summary>
@@ -228,7 +227,6 @@ namespace Timeless_Torture
             timerMax = timer;
             difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
-            
             numGenerator = new Random();
 
             // Making the initial Game State the menu
@@ -397,9 +395,7 @@ namespace Timeless_Torture
             itemPositions[7] = new ItemPosition(new Vector2(300, 550));
 
             // Creating all of the buttons
-
             // Main Menu buttons
-
             // Start Button
             startButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2),button, "START",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
@@ -420,8 +416,7 @@ namespace Timeless_Torture
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
             exitButton.TextPosition = new Vector2(exitButton.X + 21 * exitButton.Position.Width / 50, exitButton.Y + exitButton.Position.Height / 4);
             
-            // Pause buttons
-
+            // Pause Menu buttons
             // Continue button
             pauseContinueButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 6 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "CONTINUE",
                 mainFont, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2());
@@ -443,7 +438,6 @@ namespace Timeless_Torture
             pauseExitButton.TextPosition = new Vector2(pauseExitButton.X + 21 * pauseExitButton.Position.Width / 50, pauseExitButton.Y + pauseExitButton.Position.Height / 4);
 
             // Instructions Button
-
             // Back button
             backButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "BACK",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
@@ -464,7 +458,7 @@ namespace Timeless_Torture
             instructionsSButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 25, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), button, "S",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
             instructionsSButton.TextPosition = new Vector2(instructionsSButton.X + instructionsSButton.Position.Width / 3, instructionsSButton.Y + instructionsSButton.Position.Height / 5);
-            ;
+            
 
             // D Button
             instructionsDButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), button, "D",
@@ -472,7 +466,6 @@ namespace Timeless_Torture
             instructionsDButton.TextPosition = new Vector2(instructionsDButton.X + instructionsDButton.Position.Width / 3, instructionsDButton.Y + instructionsDButton.Position.Height / 5); ;
 
             // Options Buttons
-
             // Difficulty Button
             difficultyButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 5 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "DIFFICULTY",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
@@ -492,7 +485,7 @@ namespace Timeless_Torture
             hardDifficulty = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - button.Width, 8 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 2 * button.Width, button.Height / 2), button, "HARD",
             mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
             hardDifficulty.TextPosition = new Vector2(hardDifficulty.X + 9 * hardDifficulty.Position.Width / 25, hardDifficulty.Y + hardDifficulty.Position.Height / 4); ;
-    }
+        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -640,7 +633,7 @@ namespace Timeless_Torture
                         {
                             NextLevel();
                         }
-                            
+   
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -653,21 +646,18 @@ namespace Timeless_Torture
                             previousGameState = gameState;
                             gameState = GameState.Game;
                         }
-                        
                         // checking if they click the instructions button
                         if (pauseInstructionsButton.MouseClick(mouseState, previousMouseState))
                         {
                             previousGameState = gameState;
                             gameState = GameState.Instructions;
                         }
-
                         // Checking if they want to edit the options of the game
                         if (pauseOptionsButton.MouseClick(mouseState, previousMouseState))
                         {
                             previousGameState = gameState;
                             gameState = GameState.Options;
                         }
-
                         // Checking if they want to exit to the menu
                         if (pauseExitButton.MouseClick(mouseState, previousMouseState))
                         {
@@ -688,7 +678,6 @@ namespace Timeless_Torture
                         break;
                     }
             }
-
             base.Update(gameTime);
         }
 
@@ -818,9 +807,7 @@ namespace Timeless_Torture
 
                             // Hard Difficulty Button
                             hardDifficulty.Draw(spriteBatch);
-
                         }
-
                         break;
                     }
 
@@ -860,16 +847,9 @@ namespace Timeless_Torture
                         if(shouldSpawnPortal==true)
                             spriteBatch.Draw(portal, portalRectangle, Color.White);
 
-                       
-
-
-
-
-
-
-
                         break;
                     }
+
                 case GameState.Pause:
                     {
                         // Making the background
@@ -908,7 +888,6 @@ namespace Timeless_Torture
         }
 
         // HELPER METHODS
-
         /// <summary>
         /// Determines if a key has been pressed once
         /// </summary>
@@ -961,7 +940,6 @@ namespace Timeless_Torture
             }
 
             timer = timerMax;
-
             PlaceItems(seventiesItems, seventiesGlow);
         }
 
@@ -1066,7 +1044,5 @@ namespace Timeless_Torture
                 return false;
             }
         }
-
-        
     }
 }

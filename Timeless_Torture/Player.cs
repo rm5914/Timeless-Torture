@@ -166,15 +166,15 @@ namespace Timeless_Torture
             {
                 blockedLeft = true;
             }
-            if (position.X + position.Width == rectangle.X)
+            if (position.X + position.Width >= rectangle.X && position.X < rectangle.X + rectangle.Width)
             {
                 blockedRight = true;
             }
-            if (position.Y == rectangle.Y + rectangle.Height)
+            if (position.Y <= rectangle.Y + rectangle.Height && position.Y > rectangle.Y)
             {
                 blockedUp = true;
             }
-            if (position.Y + position.Height == rectangle.Y)
+            if (position.Y + position.Height >= rectangle.Y && position.Y < rectangle.Y + rectangle.Height)
             {
                 blockedDown = true;
             }
