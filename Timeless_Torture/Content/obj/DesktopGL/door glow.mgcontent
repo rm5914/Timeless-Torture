@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/door glow.png</SourceFile>
-  <SourceTime>2020-10-27T15:19:26.7858798-04:00</SourceTime>
-  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/door glow.xnb</DestFile>
-  <DestTime>2020-10-27T15:20:41.0331306-04:00</DestTime>
+  <SourceFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/door glow.png</SourceFile>
+  <SourceTime>2020-10-27T15:31:02.2882346-04:00</SourceTime>
+  <DestFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/bin/DesktopGL/door glow.xnb</DestFile>
+  <DestTime>2020-11-03T15:36:24.7909619-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T10:05:36-05:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

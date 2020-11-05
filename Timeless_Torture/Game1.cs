@@ -45,6 +45,9 @@ namespace Timeless_Torture
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // A list to hold the items currently being used
+        Item[] items;
+
         double timer;
         double timerMax;
 
@@ -61,8 +64,9 @@ namespace Timeless_Torture
         // Random Number Generator
         Random numGenerator;
 
-        // All of the items
-        Item[] items;
+        // Room width and height (block wise)
+        int width;
+        int height;
 
         // The fireplace
         Fireplace fireplace;
@@ -70,9 +74,6 @@ namespace Timeless_Torture
         // portal stuff
         bool shouldSpawnPortal = false;
         Rectangle portalRectangle;
-
-        // A list to keep track of the item list, changes when the era changes
-        private List<Texture2D> currentEraItems;
 
         // Lists to hold time-specific items
         private List<Texture2D> seventiesItems;
@@ -98,22 +99,56 @@ namespace Timeless_Torture
         private Texture2D portal;
 
         // item textures
+        // 70's
         private Texture2D lightsaber;
         private Texture2D pongMachine;
         private Texture2D moodRing;
 
+        // 80's
         private Texture2D slapBracelet;
         private Texture2D walkman;
         private Texture2D rubikCube;
 
+        // 90's
+        private Texture2D tamagotchi;
+        private Texture2D playStation;
+        private Texture2D beeper;
+
+        // 00's
+        private Texture2D ipodTouch;
+        private Texture2D clubPenguin;
+        private Texture2D zoopalPlate;
+
+        // 10's
+        private Texture2D wiiRemote;
+        private Texture2D amazonEcho;
+        private Texture2D facebook;
+
         // Glow Item Textures
+        // 70's
         private Texture2D lightsaberGlow;
         private Texture2D pongMachineGlow;
         private Texture2D moodRingGlow;
 
+        // 80's
         private Texture2D slapBraceletGlow;
         private Texture2D walkmanGlow;
         private Texture2D rubikCubeGlow;
+
+        // 90's
+        private Texture2D tamagotchiGlow;
+        private Texture2D playStationGlow;
+        private Texture2D beeperGlow;
+
+        // 00's
+        private Texture2D ipodTouchGlow;
+        private Texture2D clubPenguinGlow;
+        private Texture2D zoopalPlateGlow;
+
+        // 10's
+        private Texture2D wiiRemoteGlow;
+        private Texture2D amazonEchoGlow;
+        private Texture2D facebookGlow;
 
         // Vectors for positions
         private Vector2 titlePosition;
@@ -162,23 +197,28 @@ namespace Timeless_Torture
         protected override void Initialize()
         {
             // Tries to read in the file data
-            try
-            {
-            // Getting the directory to find the file
-            string path = Directory.GetParent(
-            Directory.GetCurrentDirectory()).Parent.FullName;
-            path = path.Substring(0, path.Length - 31);
 
-            // Making the timer the legnth selected by user input
-            StreamReader sr = new StreamReader(path + @"\ExternalTool\bin\Debug\timer.txt");
-            timer = int.Parse(sr.ReadLine());
-            sr.Close();
-            }
-            catch
+            // Getting the directory to find the file
+            //string path = Directory.GetParent(
+            //Directory.GetCurrentDirectory()).Parent.FullName;
+            //path = path.Substring(0, path.Length - 31);
+             
+            // Reeading in the maps and their data
+            StreamReader sr = new StreamReader("FirstLevel.level");
+            width = int.Parse(sr.ReadLine());
+            height = int.Parse(sr.ReadLine());
+
+            String[,] level = new string[height, width];
+
+            for (int i = 0; i < height; i++)
             {
-                // Base timer if the file doesn't give one
-                timer = 120;
+                for (int j = 0; j < width; j++)
+                {
+                    level[i, j] = sr.ReadLine();
+                    Console.WriteLine(level[i, j] + (i + j));
+                }
             }
+            sr.Close();
 
             timerMax = timer;
             difficulty = Difficulty.Medium;
@@ -244,6 +284,36 @@ namespace Timeless_Torture
             eightiesItems.Add(walkman);
             eightiesItems.Add(rubikCube);
 
+            // Nineties item textures
+            tamagotchi = Content.Load<Texture2D>("tamagotchi");
+            playStation = Content.Load<Texture2D>("play station");
+            beeper = Content.Load<Texture2D>("beeper");
+
+            ninetiesItems = new List<Texture2D>();
+            ninetiesItems.Add(tamagotchi);
+            ninetiesItems.Add(playStation);
+            ninetiesItems.Add(beeper);
+
+            // Zero's item textures
+            ipodTouch = Content.Load<Texture2D>("ipod touch");
+            clubPenguin = Content.Load<Texture2D>("club penguin");
+            zoopalPlate = Content.Load<Texture2D>("zoopal plate");
+
+            zerosItems = new List<Texture2D>();
+            zerosItems.Add(ipodTouch);
+            zerosItems.Add(clubPenguin);
+            zerosItems.Add(zoopalPlate);
+
+            // Ten's item textures
+            wiiRemote = Content.Load<Texture2D>("wii remote");
+            amazonEcho = Content.Load<Texture2D>("amazon echo");
+            facebook = Content.Load<Texture2D>("facebook logo");
+
+            tensItems = new List<Texture2D>();
+            tensItems.Add(wiiRemote);
+            tensItems.Add(amazonEcho);
+            tensItems.Add(facebook);
+
             // Seventies glow textures
             lightsaberGlow = Content.Load<Texture2D>("lightsaber glow");
             pongMachineGlow = Content.Load<Texture2D>("pong machine glow");
@@ -263,6 +333,36 @@ namespace Timeless_Torture
             eightiesGlow.Add(slapBraceletGlow);
             eightiesGlow.Add(walkmanGlow);
             eightiesGlow.Add(rubikCubeGlow);
+
+            // Nineties glow textures
+            tamagotchiGlow = Content.Load<Texture2D>("tamagotchi glow");
+            playStationGlow = Content.Load<Texture2D>("play station glow");
+            beeperGlow = Content.Load<Texture2D>("beeper glow");
+
+            ninetiesGlow = new List<Texture2D>();
+            ninetiesGlow.Add(tamagotchiGlow);
+            ninetiesGlow.Add(playStationGlow);
+            ninetiesGlow.Add(beeperGlow);
+
+            // Zero's glow textures
+            ipodTouchGlow = Content.Load<Texture2D>("ipod touch glow");
+            clubPenguinGlow = Content.Load<Texture2D>("club penguin glow");
+            zoopalPlateGlow = Content.Load<Texture2D>("zoopal plate glow");
+
+            zerosGlow = new List<Texture2D>();
+            zerosGlow.Add(ipodTouchGlow);
+            zerosGlow.Add(clubPenguinGlow);
+            zerosGlow.Add(zoopalPlateGlow);
+
+            // Ten's glow textures
+            wiiRemoteGlow = Content.Load<Texture2D>("wii remote glow");
+            amazonEchoGlow = Content.Load<Texture2D>("amazon echo glow");
+            facebookGlow = Content.Load<Texture2D>("facebook logo glow");
+
+            tensGlow = new List<Texture2D>();
+            tensGlow.Add(wiiRemoteGlow);
+            tensGlow.Add(amazonEchoGlow);
+            tensGlow.Add(facebookGlow);
 
             //load sprite font
             mainFont = Content.Load<SpriteFont>("mainFont");
@@ -286,9 +386,6 @@ namespace Timeless_Torture
             itemPositions[5] = new ItemPosition(new Vector2(550, 150));
             itemPositions[6] = new ItemPosition(new Vector2(150, 550));
             itemPositions[7] = new ItemPosition(new Vector2(300, 550));
-
-            // Setting the current era
-            currentEraItems = seventiesItems;
 
             // Creating all of the buttons
 
@@ -513,16 +610,16 @@ namespace Timeless_Torture
                             for (int i = 0; i < items.Length; i++)
                             {
                                 // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
-                                if (player.Inventory.Count != 0)
+                                if (player.Inventory[player.InventoryLimit - 1] != null)
                                 {
                                     fireplace.BurnItem(player);
 
-                                    if (fireplace.BurnedItems == currentEraItems.Count)
+                                    if (fireplace.BurnedItems == items.Length)
                                     {
                                         SpawnPortal();
                                     }
                                 }
-                                if (player.Inventory.Count < player.Limit && items[i].PickUp())
+                                if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
                                     return;
@@ -800,9 +897,12 @@ namespace Timeless_Torture
         /// </summary>
         protected void GameStart()
         {
+            player.ResetInventory();
             player.X = 0;
             player.Y = 0;
             currentLevel = 0;
+            fireplace.Reset();
+            shouldSpawnPortal = false;
 
             if (difficulty == Difficulty.Easy)
             {
@@ -869,41 +969,48 @@ namespace Timeless_Torture
         /// </summary>
         protected void NextLevel()
         {
+            player.ResetInventory();
             timer = timerMax;
             player.X = 0;
             player.Y = 0;
             fireplace.Reset();
-            currentLevel++;
             shouldSpawnPortal = false;
+            currentLevel++;
+
+            // Resetting item positions
+            for (int i = 0; i < itemPositions.Length; i++)
+            {
+                itemPositions[i].Reset();
+            }
+
             switch (currentLevel)
             {
                 case 1:
                     {
                         PlaceItems(eightiesItems, eightiesGlow);
-                        currentEraItems = eightiesItems;
                         break;
                     }
                 case 2:
                     {
+                        eightiesItems.Clear();
+                        eightiesGlow.Clear();
                         PlaceItems(ninetiesItems, ninetiesGlow);
-                        currentEraItems = ninetiesItems;
                         break;
                     }
                 case 3:
                     {
                         PlaceItems(zerosItems, zerosGlow);
-                        currentEraItems = zerosItems;
                         break;
                     }
                 case 4:
                     {
                         PlaceItems(tensItems, tensGlow);
-                        currentEraItems = tensItems;
                         break;
                     }
                 case 5:
                     {
                         // Victory screen
+                        gameState = GameState.GameOver;
                         break;
                     }
             }
