@@ -15,6 +15,10 @@ namespace Timeless_Torture
         private int inventoryLimit;
         private int playerMovementX;
         private int playerMovementY;
+        private bool blockedLeft;
+        private bool blockedRight;
+        private bool blockedUp;
+        private bool blockedDown;
 
         // Constructor
         public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
@@ -25,6 +29,10 @@ namespace Timeless_Torture
             this.inventoryLimit = inventoryLimit;
             playerMovementX = 5;
             playerMovementY = 5;
+            blockedLeft = false;
+            blockedRight = false;
+            blockedUp = false;
+            blockedDown = false;
         }
 
         // Properties 
@@ -118,49 +126,57 @@ namespace Timeless_Torture
 
         // End of properties
 
+        //methods
         /// <summary>
         /// Makes the player move, should be called in Update
         /// </summary>
         public void MovePlayer(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.W))
+            if (keyState.IsKeyDown(Keys.W) && !blockedUp)
             {
                 position.Y -= playerMovementY;
-                int upSide = playerTexture.Height - 250;
-                if (position.Y < upSide)
-                {
-                    position.Y = upSide;
-                }
             }
-
-            if (keyState.IsKeyDown(Keys.A))
+            if (keyState.IsKeyDown(Keys.A) && !blockedLeft)
             {
                 position.X -= playerMovementX;
-                int leftSide = playerTexture.Width - 270;
-                if (position.X < leftSide)
-                {
-                    position.X = leftSide;
-                }
             }
-
-            if (keyState.IsKeyDown(Keys.S))
+            if (keyState.IsKeyDown(Keys.S) && !blockedDown)
             {
                 position.Y += playerMovementY;
-                int downSide = 1030 - playerTexture.Height;
-                if (position.Y > downSide)
-                {
-                    position.Y = downSide;
-                }
             }
-
-            if (keyState.IsKeyDown(Keys.D))
+            if (keyState.IsKeyDown(Keys.D) && !blockedRight)
             {
                 position.X += playerMovementX;
-                int rightSide = 1330 - playerTexture.Width;
-                if (position.X > rightSide)
-                {
-                    position.X = rightSide;
-                }
+            }
+
+            blockedLeft = false;
+            blockedRight = false;
+            blockedUp = false;
+            blockedDown = false;
+        }
+
+        /// <summary>
+        /// detects if player is touching an object
+        /// </summary>
+        /// <param name="rectangle">the rectangle to be checked if the player is close</param>
+        /// <returns>true if its touching or within a certain range of an object</returns>
+        public void PlayerCollision(Rectangle rectangle)
+        {
+            if (position.X <= rectangle.X + rectangle.Width && position.X > rectangle.X)
+            {
+                blockedLeft = true;
+            }
+            if (position.X + position.Width == rectangle.X)
+            {
+                blockedRight = true;
+            }
+            if (position.Y == rectangle.Y + rectangle.Height)
+            {
+                blockedUp = true;
+            }
+            if (position.Y + position.Height == rectangle.Y)
+            {
+                blockedDown = true;
             }
         }
 

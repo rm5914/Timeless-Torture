@@ -48,8 +48,12 @@ namespace Timeless_Torture
         // A list to hold the items currently being used
         Item[] items;
 
+        //timer
         double timer;
         double timerMax;
+
+        //list to keep track of rectangles of floor tiles
+        Rectangle[,] floorTiles;
 
         // Keeps track of the current level
         int currentLevel;
@@ -67,6 +71,7 @@ namespace Timeless_Torture
         // Room width and height (block wise)
         int width;
         int height;
+        String[,] level;
 
         // The fireplace
         Fireplace fireplace;
@@ -97,6 +102,7 @@ namespace Timeless_Torture
         private Texture2D fireplaceTexture;
         private Texture2D fireplaceGlowTexture;
         private Texture2D portal;
+        private Texture2D floor;
 
         // item textures
         // 70's
@@ -208,7 +214,7 @@ namespace Timeless_Torture
             width = int.Parse(sr.ReadLine());
             height = int.Parse(sr.ReadLine());
 
-            String[,] level = new string[height, width];
+            level = new string[height, width];
 
             for (int i = 0; i < height; i++)
             {
@@ -236,6 +242,9 @@ namespace Timeless_Torture
             // Making mouse visible
             this.IsMouseVisible = true;
 
+            //initialize the floor tiles
+            floorTiles = new Rectangle[height, width];
+
             base.Initialize();
         }
 
@@ -245,7 +254,8 @@ namespace Timeless_Torture
         /// </summary>
         protected override void LoadContent()
         {
-           
+            //load in floor
+            floor = Content.Load<Texture2D>("floor pattern");
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -631,7 +641,6 @@ namespace Timeless_Torture
                             NextLevel();
                         }
                             
-
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -817,9 +826,27 @@ namespace Timeless_Torture
 
                 case GameState.Game:
                     {
+                        //drawing floor pattern
+                        for (int i = 0; i < height; i++)
+                        {
+                            for (int j = 0; j < width; j++)
+                            {
+                                floorTiles[i, j] = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+                                if (level[i, j] == "Black")
+                                {
+                                    spriteBatch.Draw(floor, floorTiles[i,j], Color.Black);
+                                    player.PlayerCollision(floorTiles[i, j]);
+                                }
+                                else
+                                {
+                                    spriteBatch.Draw(floor, floorTiles[i, j], Color.White);
+                                }
+                            }
+                        }
+
                         //Displaying the timer
                         string time = string.Format("{0:0.00}", timer);
-                        spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.Black);
+                        spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.White);
                         player.Draw(spriteBatch);
                         fireplace.PlayerClose = IsPlayerClose(player.Position, fireplace.Position);
                         fireplace.Draw(spriteBatch);
@@ -832,6 +859,14 @@ namespace Timeless_Torture
 
                         if(shouldSpawnPortal==true)
                             spriteBatch.Draw(portal, portalRectangle, Color.White);
+
+                       
+
+
+
+
+
+
 
                         break;
                     }
@@ -1031,5 +1066,7 @@ namespace Timeless_Torture
                 return false;
             }
         }
+
+        
     }
 }

@@ -63,6 +63,7 @@ namespace Timeless_Torture
 
         // End of  properties
 
+        //methods
         /// <summary>
         /// Burns the first item the player has
         /// </summary>
