@@ -11,7 +11,7 @@ namespace Timeless_Torture
         // FIELDS
         private Rectangle position;
         private Texture2D playerTexture;
-        private List<Item> inventory;
+        private Item[] inventory;
         private int inventoryLimit;
         private int playerMovementX;
         private int playerMovementY;
@@ -21,7 +21,7 @@ namespace Timeless_Torture
         {
             position = pos;
             playerTexture = texture;
-            inventory = new List<Item>();
+            inventory = new Item[inventoryLimit];
             this.inventoryLimit = inventoryLimit;
             playerMovementX = 5;
             playerMovementY = 5;
@@ -64,7 +64,7 @@ namespace Timeless_Torture
             }
         }
 
-        public List<Item> Inventory
+        public Item[] Inventory
         {
             get
             {
@@ -170,9 +170,13 @@ namespace Timeless_Torture
         /// <param name="item"> The item to be added </param>
         public void AddItem(Item item)
         {
-            if (inventory.Count < inventoryLimit)
+            for (int i = 0; i < inventory.Length; i++)
             {
-                inventory.Add(item);
+                if (inventory[i] == null)
+                {
+                    inventory[i] = item;
+                    return;
+                }
             }
         }
 
@@ -181,7 +185,11 @@ namespace Timeless_Torture
         /// </summary>
         public void Remove()
         {
-            inventory.RemoveAt(0);
+            inventory[0] = null;
+            for (int i = 1; i < inventory.Length; i++)
+            {
+                inventory[i - 1] = inventory[i];
+            }
         }
 
         /// <summary>
@@ -193,5 +201,15 @@ namespace Timeless_Torture
             spriteBatch.Draw(playerTexture, position, Color.White);
         }
         
+        /// <summary>
+        /// Resets the players inventory so it holds 0 items
+        /// </summary>
+        public void ResetInventory()
+        {
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                inventory[i] = null;
+            }
+        }
     }
 }
