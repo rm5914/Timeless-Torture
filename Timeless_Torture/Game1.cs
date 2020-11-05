@@ -215,7 +215,6 @@ namespace Timeless_Torture
                 for (int j = 0; j < width; j++)
                 {
                     level[i, j] = sr.ReadLine();
-                    Console.WriteLine(level[i, j] + (i + j));
                 }
             }
             sr.Close();
