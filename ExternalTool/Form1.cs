@@ -78,7 +78,7 @@ namespace ExternalTool
         {
             color = Color.Gray;
             button9.BackColor = color;
-            textBox1.Text = "Dimly lit area";
+            textBox1.Text = "Staircase";
         }
 
         private void button6_Click(object sender, EventArgs e)
