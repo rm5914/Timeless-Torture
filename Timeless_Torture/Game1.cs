@@ -259,8 +259,8 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("PlayerSprite");
-            playerPosition = new Rectangle(0, 0, texture.Width / 2, texture.Height / 2);
+            texture = Content.Load<Texture2D>("player");
+            playerPosition = new Rectangle(100, 100, texture.Width / 5, texture.Height / 5);
             player = new Player(texture, playerPosition, 1);
 
             // All of the textures
@@ -821,7 +821,7 @@ namespace Timeless_Torture
                                 floorTiles[i, j] = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
                                 if (level[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(floor, floorTiles[i,j], Color.Black);
+                                    spriteBatch.Draw(floor, floorTiles[i, j], Color.Black);
                                     player.PlayerCollision(floorTiles[i, j]);
                                 }
                                 else
@@ -911,8 +911,8 @@ namespace Timeless_Torture
         protected void GameStart()
         {
             player.ResetInventory();
-            player.X = 0;
-            player.Y = 0;
+            player.X = 100;
+            player.Y = 100;
             currentLevel = 0;
             fireplace.Reset();
             shouldSpawnPortal = false;

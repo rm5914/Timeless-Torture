@@ -19,6 +19,8 @@ namespace Timeless_Torture
         private bool blockedRight;
         private bool blockedUp;
         private bool blockedDown;
+        private bool verticalWallHit = false;
+        private bool horizontalWallHit = false;
 
         // Constructor
         public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
@@ -153,6 +155,9 @@ namespace Timeless_Torture
             blockedRight = false;
             blockedUp = false;
             blockedDown = false;
+
+            verticalWallHit = false;
+            horizontalWallHit = false;
         }
 
         /// <summary>
@@ -162,22 +167,82 @@ namespace Timeless_Torture
         /// <returns>true if its touching or within a certain range of an object</returns>
         public void PlayerCollision(Rectangle rectangle)
         {
-            if (position.X <= rectangle.X + rectangle.Width && position.X > rectangle.X)
+
+            if (((position.Y > rectangle.Y && position.Y < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)) || ((position.Y + position.Height > rectangle.Y && position.Y  + position.Height < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)))
             {
+                if (!(position.Y + position.Height - 3 < rectangle.Y || position.Y + 3 < position.Height))
+                {
+                    verticalWallHit = true;
+                    Console.WriteLine("Hit a wall");
+                }
+                
                 blockedLeft = true;
+                Console.WriteLine("Blocked Left");
             }
-            if (position.X + position.Width >= rectangle.X && position.X < rectangle.X + rectangle.Width)
+            else if (((position.Y > rectangle.Y && position.Y < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)) || ((position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)))
             {
+                if (!(position.Y + position.Height - 3 < rectangle.Y || position.Y + 3 < position.Height))
+                {
+                    verticalWallHit = true;
+                    Console.WriteLine("Hit a wall");
+                }
                 blockedRight = true;
+                Console.WriteLine("Blocked Right");
             }
-            if (position.Y <= rectangle.Y + rectangle.Height && position.Y > rectangle.Y)
+            
+            if (((position.X > rectangle.X && position.X < rectangle.X + rectangle.Width) && (position.Y + position.Height < rectangle.Y + rectangle.Height && position.Y + position.Height > rectangle.Y)) || ((position.X + position.Width > rectangle.X && position.X + position.Width < rectangle.X + rectangle.Width) && (position.Y + position.Height < rectangle.Y + rectangle.Height && position.Y + position.Height > rectangle.Y)))
+            {
+                if (blockedLeft && (position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + 5))
+                {
+                    if (((position.Y - 5> rectangle.Y && position.Y - 5 < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)) || ((position.Y + position.Height - 5 > rectangle.Y && position.Y + position.Height - 5 < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)))
+                    {
+                        blockedDown = false;
+                        blockedLeft = true;
+                    }
+                    else if (verticalWallHit)
+                    {
+                        blockedLeft = true;
+                        blockedDown = true;
+                    }
+                    else
+                    {
+                        blockedLeft = false;
+                        blockedDown = true;
+                    }
+                }
+                /*
+                else if(blockedRight && (position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + 5))
+                {
+                    if (((position.Y - 5 > rectangle.Y && position.Y - 5 < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)) || ((position.Y + position.Height - 5 > rectangle.Y && position.Y + position.Height - 5 < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width> rectangle.X)))
+                    {
+                        blockedDown = false;
+                        blockedRight = true;
+                    }
+                    else if (verticalWallHit)
+                    {
+                        blockedLeft = true;
+                        blockedRight = true;
+                    }
+                    else
+                    {
+                        blockedLeft = false;
+                        blockedRight = true;
+                    }
+                }
+                */
+                else
+                {
+                    blockedDown = true;
+                    Console.WriteLine("Blocked Down");
+                }
+            }
+            
+            else if (((position.X > rectangle.X && position.X < rectangle.X + rectangle.Width) && (position.Y < rectangle.Y + rectangle.Height && position.Y > rectangle.Y)) || ((position.X + position.Width > rectangle.X && position.X + position.Width < rectangle.X + rectangle.Width) && (position.Y < rectangle.Y + rectangle.Height && position.Y > rectangle.Y)))
             {
                 blockedUp = true;
+                Console.WriteLine("Blocked Up");
             }
-            if (position.Y + position.Height >= rectangle.Y && position.Y < rectangle.Y + rectangle.Height)
-            {
-                blockedDown = true;
-            }
+            
         }
 
         /// <summary>
