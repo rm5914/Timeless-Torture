@@ -158,8 +158,8 @@ namespace ExternalTool
 
                 Form1 editor = new Form1();
 
-                height = 20;
-                width = 20;
+                width = int.Parse(input.ReadLine());
+                height = int.Parse(input.ReadLine());
 
                 for (int x = 0; x < (height * width); x++)
                 {

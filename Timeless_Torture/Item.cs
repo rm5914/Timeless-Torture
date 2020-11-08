@@ -57,6 +57,7 @@ namespace Timeless_Torture
 
         // End of Properties
 
+        //methods
         /// <summary>
         /// Picks up the item
         /// </summary>
@@ -97,7 +98,6 @@ namespace Timeless_Torture
                     spriteBatch.Draw(texture, rectangle, color);
                 }
             }
-            
         }
     }
 }

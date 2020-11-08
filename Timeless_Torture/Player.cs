@@ -11,20 +11,30 @@ namespace Timeless_Torture
         // FIELDS
         private Rectangle position;
         private Texture2D playerTexture;
-        private List<Item> inventory;
+        private Item[] inventory;
         private int inventoryLimit;
         private int playerMovementX;
         private int playerMovementY;
+        private bool blockedLeft;
+        private bool blockedRight;
+        private bool blockedUp;
+        private bool blockedDown;
+        private bool verticalWallHit = false;
+        private bool horizontalWallHit = false;
 
         // Constructor
         public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
         {
             position = pos;
             playerTexture = texture;
-            inventory = new List<Item>();
+            inventory = new Item[inventoryLimit];
             this.inventoryLimit = inventoryLimit;
             playerMovementX = 5;
             playerMovementY = 5;
+            blockedLeft = false;
+            blockedRight = false;
+            blockedUp = false;
+            blockedDown = false;
         }
 
         // Properties 
@@ -64,7 +74,7 @@ namespace Timeless_Torture
             }
         }
 
-        public List<Item> Inventory
+        public Item[] Inventory
         {
             get
             {
@@ -118,50 +128,121 @@ namespace Timeless_Torture
 
         // End of properties
 
+        //methods
         /// <summary>
         /// Makes the player move, should be called in Update
         /// </summary>
         public void MovePlayer(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.W))
+            if (keyState.IsKeyDown(Keys.W) && !blockedUp)
             {
                 position.Y -= playerMovementY;
-                int upSide = playerTexture.Height - 250;
-                if (position.Y < upSide)
-                {
-                    position.Y = upSide;
-                }
             }
-
-            if (keyState.IsKeyDown(Keys.A))
+            if (keyState.IsKeyDown(Keys.A) && !blockedLeft)
             {
                 position.X -= playerMovementX;
-                int leftSide = playerTexture.Width - 270;
-                if (position.X < leftSide)
-                {
-                    position.X = leftSide;
-                }
             }
-
-            if (keyState.IsKeyDown(Keys.S))
+            if (keyState.IsKeyDown(Keys.S) && !blockedDown)
             {
                 position.Y += playerMovementY;
-                int downSide = 1030 - playerTexture.Height;
-                if (position.Y > downSide)
-                {
-                    position.Y = downSide;
-                }
             }
-
-            if (keyState.IsKeyDown(Keys.D))
+            if (keyState.IsKeyDown(Keys.D) && !blockedRight)
             {
                 position.X += playerMovementX;
-                int rightSide = 1330 - playerTexture.Width;
-                if (position.X > rightSide)
+            }
+
+            blockedLeft = false;
+            blockedRight = false;
+            blockedUp = false;
+            blockedDown = false;
+
+            verticalWallHit = false;
+            horizontalWallHit = false;
+        }
+
+        /// <summary>
+        /// detects if player is touching an object
+        /// </summary>
+        /// <param name="rectangle">the rectangle to be checked if the player is close</param>
+        /// <returns>true if its touching or within a certain range of an object</returns>
+        public void PlayerCollision(Rectangle rectangle)
+        {
+
+            if (((position.Y > rectangle.Y && position.Y < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)) || ((position.Y + position.Height > rectangle.Y && position.Y  + position.Height < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)))
+            {
+                if (!(position.Y + position.Height - 3 < rectangle.Y || position.Y + 3 < position.Height))
                 {
-                    position.X = rightSide;
+                    verticalWallHit = true;
+                    Console.WriteLine("Hit a wall");
+                }
+                
+                blockedLeft = true;
+                Console.WriteLine("Blocked Left");
+            }
+            else if (((position.Y > rectangle.Y && position.Y < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)) || ((position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)))
+            {
+                if (!(position.Y + position.Height - 3 < rectangle.Y || position.Y + 3 < position.Height))
+                {
+                    verticalWallHit = true;
+                    Console.WriteLine("Hit a wall");
+                }
+                blockedRight = true;
+                Console.WriteLine("Blocked Right");
+            }
+            
+            if (((position.X > rectangle.X && position.X < rectangle.X + rectangle.Width) && (position.Y + position.Height < rectangle.Y + rectangle.Height && position.Y + position.Height > rectangle.Y)) || ((position.X + position.Width > rectangle.X && position.X + position.Width < rectangle.X + rectangle.Width) && (position.Y + position.Height < rectangle.Y + rectangle.Height && position.Y + position.Height > rectangle.Y)))
+            {
+                if (blockedLeft && (position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + 5))
+                {
+                    if (((position.Y - 5> rectangle.Y && position.Y - 5 < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)) || ((position.Y + position.Height - 5 > rectangle.Y && position.Y + position.Height - 5 < rectangle.Y + rectangle.Height) && (position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)))
+                    {
+                        blockedDown = false;
+                        blockedLeft = true;
+                    }
+                    else if (verticalWallHit)
+                    {
+                        blockedLeft = true;
+                        blockedDown = true;
+                    }
+                    else
+                    {
+                        blockedLeft = false;
+                        blockedDown = true;
+                    }
+                }
+                /*
+                else if(blockedRight && (position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + 5))
+                {
+                    if (((position.Y - 5 > rectangle.Y && position.Y - 5 < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)) || ((position.Y + position.Height - 5 > rectangle.Y && position.Y + position.Height - 5 < rectangle.Y + rectangle.Height) && (position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width> rectangle.X)))
+                    {
+                        blockedDown = false;
+                        blockedRight = true;
+                    }
+                    else if (verticalWallHit)
+                    {
+                        blockedLeft = true;
+                        blockedRight = true;
+                    }
+                    else
+                    {
+                        blockedLeft = false;
+                        blockedRight = true;
+                    }
+                }
+                */
+                else
+                {
+                    blockedDown = true;
+                    Console.WriteLine("Blocked Down");
                 }
             }
+            
+            else if (((position.X > rectangle.X && position.X < rectangle.X + rectangle.Width) && (position.Y < rectangle.Y + rectangle.Height && position.Y > rectangle.Y)) || ((position.X + position.Width > rectangle.X && position.X + position.Width < rectangle.X + rectangle.Width) && (position.Y < rectangle.Y + rectangle.Height && position.Y > rectangle.Y)))
+            {
+                blockedUp = true;
+                Console.WriteLine("Blocked Up");
+            }
+            
         }
 
         /// <summary>
@@ -170,9 +251,13 @@ namespace Timeless_Torture
         /// <param name="item"> The item to be added </param>
         public void AddItem(Item item)
         {
-            if (inventory.Count < inventoryLimit)
+            for (int i = 0; i < inventory.Length; i++)
             {
-                inventory.Add(item);
+                if (inventory[i] == null)
+                {
+                    inventory[i] = item;
+                    return;
+                }
             }
         }
 
@@ -181,7 +266,11 @@ namespace Timeless_Torture
         /// </summary>
         public void Remove()
         {
-            inventory.RemoveAt(0);
+            inventory[0] = null;
+            for (int i = 1; i < inventory.Length; i++)
+            {
+                inventory[i - 1] = inventory[i];
+            }
         }
 
         /// <summary>
@@ -193,5 +282,15 @@ namespace Timeless_Torture
             spriteBatch.Draw(playerTexture, position, Color.White);
         }
         
+        /// <summary>
+        /// Resets the players inventory so it holds 0 items
+        /// </summary>
+        public void ResetInventory()
+        {
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                inventory[i] = null;
+            }
+        }
     }
 }

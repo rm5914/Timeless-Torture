@@ -3,8 +3,12 @@
     "",
     "\\ExternalTool",
     "\\Timeless_Torture",
+    "\\Timeless_Torture\\bin",
+    "\\Timeless_Torture\\bin\\DesktopGL",
+    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU",
+    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug",
     "\\Timeless_Torture\\Content"
   ],
-  "SelectedNode": "\\ExternalTool\\Form1.cs",
+  "SelectedNode": "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug\\FirstLevel.level",
   "PreviewInSolutionExplorer": false
 }
