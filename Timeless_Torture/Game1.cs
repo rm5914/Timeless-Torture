@@ -606,25 +606,25 @@ namespace Timeless_Torture
                             gameState = GameState.Pause;
                         }
 
-                        // Checcking if they use the interact button
+                        // Checking if they use the interact button
                         if (SingleKeyPress(Keys.E))
                         {
                             for (int i = 0; i < items.Length; i++)
                             {
-                                // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
-                                if (player.Inventory[player.InventoryLimit - 1] != null)
-                                {
-                                    fireplace.BurnItem(player);
-
-                                    if (fireplace.BurnedItems == items.Length)
-                                    {
-                                        SpawnPortal();
-                                    }
-                                }
                                 if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
                                     return;
+                                }
+                            }
+                            // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
+                            if (player.Inventory[player.InventoryLimit - 1] != null)
+                            {
+                                fireplace.BurnItem(player);
+
+                                if (fireplace.BurnedItems == items.Length)
+                                {
+                                    SpawnPortal();
                                 }
                             }
                         }
@@ -846,6 +846,9 @@ namespace Timeless_Torture
 
                         if(shouldSpawnPortal==true)
                             spriteBatch.Draw(portal, portalRectangle, Color.White);
+
+                        //display inventory
+                        spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
 
                         break;
                     }
