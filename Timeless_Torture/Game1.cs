@@ -260,7 +260,7 @@ namespace Timeless_Torture
 
             // Making the player 
             texture = Content.Load<Texture2D>("player");
-            playerPosition = new Rectangle(100, 100, texture.Width / 5, texture.Height / 5);
+            playerPosition = new Rectangle(100, 100, texture.Width / 9, texture.Height / 9);
             player = new Player(texture, playerPosition, 1);
 
             // All of the textures
@@ -633,7 +633,7 @@ namespace Timeless_Torture
                         {
                             NextLevel();
                         }
-   
+
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -917,25 +917,26 @@ namespace Timeless_Torture
             fireplace.Reset();
             shouldSpawnPortal = false;
 
+            // These are the max settings, any higher speed would cause problems with the player collision
             if (difficulty == Difficulty.Easy)
             {
                 timerMax = 180;
-                player.XMovement = 7;
-                player.YMovement = 7;
+                player.XMovement = 4;
+                player.YMovement = 3;
                 player.InventoryLimit = 2;
             }
             else if (difficulty == Difficulty.Medium)
             {
                 timerMax = 120;
-                player.XMovement = 5;
-                player.YMovement = 5;
+                player.XMovement = 3;
+                player.YMovement = 3;
                 player.InventoryLimit = 1;
             }
             else if (difficulty == Difficulty.Hard)
             {
                 timerMax = 60;
-                player.XMovement = 4;
-                player.YMovement = 4;
+                player.XMovement = 2;
+                player.YMovement = 2;
                 player.InventoryLimit = 1;
             }
 
