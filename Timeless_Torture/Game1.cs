@@ -63,7 +63,7 @@ namespace Timeless_Torture
         private Rectangle playerPosition;
 
         // Item positions
-        ItemPosition[] itemPositions;
+        List<ItemPosition> itemPositions;
 
         // Random Number Generator
         Random numGenerator;
@@ -384,15 +384,19 @@ namespace Timeless_Torture
             portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
 
             // All of the item positions
-            itemPositions = new ItemPosition[8];
-            itemPositions[0] = new ItemPosition(new Vector2(150, 150));
-            itemPositions[1] = new ItemPosition(new Vector2(300, 300));
-            itemPositions[2] = new ItemPosition(new Vector2(550, 550));
-            itemPositions[3] = new ItemPosition(new Vector2(150, 300));
-            itemPositions[4] = new ItemPosition(new Vector2(300, 150));
-            itemPositions[5] = new ItemPosition(new Vector2(550, 150));
-            itemPositions[6] = new ItemPosition(new Vector2(150, 550));
-            itemPositions[7] = new ItemPosition(new Vector2(300, 550));
+            itemPositions = new List<ItemPosition>();
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if (level[i, j] == "SkyBlue")
+                    {
+                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20) , i * (graphics.PreferredBackBufferHeight / 20))));
+                    }
+                }
+            }
+
 
             // Creating all of the buttons
             // Main Menu buttons
@@ -956,16 +960,16 @@ namespace Timeless_Torture
             // Picking randomly from the set positions
             for (int i = 0; i < items.Length; i++)
             {
-                int position = numGenerator.Next(0, itemPositions.Length);
+                int position = numGenerator.Next(0, itemPositions.Count);
 
                 // Don't have the positions overlap
                 Vector2 itemVector = itemPositions[position].GetPosition();
                 while (itemVector.X == 0)
                 {
-                    position = numGenerator.Next(0, itemPositions.Length);
+                    position = numGenerator.Next(0, itemPositions.Count);
                     itemVector = itemPositions[position].GetPosition();
                 }
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 3, textures[i].Width / 3), textures[i], glowTextures[i], Color.White);
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Width / 5), textures[i], glowTextures[i], Color.White);
             }
         }
 
@@ -991,7 +995,7 @@ namespace Timeless_Torture
             currentLevel++;
 
             // Resetting item positions
-            for (int i = 0; i < itemPositions.Length; i++)
+            for (int i = 0; i < itemPositions.Count; i++)
             {
                 itemPositions[i].Reset();
             }
