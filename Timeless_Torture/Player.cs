@@ -80,14 +80,6 @@ namespace Timeless_Torture
             }
         }
 
-        public int Limit
-        {
-            get
-            {
-                return inventoryLimit;
-            }
-        }
-
         public int XMovement
         {
             get
@@ -121,6 +113,23 @@ namespace Timeless_Torture
             set
             {
                 inventoryLimit = value;
+                //change inventory limit - changes inventory to new inventory limit
+                Item[] temp = new Item[inventoryLimit];
+                if (inventoryLimit > inventory.Length)
+                {
+                    for (int i = 0; i < inventory.Length; i++)
+                    {
+                        temp[i] = inventory[i];
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < inventoryLimit; i++)
+                    {
+                        temp[i] = inventory[i];
+                    }
+                }
+                inventory = temp;
             }
         }
 

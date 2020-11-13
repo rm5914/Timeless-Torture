@@ -20,6 +20,7 @@ namespace Timeless_Torture
         Texture2D texture;
         Texture2D closeTexture;
         Color color;
+        
 
         // Constructor
         public Item(Rectangle rectangle, Texture2D texture, Texture2D closeTexture, Color color)
@@ -97,6 +98,11 @@ namespace Timeless_Torture
                 {
                     spriteBatch.Draw(texture, rectangle, color);
                 }
+            }
+            //display items - bottom left corner
+            else if (isPickedUp && !isBurned)
+            {
+                spriteBatch.Draw(texture, new Rectangle(350, 700, rectangle.Width, rectangle.Height), color);
             }
         }
     }
