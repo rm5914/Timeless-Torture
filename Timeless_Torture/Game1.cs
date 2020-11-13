@@ -622,7 +622,7 @@ namespace Timeless_Torture
                                 }
                             }
                             // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
-                            if (player.Inventory[player.InventoryLimit - 1] != null)
+                            if (player.Inventory[0] != null)
                             {
                                 fireplace.BurnItem(player);
 
@@ -928,7 +928,7 @@ namespace Timeless_Torture
             if (difficulty == Difficulty.Easy)
             {
                 timerMax = 180;
-                player.XMovement = 4;
+                player.XMovement = 3;
                 player.YMovement = 3;
                 player.InventoryLimit = 2;
             }

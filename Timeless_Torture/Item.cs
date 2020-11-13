@@ -66,6 +66,7 @@ namespace Timeless_Torture
         {
             if (playerClose && !isBurned && !isPickedUp)
             {
+                Console.WriteLine("it ran");
                 isPickedUp = true;
                 return true;
             }
