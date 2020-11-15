@@ -207,22 +207,6 @@ namespace Timeless_Torture
             //string path = Directory.GetParent(
             //Directory.GetCurrentDirectory()).Parent.FullName;
             //path = path.Substring(0, path.Length - 31);
-             
-            // Reeading in the maps and their data
-            StreamReader sr = new StreamReader("FirstLevel.level");
-            width = int.Parse(sr.ReadLine());
-            height = int.Parse(sr.ReadLine());
-
-            level = new string[height, width];
-
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    level[i, j] = sr.ReadLine();
-                }
-            }
-            sr.Close();
 
             timerMax = timer;
             difficulty = Difficulty.Medium;
@@ -239,9 +223,6 @@ namespace Timeless_Torture
 
             // Making mouse visible
             this.IsMouseVisible = true;
-
-            //initialize the floor tiles
-            floorTiles = new Rectangle[height, width];
 
             base.Initialize();
         }
@@ -260,8 +241,6 @@ namespace Timeless_Torture
 
             // Making the player 
             texture = Content.Load<Texture2D>("player");
-            playerPosition = new Rectangle(100, 100, texture.Width / 9, texture.Height / 9);
-            player = new Player(texture, playerPosition, 1);
 
             // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -376,27 +355,6 @@ namespace Timeless_Torture
 
             // All positions
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
-
-            // Fireplace
-            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
-
-            // portal "hitbox"
-            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
-
-            // All of the item positions
-            itemPositions = new List<ItemPosition>();
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    if (level[i, j] == "SkyBlue")
-                    {
-                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20) , i * (graphics.PreferredBackBufferHeight / 20))));
-                    }
-                }
-            }
-
 
             // Creating all of the buttons
             // Main Menu buttons
@@ -917,6 +875,51 @@ namespace Timeless_Torture
         /// </summary>
         protected void GameStart()
         {
+            // Loading the first level
+            // Reeading in the maps and their data
+            StreamReader sr = new StreamReader("FirstLevel.level");
+            width = int.Parse(sr.ReadLine());
+            height = int.Parse(sr.ReadLine());
+
+            level = new string[height, width];
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    level[i, j] = sr.ReadLine();
+                }
+            }
+            sr.Close();
+
+            //initialize the floor tiles
+            floorTiles = new Rectangle[height, width];
+
+            // Spawning the player
+            playerPosition = new Rectangle(100, 100, texture.Width / 9, texture.Height / 9);
+            player = new Player(texture, playerPosition, 1);
+
+            // Fireplace
+            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+
+            // portal "hitbox"
+            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
+
+            // All of the item positions
+            itemPositions = new List<ItemPosition>();
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if (level[i, j] == "SkyBlue")
+                    {
+                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
+                    }
+                }
+            }
+
+            // Resetting everything
             player.ResetInventory();
             player.X = 100;
             player.Y = 100;
@@ -924,6 +927,7 @@ namespace Timeless_Torture
             fireplace.Reset();
             shouldSpawnPortal = false;
 
+            // Changing the settings based on difficulty
             // These are the max settings, any higher speed would cause problems with the player collision
             if (difficulty == Difficulty.Easy)
             {
@@ -949,6 +953,7 @@ namespace Timeless_Torture
 
             timer = timerMax;
             PlaceItems(seventiesItems, seventiesGlow);
+
         }
 
         /// <summary>
