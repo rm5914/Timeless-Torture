@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace Timeless_Torture
 {
@@ -11,7 +12,7 @@ namespace Timeless_Torture
         // FIELDS
         private Rectangle position;
         private Texture2D playerTexture;
-        private Item[] inventory;
+        private List<Item> inventory;
         private int inventoryLimit;
         private int playerMovementX;
         private int playerMovementY;
@@ -25,14 +26,19 @@ namespace Timeless_Torture
         {
             position = pos;
             playerTexture = texture;
-            inventory = new Item[inventoryLimit];
             this.inventoryLimit = inventoryLimit;
+            inventory = new List<Item>();
             playerMovementX = 5;
             playerMovementY = 5;
             blockedLeft = false;
             blockedRight = false;
             blockedUp = false;
             blockedDown = false;
+
+            for (int i = 0; i < inventoryLimit; i++)
+            {
+                inventory.Add(null);
+            }
         }
 
         // Properties 
@@ -72,19 +78,11 @@ namespace Timeless_Torture
             }
         }
 
-        public Item[] Inventory
+        public List<Item> Inventory
         {
             get
             {
                 return inventory;
-            }
-        }
-
-        public int Limit
-        {
-            get
-            {
-                return inventoryLimit;
             }
         }
 
@@ -121,6 +119,11 @@ namespace Timeless_Torture
             set
             {
                 inventoryLimit = value;
+
+                for (int i = 0; i < inventoryLimit; i++)
+                {
+                    inventory.Add(null);
+                }
             }
         }
 
@@ -162,22 +165,42 @@ namespace Timeless_Torture
         /// <returns>true if its touching or within a certain range of an object</returns>
         public void PlayerCollision(Rectangle rectangle)
         {
-            if (position.X <= rectangle.X + rectangle.Width && position.X > rectangle.X)
+            // Checking the left side of the player
+            if (((position.Y > rectangle.Y && position.Y < rectangle.Y + rectangle.Height) || (position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + rectangle.Height)) && position.X < rectangle.X + rectangle.Width && position.X > rectangle.X)
             {
-                blockedLeft = true;
+                if (!(position.Y + position.Height - 3 < rectangle.Y || position.Y + 3 > rectangle.Y + rectangle.Height))
+                {
+                    blockedLeft = true;
+                }
             }
-            if (position.X + position.Width >= rectangle.X && position.X < rectangle.X + rectangle.Width)
+
+            // Checking the left side of the player
+            if (((position.Y > rectangle.Y && position.Y < rectangle.Y + rectangle.Height) || (position.Y + position.Height > rectangle.Y && position.Y + position.Height < rectangle.Y + rectangle.Height)) && position.X + position.Width < rectangle.X + rectangle.Width && position.X + position.Width > rectangle.X)
             {
-                blockedRight = true;
+                if (!(position.Y + position.Height - 3 < rectangle.Y || position.Y + 3 > rectangle.Y + rectangle.Height))
+                {
+                    blockedRight = true;
+                }
             }
-            if (position.Y <= rectangle.Y + rectangle.Height && position.Y > rectangle.Y)
+            
+            // Checking the up side of the player
+            if (((position.X > rectangle.X && position.X < rectangle.X + rectangle.Width) || (position.X + position.Width > rectangle.X && position.X + position.Height < rectangle.X + rectangle.Width)) && position.Y < rectangle.Y + rectangle.Height && position.Y > rectangle.Y)
             {
-                blockedUp = true;
+                if (!(position.X + position.Width - 3 < rectangle.X || position.X + 3 > rectangle.X + rectangle.Width))
+                {
+                    blockedUp = true;
+                }
             }
-            if (position.Y + position.Height >= rectangle.Y && position.Y < rectangle.Y + rectangle.Height)
+            
+            // Checking the down side of the player
+            if (((position.X > rectangle.X && position.X < rectangle.X + rectangle.Width) || (position.X + position.Width > rectangle.X && position.X + position.Height < rectangle.X + rectangle.Width)) && position.Y + position.Height < rectangle.Y + rectangle.Height && position.Y + position.Height > rectangle.Y)
             {
-                blockedDown = true;
+                if (!(position.X + position.Width - 3 < rectangle.X || position.X + 3 > rectangle.X + rectangle.Width))
+                {
+                    blockedDown = true;
+                }
             }
+
         }
 
         /// <summary>
@@ -186,11 +209,12 @@ namespace Timeless_Torture
         /// <param name="item"> The item to be added </param>
         public void AddItem(Item item)
         {
-            for (int i = 0; i < inventory.Length; i++)
+            for (int i = 0; i < inventoryLimit; i++)
             {
                 if (inventory[i] == null)
                 {
-                    inventory[i] = item;
+                    inventory.RemoveAt(i);
+                    inventory.Insert(i, item);
                     return;
                 }
             }
@@ -201,11 +225,8 @@ namespace Timeless_Torture
         /// </summary>
         public void Remove()
         {
-            inventory[0] = null;
-            for (int i = 1; i < inventory.Length; i++)
-            {
-                inventory[i - 1] = inventory[i];
-            }
+            inventory.RemoveAt(0);
+            inventory.Add(null);
         }
 
         /// <summary>
@@ -222,10 +243,7 @@ namespace Timeless_Torture
         /// </summary>
         public void ResetInventory()
         {
-            for (int i = 0; i < inventory.Length; i++)
-            {
-                inventory[i] = null;
-            }
+            inventory.Clear();
         }
     }
 }

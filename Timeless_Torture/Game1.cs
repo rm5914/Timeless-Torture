@@ -63,7 +63,7 @@ namespace Timeless_Torture
         private Rectangle playerPosition;
 
         // Item positions
-        ItemPosition[] itemPositions;
+        List<ItemPosition> itemPositions;
 
         // Random Number Generator
         Random numGenerator;
@@ -207,23 +207,6 @@ namespace Timeless_Torture
             //string path = Directory.GetParent(
             //Directory.GetCurrentDirectory()).Parent.FullName;
             //path = path.Substring(0, path.Length - 31);
-             
-            // Reeading in the maps and their data
-            StreamReader sr = new StreamReader("FirstLevel.level");
-            width = int.Parse(sr.ReadLine());
-            height = int.Parse(sr.ReadLine());
-
-            level = new string[height, width];
-
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    level[i, j] = sr.ReadLine();
-                    Console.WriteLine(level[i, j] + (i + j));
-                }
-            }
-            sr.Close();
 
             timerMax = timer;
             difficulty = Difficulty.Medium;
@@ -241,9 +224,6 @@ namespace Timeless_Torture
             // Making mouse visible
             this.IsMouseVisible = true;
 
-            //initialize the floor tiles
-            floorTiles = new Rectangle[height, width];
-
             base.Initialize();
         }
 
@@ -260,9 +240,7 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("PlayerSprite");
-            playerPosition = new Rectangle(0, 0, texture.Width / 2, texture.Height / 2);
-            player = new Player(texture, playerPosition, 1);
+            texture = Content.Load<Texture2D>("player");
 
             // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -377,23 +355,6 @@ namespace Timeless_Torture
 
             // All positions
             titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
-
-            // Fireplace
-            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
-
-            // portal "hitbox"
-            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
-
-            // All of the item positions
-            itemPositions = new ItemPosition[8];
-            itemPositions[0] = new ItemPosition(new Vector2(150, 150));
-            itemPositions[1] = new ItemPosition(new Vector2(300, 300));
-            itemPositions[2] = new ItemPosition(new Vector2(550, 550));
-            itemPositions[3] = new ItemPosition(new Vector2(150, 300));
-            itemPositions[4] = new ItemPosition(new Vector2(300, 150));
-            itemPositions[5] = new ItemPosition(new Vector2(550, 150));
-            itemPositions[6] = new ItemPosition(new Vector2(150, 550));
-            itemPositions[7] = new ItemPosition(new Vector2(300, 550));
 
             // Creating all of the buttons
             // Main Menu buttons
@@ -607,25 +568,25 @@ namespace Timeless_Torture
                             gameState = GameState.Pause;
                         }
 
-                        // Checcking if they use the interact button
+                        // Checking if they use the interact button
                         if (SingleKeyPress(Keys.E))
                         {
                             for (int i = 0; i < items.Length; i++)
                             {
-                                // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
-                                if (player.Inventory[player.InventoryLimit - 1] != null)
-                                {
-                                    fireplace.BurnItem(player);
-
-                                    if (fireplace.BurnedItems == items.Length)
-                                    {
-                                        SpawnPortal();
-                                    }
-                                }
                                 if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
                                     return;
+                                }
+                            }
+                            // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
+                            if (player.Inventory[0] != null)
+                            {
+                                fireplace.BurnItem(player);
+
+                                if (fireplace.BurnedItems == items.Length)
+                                {
+                                    SpawnPortal();
                                 }
                             }
                         }
@@ -634,7 +595,7 @@ namespace Timeless_Torture
                         {
                             NextLevel();
                         }
-   
+
                         player.MovePlayer(keyState);
                         break;
                     }
@@ -822,7 +783,7 @@ namespace Timeless_Torture
                                 floorTiles[i, j] = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
                                 if (level[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(floor, floorTiles[i,j], Color.Black);
+                                    spriteBatch.Draw(floor, floorTiles[i, j], Color.Black);
                                     player.PlayerCollision(floorTiles[i, j]);
                                 }
                                 else
@@ -847,6 +808,9 @@ namespace Timeless_Torture
 
                         if(shouldSpawnPortal==true)
                             spriteBatch.Draw(portal, portalRectangle, Color.White);
+
+                        //display inventory
+                        spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
 
                         break;
                     }
@@ -911,37 +875,85 @@ namespace Timeless_Torture
         /// </summary>
         protected void GameStart()
         {
+            // Loading the first level
+            // Reeading in the maps and their data
+            StreamReader sr = new StreamReader("FirstLevel.level");
+            width = int.Parse(sr.ReadLine());
+            height = int.Parse(sr.ReadLine());
+
+            level = new string[height, width];
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    level[i, j] = sr.ReadLine();
+                }
+            }
+            sr.Close();
+
+            //initialize the floor tiles
+            floorTiles = new Rectangle[height, width];
+
+            // Spawning the player
+            playerPosition = new Rectangle(100, 100, texture.Width / 9, texture.Height / 9);
+            player = new Player(texture, playerPosition, 1);
+
+            // Fireplace
+            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+
+            // portal "hitbox"
+            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
+
+            // All of the item positions
+            itemPositions = new List<ItemPosition>();
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if (level[i, j] == "SkyBlue")
+                    {
+                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
+                    }
+                }
+            }
+
+            // Resetting everything
             player.ResetInventory();
-            player.X = 0;
-            player.Y = 0;
+            player.X = 100;
+            player.Y = 100;
             currentLevel = 0;
             fireplace.Reset();
             shouldSpawnPortal = false;
 
+            // Changing the settings based on difficulty
+            // These are the max settings, any higher speed would cause problems with the player collision
             if (difficulty == Difficulty.Easy)
             {
                 timerMax = 180;
-                player.XMovement = 7;
-                player.YMovement = 7;
+                player.XMovement = 3;
+                player.YMovement = 3;
                 player.InventoryLimit = 2;
             }
             else if (difficulty == Difficulty.Medium)
             {
                 timerMax = 120;
-                player.XMovement = 5;
-                player.YMovement = 5;
+                player.XMovement = 3;
+                player.YMovement = 3;
                 player.InventoryLimit = 1;
             }
             else if (difficulty == Difficulty.Hard)
             {
                 timerMax = 60;
-                player.XMovement = 4;
-                player.YMovement = 4;
+                player.XMovement = 2;
+                player.YMovement = 2;
                 player.InventoryLimit = 1;
             }
 
             timer = timerMax;
             PlaceItems(seventiesItems, seventiesGlow);
+
         }
 
         /// <summary>
@@ -956,16 +968,16 @@ namespace Timeless_Torture
             // Picking randomly from the set positions
             for (int i = 0; i < items.Length; i++)
             {
-                int position = numGenerator.Next(0, itemPositions.Length);
+                int position = numGenerator.Next(0, itemPositions.Count);
 
                 // Don't have the positions overlap
                 Vector2 itemVector = itemPositions[position].GetPosition();
                 while (itemVector.X == 0)
                 {
-                    position = numGenerator.Next(0, itemPositions.Length);
+                    position = numGenerator.Next(0, itemPositions.Count);
                     itemVector = itemPositions[position].GetPosition();
                 }
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 3, textures[i].Width / 3), textures[i], glowTextures[i], Color.White);
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Height / 5), new Rectangle(350 + i * 20, 700 + i * 20, textures[i].Width / 10, textures[i].Height / 10), textures[i], glowTextures[i], Color.White);
             }
         }
 
@@ -991,7 +1003,7 @@ namespace Timeless_Torture
             currentLevel++;
 
             // Resetting item positions
-            for (int i = 0; i < itemPositions.Length; i++)
+            for (int i = 0; i < itemPositions.Count; i++)
             {
                 itemPositions[i].Reset();
             }
