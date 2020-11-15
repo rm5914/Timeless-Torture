@@ -23,6 +23,7 @@ namespace Timeless_Torture
             this.position = position;
         }
 
+        //methods
         /// <summary>
         /// Checks to see if it hasn't been picked by an item
         /// If it hasn't been picked it will become picked

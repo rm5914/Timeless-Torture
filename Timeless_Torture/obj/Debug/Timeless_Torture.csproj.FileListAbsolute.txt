@@ -237,3 +237,5 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_To
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\wii remote glow.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\wii remote.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\floor pattern.xnb
+C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\floor pattern.xnb
+C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\player.xnb

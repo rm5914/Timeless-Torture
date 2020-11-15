@@ -39,9 +39,7 @@ namespace Timeless_Torture
             isPressed = false;
         }
 
-
         // Start of properties
-
         public Rectangle Position
         {
             get
@@ -104,7 +102,7 @@ namespace Timeless_Torture
 
         // End of properties
        
-
+        //methods
         /// <summary>
         /// Checks if the mouse has clicked (left-clicked) the button
         /// </summary>
