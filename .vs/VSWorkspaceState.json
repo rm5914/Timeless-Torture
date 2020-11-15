@@ -2,13 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\ExternalTool",
-    "\\Timeless_Torture",
     "\\Timeless_Torture\\bin",
     "\\Timeless_Torture\\bin\\DesktopGL",
     "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU",
-    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug",
-    "\\Timeless_Torture\\Content"
+    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug"
   ],
-  "SelectedNode": "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug\\FirstLevel.level",
+  "SelectedNode": "\\ExternalTool\\Form1.cs",
   "PreviewInSolutionExplorer": false
 }
