@@ -877,7 +877,7 @@ namespace Timeless_Torture
         {
             // Loading the first level
             // Reeading in the maps and their data
-            StreamReader sr = new StreamReader("FirstLevel.level");
+            StreamReader sr = new StreamReader("Level" + currentLevel + ".level");
             width = int.Parse(sr.ReadLine());
             height = int.Parse(sr.ReadLine());
 
@@ -895,13 +895,6 @@ namespace Timeless_Torture
             //initialize the floor tiles
             floorTiles = new Rectangle[height, width];
 
-            // Spawning the player
-            playerPosition = new Rectangle(100, 100, texture.Width / 9, texture.Height / 9);
-            player = new Player(texture, playerPosition, 1);
-
-            // Fireplace
-            fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(700, 700, fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
-
             // portal "hitbox"
             portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
 
@@ -916,13 +909,24 @@ namespace Timeless_Torture
                     {
                         itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
                     }
+                    // Fireplace
+                    if (level[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+                    }
+                    // Player Spawn
+                    if (level[i, j] == "DarkOliveGreen")
+                    {
+                        playerPosition = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 9, texture.Height / 9);
+                    }
                 }
             }
 
+            // Spawning the player
+            player = new Player(texture, playerPosition, 1);
+
             // Resetting everything
             player.ResetInventory();
-            player.X = 100;
-            player.Y = 100;
             currentLevel = 0;
             fireplace.Reset();
             shouldSpawnPortal = false;
