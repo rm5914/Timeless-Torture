@@ -81,8 +81,8 @@
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.Teal;
-            this.button7.ForeColor = System.Drawing.Color.Teal;
+            this.button7.BackColor = System.Drawing.Color.DarkBlue;
+            this.button7.ForeColor = System.Drawing.Color.DarkBlue;
             this.button7.Location = new System.Drawing.Point(3, 37);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(31, 28);
