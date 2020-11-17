@@ -243,7 +243,10 @@ namespace Timeless_Torture
         /// </summary>
         public void ResetInventory()
         {
-            inventory.Clear();
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                inventory[i] = null;
+            }
         }
     }
 }

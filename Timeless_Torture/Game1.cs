@@ -877,9 +877,9 @@ namespace Timeless_Torture
         {
             // Loading the first level
             // Reeading in the maps and their data
-            StreamReader sr = new StreamReader("Level" + currentLevel + ".level");
-            width = int.Parse(sr.ReadLine());
-            height = int.Parse(sr.ReadLine());
+            StreamReader sr = new StreamReader("Level" + currentLevel + "Floor1UNFINISHED.level");
+            width = 20;
+            height = 20;
 
             level = new string[height, width];
 
@@ -895,9 +895,6 @@ namespace Timeless_Torture
             //initialize the floor tiles
             floorTiles = new Rectangle[height, width];
 
-            // portal "hitbox"
-            portalRectangle = new Rectangle(400, 800, portal.Width / 3, portal.Height / 3);
-
             // All of the item positions
             itemPositions = new List<ItemPosition>();
 
@@ -910,14 +907,18 @@ namespace Timeless_Torture
                         itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
                     }
                     // Fireplace
-                    if (level[i, j] == "Red")
+                    else if (level[i, j] == "Red")
                     {
                         fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
                     }
                     // Player Spawn
-                    if (level[i, j] == "DarkOliveGreen")
+                    else if (level[i, j] == "DarkOliveGreen")
                     {
-                        playerPosition = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 9, texture.Height / 9);
+                        playerPosition = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), 11 * texture.Width / 100, 11 * texture.Height / 100);
+                    }
+                    else if (level[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 3, texture.Height / 3);
                     }
                 }
             }
@@ -936,22 +937,22 @@ namespace Timeless_Torture
             if (difficulty == Difficulty.Easy)
             {
                 timerMax = 180;
-                player.XMovement = 3;
-                player.YMovement = 3;
+                player.XMovement = 2;
+                player.YMovement = 2;
                 player.InventoryLimit = 2;
             }
             else if (difficulty == Difficulty.Medium)
             {
                 timerMax = 120;
-                player.XMovement = 3;
-                player.YMovement = 3;
+                player.XMovement = 2;
+                player.YMovement = 1;
                 player.InventoryLimit = 1;
             }
             else if (difficulty == Difficulty.Hard)
             {
                 timerMax = 60;
-                player.XMovement = 2;
-                player.YMovement = 2;
+                player.XMovement = 1;
+                player.YMovement = 1;
                 player.InventoryLimit = 1;
             }
 
@@ -998,13 +999,59 @@ namespace Timeless_Torture
         /// </summary>
         protected void NextLevel()
         {
+            currentLevel++;
+
+            // Reeading in the maps and their data
+            StreamReader sr = new StreamReader("Level" + currentLevel + "Floor1UNFINISHED.level");
+
+            level = new string[height, width];
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    level[i, j] = sr.ReadLine();
+                }
+            }
+            sr.Close();
+
+            //initialize the floor tiles
+            floorTiles = new Rectangle[height, width];
+
+            // All of the item positions
+            itemPositions = new List<ItemPosition>();
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if (level[i, j] == "SkyBlue")
+                    {
+                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
+                    }
+                    // Fireplace
+                    else if (level[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+                    }
+                    // Player Spawn
+                    else if (level[i, j] == "DarkOliveGreen")
+                    {
+                        player.Position = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 9, texture.Height / 9);
+                    }
+                    // Portal
+                    else if (level[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 3, texture.Height / 3);
+                    }
+                }
+            }
+
+            // Resetting everything
             player.ResetInventory();
-            timer = timerMax;
-            player.X = 0;
-            player.Y = 0;
             fireplace.Reset();
             shouldSpawnPortal = false;
-            currentLevel++;
+            timer = timerMax;
 
             // Resetting item positions
             for (int i = 0; i < itemPositions.Count; i++)
@@ -1052,7 +1099,7 @@ namespace Timeless_Torture
         /// <param name="rectangle"> The object the player is close to </param>
         public bool IsPlayerClose(Rectangle player, Rectangle rectangle)
         {
-            if ((((player.X + player.Width / 2) + 80 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 80 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 90 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 90 < (rectangle.Y + rectangle.Height / 2)))
+            if ((((player.X + player.Width / 2) + 40 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 40 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 50 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 50 < (rectangle.Y + rectangle.Height / 2)))
             {
                 return true;
             }
