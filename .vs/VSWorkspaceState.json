@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ExternalTool",
-    "\\Timeless_Torture\\bin",
-    "\\Timeless_Torture\\bin\\DesktopGL",
-    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU",
-    "\\Timeless_Torture\\bin\\DesktopGL\\AnyCPU\\Debug"
+    "\\ExternalTool"
   ],
   "SelectedNode": "\\ExternalTool\\Form1.cs",
   "PreviewInSolutionExplorer": false
