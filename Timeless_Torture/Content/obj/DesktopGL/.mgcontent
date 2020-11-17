@@ -6,6 +6,7 @@
   <SourceFiles>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/amazon echo glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/amazon echo.png</File>
+    <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bed.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/beeper glow.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/beeper.png</File>
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/club penguin glow.png</File>
@@ -50,6 +51,7 @@
     <File>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/zoopal plate.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

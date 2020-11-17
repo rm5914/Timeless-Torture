@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="Content\amazon echo glow.png" />
     <Content Include="Content\amazon echo.png" />
+    <Content Include="Content\bed.png" />
     <Content Include="Content\beeper glow.png" />
     <Content Include="Content\beeper.png" />
     <Content Include="Content\club penguin glow.png" />
