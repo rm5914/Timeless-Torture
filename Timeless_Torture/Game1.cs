@@ -102,7 +102,15 @@ namespace Timeless_Torture
         private Texture2D fireplaceTexture;
         private Texture2D fireplaceGlowTexture;
         private Texture2D portal;
-        private Texture2D floor;
+        private Texture2D bed;
+
+        // Floors
+        private Texture2D currentFloor;
+        private Texture2D seventiesFloor;
+        private Texture2D eightiesFloor;
+        private Texture2D ninetiesFloor;
+        private Texture2D zerosFloor;
+        private Texture2D tensFloor;
 
         // item textures
         // 70's
@@ -234,7 +242,12 @@ namespace Timeless_Torture
         protected override void LoadContent()
         {
             //load in floor
-            floor = Content.Load<Texture2D>("floor pattern");
+            seventiesFloor = Content.Load<Texture2D>("floor pattern");
+            eightiesFloor = Content.Load<Texture2D>("second floor pattern");
+            ninetiesFloor = Content.Load<Texture2D>("third floor pattern");
+            zerosFloor = Content.Load<Texture2D>("fourth floor pattern");
+            tensFloor = Content.Load<Texture2D>("fifth floor pattern");
+            currentFloor = seventiesFloor;
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -248,7 +261,8 @@ namespace Timeless_Torture
             pauseTitle = Content.Load<Texture2D>("Pause");
             fireplaceTexture = Content.Load<Texture2D>("fireplace");
             fireplaceGlowTexture = Content.Load<Texture2D>("fireplace glow");
-            portal = Content.Load<Texture2D>("portal");
+            portal = Content.Load<Texture2D>("game portal");
+            bed = Content.Load<Texture2D>("bed");
 
             // Secenties item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
@@ -571,6 +585,7 @@ namespace Timeless_Torture
                         // Checking if they use the interact button
                         if (SingleKeyPress(Keys.E))
                         {
+                            // Checking if they want to pick up an item
                             for (int i = 0; i < items.Length; i++)
                             {
                                 if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
@@ -579,7 +594,8 @@ namespace Timeless_Torture
                                     return;
                                 }
                             }
-                            // Checking if they want to use a fireplace or pick up an item, fireplace has the priority
+
+                            // Checking if they want to use the fireplace
                             if (player.Inventory[0] != null)
                             {
                                 fireplace.BurnItem(player);
@@ -589,11 +605,12 @@ namespace Timeless_Torture
                                     SpawnPortal();
                                 }
                             }
-                        }
 
-                        if (SingleKeyPress(Keys.Enter) && IsPlayerClose(player.Position, portalRectangle)==true)
-                        {
-                            NextLevel();
+                            // Checking if they want to use the portal
+                            if (IsPlayerClose(player.Position, portalRectangle))
+                            {
+                                NextLevel();
+                            }
                         }
 
                         player.MovePlayer(keyState);
@@ -783,12 +800,20 @@ namespace Timeless_Torture
                                 floorTiles[i, j] = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
                                 if (level[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(floor, floorTiles[i, j], Color.Black);
+                                    spriteBatch.Draw(currentFloor, floorTiles[i, j], Color.Black);
                                     player.PlayerCollision(floorTiles[i, j]);
+                                }
+                                else if(!IsPlayerCloseLarge(player.Position, floorTiles[i, j]))
+                                {
+                                    spriteBatch.Draw(currentFloor, floorTiles[i, j], Color.Black);
                                 }
                                 else
                                 {
-                                    spriteBatch.Draw(floor, floorTiles[i, j], Color.White);
+                                    spriteBatch.Draw(currentFloor, floorTiles[i, j], Color.White);
+                                    if (level[i, j] == "DarkOliveGreen")
+                                    {
+                                        spriteBatch.Draw(bed, floorTiles[i, j], Color.White);
+                                    }
                                 }
                             }
                         }
@@ -927,6 +952,7 @@ namespace Timeless_Torture
             player = new Player(texture, playerPosition, 1);
 
             // Resetting everything
+            currentFloor = seventiesFloor;
             player.ResetInventory();
             currentLevel = 0;
             fireplace.Reset();
@@ -936,23 +962,23 @@ namespace Timeless_Torture
             // These are the max settings, any higher speed would cause problems with the player collision
             if (difficulty == Difficulty.Easy)
             {
-                timerMax = 180;
+                timerMax = 200;
                 player.XMovement = 2;
                 player.YMovement = 2;
                 player.InventoryLimit = 2;
             }
             else if (difficulty == Difficulty.Medium)
             {
-                timerMax = 120;
+                timerMax = 180;
                 player.XMovement = 2;
-                player.YMovement = 1;
+                player.YMovement = 2;
                 player.InventoryLimit = 1;
             }
             else if (difficulty == Difficulty.Hard)
             {
-                timerMax = 60;
-                player.XMovement = 1;
-                player.YMovement = 1;
+                timerMax = 120;
+                player.XMovement = 2;
+                player.YMovement = 2;
                 player.InventoryLimit = 1;
             }
 
@@ -1064,23 +1090,25 @@ namespace Timeless_Torture
                 case 1:
                     {
                         PlaceItems(eightiesItems, eightiesGlow);
+                        currentFloor = eightiesFloor;
                         break;
                     }
                 case 2:
                     {
-                        eightiesItems.Clear();
-                        eightiesGlow.Clear();
                         PlaceItems(ninetiesItems, ninetiesGlow);
+                        currentFloor = ninetiesFloor;
                         break;
                     }
                 case 3:
                     {
                         PlaceItems(zerosItems, zerosGlow);
+                        currentFloor = zerosFloor;
                         break;
                     }
                 case 4:
                     {
                         PlaceItems(tensItems, tensGlow);
+                        currentFloor = tensFloor;
                         break;
                     }
                 case 5:
@@ -1100,6 +1128,22 @@ namespace Timeless_Torture
         public bool IsPlayerClose(Rectangle player, Rectangle rectangle)
         {
             if ((((player.X + player.Width / 2) + 40 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 40 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 50 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 50 < (rectangle.Y + rectangle.Height / 2)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Checks if the player is close to the given object - has a larger radius than IsPlayerClose
+        /// </summary>
+        /// <param name="player"> The player character </param>
+        /// <param name="rectangle"> The object the player is close to </param>
+        public bool IsPlayerCloseLarge(Rectangle player, Rectangle rectangle)
+        {
+            if ((((player.X + player.Width / 2) + 70 > (rectangle.X + rectangle.Width / 2) && (player.X + player.Width / 2) - 70 < (rectangle.X + rectangle.Width / 2)) && (player.Y + player.Height / 2) + 55 > (rectangle.Y + rectangle.Height / 2) && (player.Y + player.Height / 2) - 65 < (rectangle.Y + rectangle.Height / 2)))
             {
                 return true;
             }

@@ -235,7 +235,7 @@ namespace Timeless_Torture
         /// <param name="spriteBatch"> The spritebatch used to draw the player </param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playerTexture, position, Color.White);
+            spriteBatch.Draw(playerTexture, position, Color.Red);
         }
         
         /// <summary>
