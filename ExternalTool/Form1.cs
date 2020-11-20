@@ -186,5 +186,17 @@ namespace ExternalTool
                 this.Close();
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            color = Color.BurlyWood;
+            button9.BackColor = color;
+            textBox1.Text = "Staircase";
+        }
     }
 }

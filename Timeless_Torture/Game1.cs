@@ -17,7 +17,7 @@ namespace Timeless_Torture
     enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
 
     // Used to control the difficulty of the game, only affects the game when the game starts
-    enum Difficulty { Easy, Medium, Hard};
+    enum Difficulty { Easy, Medium, Hard };
     
     public class Game1 : Game
     {
@@ -184,6 +184,8 @@ namespace Timeless_Torture
         private Button mediumDifficulty;
         private Button hardDifficulty;
 
+        private Camera camera;
+
         // CONSTRUCTOR
         public Game1()
         {
@@ -241,6 +243,9 @@ namespace Timeless_Torture
 
             // Making the player 
             texture = Content.Load<Texture2D>("player");
+
+            //Making the camera
+            camera = new Camera(GraphicsDevice.Viewport);
 
             // All of the textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -555,6 +560,9 @@ namespace Timeless_Torture
                         //Starting the timer
                         timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
 
+                        //updating the camera in game
+                        camera.Move(player.Position);
+
                         if (timer <= 0)
                         {
                             previousGameState = gameState;
@@ -640,6 +648,7 @@ namespace Timeless_Torture
                         break;
                     }
             }
+
             base.Update(gameTime);
         }
 
