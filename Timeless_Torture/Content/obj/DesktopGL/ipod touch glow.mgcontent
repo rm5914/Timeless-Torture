@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/ipod touch glow.png</SourceFile>
-  <SourceTime>2020-10-27T13:58:21.3442453-04:00</SourceTime>
-  <DestFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/bin/DesktopGL/ipod touch glow.xnb</DestFile>
-  <DestTime>2020-11-15T15:43:06.6979219-05:00</DestTime>
+  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/ipod touch glow.png</SourceFile>
+  <SourceTime>2020-10-25T17:39:23.6044977-04:00</SourceTime>
+  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/ipod touch glow.xnb</DestFile>
+  <DestTime>2020-11-19T13:19:23.8893823-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
+  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2017-03-01T10:05:36-05:00</ProcessorTime>
+  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
