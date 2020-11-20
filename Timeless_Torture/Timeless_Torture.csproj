@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Content\amazon echo glow.png" />
     <Content Include="Content\amazon echo.png" />
+    <Content Include="Content\bed.png" />
     <Content Include="Content\beeper glow.png" />
     <Content Include="Content\beeper.png" />
     <Content Include="Content\club penguin glow.png" />
@@ -77,9 +78,12 @@
     <Content Include="Content\door.png" />
     <Content Include="Content\facebook logo glow.png" />
     <Content Include="Content\facebook logo.png" />
+    <Content Include="Content\fifth floor pattern.png" />
     <Content Include="Content\fireplace glow.png" />
     <Content Include="Content\fireplace.png" />
     <Content Include="Content\floor pattern.png" />
+    <Content Include="Content\fourth floor pattern.png" />
+    <Content Include="Content\game portal.png" />
     <Content Include="Content\ipod touch glow.png" />
     <Content Include="Content\ipod touch.png" />
     <Content Include="Content\mood ring glow.png" />
@@ -94,8 +98,10 @@
     <Content Include="Content\second floor pattern.png" />
     <Content Include="Content\slap bracelet glow.png" />
     <Content Include="Content\slap bracelet.png" />
+    <Content Include="Content\staircase.png" />
     <Content Include="Content\tamagotchi glow.png" />
     <Content Include="Content\tamagotchi.png" />
+    <Content Include="Content\third floor pattern.png" />
     <Content Include="Content\walkman glow.png" />
     <Content Include="Content\walkman.png" />
     <Content Include="Content\wii remote glow.png" />

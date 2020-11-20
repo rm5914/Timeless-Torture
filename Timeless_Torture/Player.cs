@@ -235,7 +235,7 @@ namespace Timeless_Torture
         /// <param name="spriteBatch"> The spritebatch used to draw the player </param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playerTexture, position, Color.White);
+            spriteBatch.Draw(playerTexture, position, Color.Red);
         }
         
         /// <summary>
@@ -243,7 +243,10 @@ namespace Timeless_Torture
         /// </summary>
         public void ResetInventory()
         {
-            inventory.Clear();
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                inventory[i] = null;
+            }
         }
     }
 }
