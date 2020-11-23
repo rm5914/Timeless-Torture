@@ -102,6 +102,8 @@ namespace Timeless_Torture
         // Sounds
         private SoundEffectInstance soundEffectInstance;
         private SoundEffect pickupSound;
+        private SoundEffect portalSpawnSound;
+        private SoundEffect burnSound;
 
         // Textures
         private Texture2D texture;
@@ -272,6 +274,8 @@ namespace Timeless_Torture
 
             // initializing sounds
             pickupSound = Content.Load<SoundEffect>("item_pickup");
+            portalSpawnSound = Content.Load<SoundEffect>("portal_Spawn");
+            burnSound = Content.Load<SoundEffect>("item_burn");
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -628,10 +632,14 @@ namespace Timeless_Torture
                             if (player.Inventory[0] != null)
                             {
                                 fireplace.BurnItem(player);
+                                soundEffectInstance = burnSound.CreateInstance();
+                                    soundEffectInstance.Play();
 
                                 if (fireplace.BurnedItems == items.Length)
                                 {
                                     SpawnPortal();
+                                    soundEffectInstance = portalSpawnSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                 }
                             }
 

@@ -265,6 +265,12 @@
 /processorParam:TextureFormat=Color
 /build:ipod touch.png
 
+#begin item_burn.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:item_burn.mp3
+
 #begin item_pickup.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -402,6 +408,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:pong machine.png
+
+#begin portal_Spawn.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:portal_Spawn.mp3
 
 #begin rubik cube glow.png
 /importer:TextureImporter
