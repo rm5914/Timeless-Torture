@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<<<<<<< HEAD
+  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/floor pattern.png</SourceFile>
+  <SourceTime>2020-11-03T14:48:07.9484188-05:00</SourceTime>
+  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Content/floor pattern.xnb</DestFile>
+  <DestTime>2020-11-23T18:28:15.0734297-05:00</DestTime>
+=======
   <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/floor pattern.png</SourceFile>
   <SourceTime>2020-11-03T15:04:58.9079778-05:00</SourceTime>
   <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/Content/floor pattern.xnb</DestFile>
   <DestTime>2020-11-23T18:29:31.649261-05:00</DestTime>
+>>>>>>> cc7b0725903ecc7b11364c42a7df280e220229cb
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
