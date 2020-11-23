@@ -857,7 +857,13 @@ namespace Timeless_Torture
                         //drawing the current floor pattern
                         currentFloorTexture = floor1.Texture;
                         currentFloorTiles = floors[currentFloor].FloorTiles;
-                        
+                        for (int i = -5; i < 25; i++)
+                        {
+                            for (int j = -5; j < 25; j++)
+                            {
+                                spriteBatch.Draw(currentFloorTexture, new Rectangle(i * graphics.PreferredBackBufferWidth / 20, j * graphics.PreferredBackBufferHeight / 20, graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20), Color.Black);
+                            }
+                        }
 
                         for (int i = 0; i < 20; i++)
                         {
