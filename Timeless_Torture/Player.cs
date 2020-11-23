@@ -28,8 +28,8 @@ namespace Timeless_Torture
             playerTexture = texture;
             this.inventoryLimit = inventoryLimit;
             inventory = new List<Item>();
-            playerMovementX = 5;
-            playerMovementY = 5;
+            playerMovementX = 2;
+            playerMovementY = 2;
             blockedLeft = false;
             blockedRight = false;
             blockedUp = false;

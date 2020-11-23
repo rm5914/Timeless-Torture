@@ -53,7 +53,7 @@ namespace Timeless_Torture
         double timerMax;
 
         //list to keep track of rectangles of floor tiles
-        Rectangle[,] floorTiles;
+        Rectangle[,] currentFloorTiles;
 
         // Keeps track of the current level
         int currentLevel;
@@ -62,16 +62,14 @@ namespace Timeless_Torture
         Player player;
         private Rectangle playerPosition;
 
-        // Item positions
-        List<ItemPosition> itemPositions;
-
         // Random Number Generator
         Random numGenerator;
 
         // Room width and height (block wise)
-        int width;
-        int height;
-        String[,] level;
+        Floor floor1;
+        Floor floor2;
+        Floor[] floors;
+        int currentFloor;
 
         // The fireplace
         Fireplace fireplace;
@@ -79,6 +77,9 @@ namespace Timeless_Torture
         // portal stuff
         bool shouldSpawnPortal = false;
         Rectangle portalRectangle;
+
+        // The staircase Rectangle
+        Rectangle staircaseRectangle;
 
         // Lists to hold time-specific items
         private List<Texture2D> seventiesItems;
@@ -103,9 +104,10 @@ namespace Timeless_Torture
         private Texture2D fireplaceGlowTexture;
         private Texture2D portal;
         private Texture2D bed;
+        private Texture2D staircase;
 
         // Floors
-        private Texture2D currentFloor;
+        private Texture2D currentFloorTexture;
         private Texture2D seventiesFloor;
         private Texture2D eightiesFloor;
         private Texture2D ninetiesFloor;
@@ -249,7 +251,7 @@ namespace Timeless_Torture
             ninetiesFloor = Content.Load<Texture2D>("third floor pattern");
             zerosFloor = Content.Load<Texture2D>("fourth floor pattern");
             tensFloor = Content.Load<Texture2D>("fifth floor pattern");
-            currentFloor = seventiesFloor;
+            currentFloorTexture = seventiesFloor;
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -268,6 +270,7 @@ namespace Timeless_Torture
             fireplaceGlowTexture = Content.Load<Texture2D>("fireplace glow");
             portal = Content.Load<Texture2D>("game portal");
             bed = Content.Load<Texture2D>("bed");
+            staircase = Content.Load<Texture2D>("staircase");
 
             // Secenties item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
@@ -490,9 +493,9 @@ namespace Timeless_Torture
                         // Checking if they click the start button
                         if (startButton.MouseClick(mouseState, previousMouseState))
                         {
+                            GameStart();
                             previousGameState = gameState;
                             gameState = GameState.Game;
-                            GameStart();
                         }
 
                         // checking if they click the instructions button
@@ -618,6 +621,18 @@ namespace Timeless_Torture
                             if (IsPlayerClose(player.Position, portalRectangle))
                             {
                                 NextLevel();
+                            }
+
+                            else if (IsPlayerClose(player.Position, staircaseRectangle))
+                            {
+                                if (currentFloor == 0)
+                                {
+                                    currentFloor++;
+                                }
+                                else
+                                {
+                                    currentFloor = 0;
+                                }
                             }
                         }
 
@@ -801,29 +816,60 @@ namespace Timeless_Torture
 
                 case GameState.Game:
                     {
-                        //drawing floor pattern
-                        for (int i = 0; i < height; i++)
+                        //drawing the current floor pattern
+                        currentFloorTexture = floor1.Texture;
+                        currentFloorTiles = floors[currentFloor].FloorTiles;
+
+                        for (int i = 0; i < 20; i++)
                         {
-                            for (int j = 0; j < width; j++)
+                            for (int j = 0; j < 20; j++)
                             {
-                                floorTiles[i, j] = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-                                if (level[i, j] == "Black")
+                                if (floors[currentFloor].FloorData[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(currentFloor, floorTiles[i, j], Color.Black);
-                                    player.PlayerCollision(floorTiles[i, j]);
+                                    spriteBatch.Draw(currentFloorTexture, currentFloorTiles[i, j], Color.Black);
+                                    player.PlayerCollision(currentFloorTiles[i, j]);
                                 }
-                                else if(!IsPlayerCloseLarge(player.Position, floorTiles[i, j]))
+                                else if (!IsPlayerCloseLarge(player.Position, currentFloorTiles[i, j]))
                                 {
-                                    spriteBatch.Draw(currentFloor, floorTiles[i, j], Color.Black);
+                                    spriteBatch.Draw(currentFloorTexture, currentFloorTiles[i, j], Color.Black);
                                 }
                                 else
                                 {
-                                    spriteBatch.Draw(currentFloor, floorTiles[i, j], Color.White);
-                                    if (level[i, j] == "DarkOliveGreen")
+                                    spriteBatch.Draw(currentFloorTexture, currentFloorTiles[i, j], Color.White);
+                                    if (floors[currentFloor].FloorData[i, j] == "DarkOliveGreen")
                                     {
-                                        spriteBatch.Draw(bed, floorTiles[i, j], Color.White);
+                                        spriteBatch.Draw(bed, currentFloorTiles[i, j], Color.White);
+                                    }
+                                    else if (floors[currentFloor].FloorData[i, j] == "BurlyWood")
+                                    {
+                                        spriteBatch.Draw(staircase, currentFloorTiles[i, j], Color.White);
+                                    }
+                                    else if (floors[currentFloor].FloorData[i, j] == "Red")
+                                    {
+                                        fireplace.PlayerClose = IsPlayerClose(player.Position, fireplace.Position);
+                                        fireplace.Draw(spriteBatch);
+                                    }
+                                    else if (shouldSpawnPortal && floors[currentFloor].FloorData[i, j] == "DarkBlue")
+                                    {
+                                        spriteBatch.Draw(portal, portalRectangle, Color.White);
                                     }
                                 }
+                            }
+                        }
+
+                        // Displaying the items on the floor
+                        for (int i = 0; i < floors[currentFloor].Items.Count; i++)
+                        {
+                            floors[currentFloor].Items[i].PlayerClose = IsPlayerClose(player.Position, floors[currentFloor].Items[i].Position);
+                            floors[currentFloor].Items[i].Draw(spriteBatch);
+                        }
+
+                        // Displaying the player inventory
+                        for (int i = 0; i < items.Length; i++)
+                        {
+                            if (items[i].IsPickedUp)
+                            {
+                                items[i].Draw(spriteBatch);
                             }
                         }
 
@@ -831,17 +877,7 @@ namespace Timeless_Torture
                         string time = string.Format("{0:0.00}", timer);
                         spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.White);
                         player.Draw(spriteBatch);
-                        fireplace.PlayerClose = IsPlayerClose(player.Position, fireplace.Position);
-                        fireplace.Draw(spriteBatch);
 
-                        for (int i = 0; i < items.Length; i++)
-                        {
-                            items[i].PlayerClose = IsPlayerClose(player.Position, items[i].Position);
-                            items[i].Draw(spriteBatch);
-                        }
-
-                        if(shouldSpawnPortal==true)
-                            spriteBatch.Draw(portal, portalRectangle, Color.White);
 
                         //display inventory
                         spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
@@ -909,83 +945,74 @@ namespace Timeless_Torture
         /// </summary>
         protected void GameStart()
         {
+            // Resetting the current level of the game of the game
+            currentFloorTexture = seventiesFloor;
+            currentLevel = 0;
+            currentFloor = 0;
+            shouldSpawnPortal = false;
+
             // Loading the first level
-            // Reeading in the maps and their data
-            StreamReader sr = new StreamReader("Level" + currentLevel + "Floor1UNFINISHED.level");
-            width = 20;
-            height = 20;
+            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
-            level = new string[height, width];
+            // Initializing floors
+            floors = new Floor[2];
+            floors[0] = floor1;
+            floors[1] = floor2;
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < 20; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < 20; j++)
                 {
-                    level[i, j] = sr.ReadLine();
-                }
-            }
-            sr.Close();
-
-            //initialize the floor tiles
-            floorTiles = new Rectangle[height, width];
-
-            // All of the item positions
-            itemPositions = new List<ItemPosition>();
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    if (level[i, j] == "SkyBlue")
-                    {
-                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
-                    }
                     // Fireplace
-                    else if (level[i, j] == "Red")
+                    if (floor1.FloorData[i, j] == "Red")
                     {
-                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, floor1.FloorTiles[i, j], Color.White);
                     }
                     // Player Spawn
-                    else if (level[i, j] == "DarkOliveGreen")
+                    else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        playerPosition = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), 11 * texture.Width / 100, 11 * texture.Height / 100);
+                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
                     }
-                    else if (level[i, j] == "DarkBlue")
+                    // Portal Spawn
+                    else if (floor1.FloorData[i, j] == "DarkBlue")
                     {
-                        portalRectangle = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 3, texture.Height / 3);
+                        portalRectangle = floor1.FloorTiles[i, j];
+                    }
+                    // Staircase Spawn
+                    else if (floor1.FloorData[i, j] == "BurlyWood")
+                    {
+                        staircaseRectangle = floor1.FloorTiles[i, j];
                     }
                 }
             }
 
             // Spawning the player
             player = new Player(texture, playerPosition, 1);
+            player.ResetInventory();
 
             // Resetting everything
-            currentFloor = seventiesFloor;
-            player.ResetInventory();
-            currentLevel = 0;
             fireplace.Reset();
-            shouldSpawnPortal = false;
 
             // Changing the settings based on difficulty
             // These are the max settings, any higher speed would cause problems with the player collision
             if (difficulty == Difficulty.Easy)
             {
-                timerMax = 200;
+                timerMax = 330;
+                player.XMovement = 2;
+                player.YMovement = 2;
+                player.InventoryLimit = 3;
+            }
+            else if (difficulty == Difficulty.Medium)
+            {
+                timerMax = 300;
                 player.XMovement = 2;
                 player.YMovement = 2;
                 player.InventoryLimit = 2;
             }
-            else if (difficulty == Difficulty.Medium)
-            {
-                timerMax = 180;
-                player.XMovement = 2;
-                player.YMovement = 2;
-                player.InventoryLimit = 1;
-            }
             else if (difficulty == Difficulty.Hard)
             {
-                timerMax = 120;
+                timerMax = 240;
                 player.XMovement = 2;
                 player.YMovement = 2;
                 player.InventoryLimit = 1;
@@ -1003,21 +1030,35 @@ namespace Timeless_Torture
         /// <param name="glowTextures"> The textures of the items but with a glow around them </param>
         protected void PlaceItems(List<Texture2D> textures, List<Texture2D> glowTextures)
         {
-            items = new Item[textures.Count];
+            items = new Item[3];
 
             // Picking randomly from the set positions
             for (int i = 0; i < items.Length; i++)
             {
-                int position = numGenerator.Next(0, itemPositions.Count);
+                int floorPosition = numGenerator.Next(0, 2);
+                int position;
+                Floor current;
+
+                if (floorPosition == 0)
+                {
+                    position = numGenerator.Next(0, floor1.ItemPositions.Count);
+                    current = floor1;
+                }
+                else
+                {
+                    position = numGenerator.Next(0, floor2.ItemPositions.Count);
+                    current = floor2;
+                }
 
                 // Don't have the positions overlap
-                Vector2 itemVector = itemPositions[position].GetPosition();
+                Vector2 itemVector = current.ItemPositions[position].GetPosition();
                 while (itemVector.X == 0)
                 {
-                    position = numGenerator.Next(0, itemPositions.Count);
-                    itemVector = itemPositions[position].GetPosition();
+                    position = numGenerator.Next(0, current.ItemPositions.Count);
+                    itemVector = current.ItemPositions[position].GetPosition();
                 }
                 items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Height / 5), new Rectangle(350 + i * 20, 700 + i * 20, textures[i].Width / 10, textures[i].Height / 10), textures[i], glowTextures[i], Color.White);
+                current.Items.Add(items[i]);
             }
         }
 
@@ -1034,90 +1075,31 @@ namespace Timeless_Torture
         /// </summary>
         protected void NextLevel()
         {
+            // Setting the current level of the game
             currentLevel++;
+            currentFloor = 0;
 
-            // Reeading in the maps and their data
-            StreamReader sr = new StreamReader("Level" + currentLevel + "Floor1UNFINISHED.level");
-
-            level = new string[height, width];
-
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    level[i, j] = sr.ReadLine();
-                }
-            }
-            sr.Close();
-
-            //initialize the floor tiles
-            floorTiles = new Rectangle[height, width];
-
-            // All of the item positions
-            itemPositions = new List<ItemPosition>();
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    if (level[i, j] == "SkyBlue")
-                    {
-                        itemPositions.Add(new ItemPosition(new Vector2(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20))));
-                    }
-                    // Fireplace
-                    else if (level[i, j] == "Red")
-                    {
-                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), fireplaceTexture.Width / 3, fireplaceTexture.Height / 3), Color.White);
-                    }
-                    // Player Spawn
-                    else if (level[i, j] == "DarkOliveGreen")
-                    {
-                        player.Position = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 9, texture.Height / 9);
-                    }
-                    // Portal
-                    else if (level[i, j] == "DarkBlue")
-                    {
-                        portalRectangle = new Rectangle(j * (graphics.PreferredBackBufferWidth / 20), i * (graphics.PreferredBackBufferHeight / 20), texture.Width / 3, texture.Height / 3);
-                    }
-                }
-            }
-
-            // Resetting everything
-            player.ResetInventory();
-            fireplace.Reset();
-            shouldSpawnPortal = false;
-            timer = timerMax;
-
-            // Resetting item positions
-            for (int i = 0; i < itemPositions.Count; i++)
-            {
-                itemPositions[i].Reset();
-            }
-
+            // Getting the current floor texture
             switch (currentLevel)
             {
                 case 1:
                     {
-                        PlaceItems(eightiesItems, eightiesGlow);
-                        currentFloor = eightiesFloor;
+                        currentFloorTexture = eightiesFloor;
                         break;
                     }
                 case 2:
                     {
-                        PlaceItems(ninetiesItems, ninetiesGlow);
-                        currentFloor = ninetiesFloor;
+                        currentFloorTexture = ninetiesFloor;
                         break;
                     }
                 case 3:
                     {
-                        PlaceItems(zerosItems, zerosGlow);
-                        currentFloor = zerosFloor;
+                        currentFloorTexture = zerosFloor;
                         break;
                     }
                 case 4:
                     {
-                        PlaceItems(tensItems, tensGlow);
-                        currentFloor = tensFloor;
+                        currentFloorTexture = tensFloor;
                         break;
                     }
                 case 5:
@@ -1127,6 +1109,77 @@ namespace Timeless_Torture
                         break;
                     }
             }
+
+            // Resetting item positions
+            for (int i = 0; i < floor1.ItemPositions.Count; i++)
+            {
+                floor1.ItemPositions[i].Reset();
+            }
+            for (int i = 0; i < floor2.ItemPositions.Count; i++)
+            {
+                floor2.ItemPositions[i].Reset();
+            }
+
+            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    // Fireplace
+                    if (floor1.FloorData[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, floor1.FloorTiles[i, j], Color.White);
+                    }
+                    // Player Spawn
+                    else if (floor1.FloorData[i, j] == "DarkOliveGreen")
+                    {
+                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                    }
+                    // Portal Spawn
+                    else if (floor1.FloorData[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = floor1.FloorTiles[i, j];
+                    }
+                    // Staircase spawn
+                    else if (floor1.FloorData[i, j] == "BurlyWood")
+                    {
+                        staircaseRectangle = floor1.FloorTiles[i, j];
+                    }
+                }
+            }
+
+            // Placing the items of the current level
+            switch (currentLevel)
+            {
+                case 1:
+                    {
+                        PlaceItems(eightiesItems, eightiesGlow);
+                        break;
+                    }
+                case 2:
+                    {
+                        PlaceItems(ninetiesItems, ninetiesGlow);
+                        break;
+                    }
+                case 3:
+                    {
+                        PlaceItems(zerosItems, zerosGlow);
+                        break;
+                    }
+                case 4:
+                    {
+                        PlaceItems(tensItems, tensGlow);
+                        break;
+                    }
+            }
+
+            // Resetting everything
+            player.ResetInventory();
+            fireplace.Reset();
+            shouldSpawnPortal = false;
+            timer = timerMax;
         }
 
         /// <summary>
