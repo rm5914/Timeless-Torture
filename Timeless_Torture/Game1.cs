@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
@@ -98,6 +99,10 @@ namespace Timeless_Torture
         private List<Texture2D> zerosGlow;
         private List<Texture2D> tensGlow;
 
+        // Sounds
+        private SoundEffectInstance soundEffectInstance;
+        private SoundEffect pickupSound;
+
         // Textures
         private Texture2D texture;
         private Texture2D button;
@@ -190,6 +195,7 @@ namespace Timeless_Torture
         private Button instructionsAButton;
         private Button instructionsSButton;
         private Button instructionsDButton;
+        private Button instructionsEButton;
 
         // Options buttons
         private Button difficultyButton;
@@ -264,7 +270,10 @@ namespace Timeless_Torture
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
 
-            // All of the textures
+            // initializing sounds
+            pickupSound = Content.Load<SoundEffect>("item_pickup");
+
+            // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
@@ -449,7 +458,12 @@ namespace Timeless_Torture
             // D Button
             instructionsDButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 + 30, 50, 50), button, "D",
                 mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
-            instructionsDButton.TextPosition = new Vector2(instructionsDButton.X + instructionsDButton.Position.Width / 3, instructionsDButton.Y + instructionsDButton.Position.Height / 5); ;
+            instructionsDButton.TextPosition = new Vector2(instructionsDButton.X + instructionsDButton.Position.Width / 3, instructionsDButton.Y + instructionsDButton.Position.Height / 5);
+
+            // E Button
+            instructionsEButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 + 30, graphics.PreferredBackBufferHeight / 2 - 25, 50, 50), button, "E",
+                mainFont, Color.MediumAquamarine, Color.DarkTurquoise, Color.RoyalBlue, Color.DarkGreen, new Vector2());
+            instructionsEButton.TextPosition = new Vector2(instructionsEButton.X + instructionsEButton.Position.Width / 3, instructionsEButton.Y + instructionsEButton.Position.Height / 5);
 
             // Options Buttons
             // Difficulty Button
@@ -604,6 +618,8 @@ namespace Timeless_Torture
                                 if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
+                                    soundEffectInstance = pickupSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                     return;
                                 }
                             }
@@ -738,7 +754,10 @@ namespace Timeless_Torture
                         GraphicsDevice.Clear(Color.Black);
 
                         // Writing actual instructions
-                        spriteBatch.DrawString(mainFont, "Press WASD to move", new Vector2(6 * graphics.PreferredBackBufferWidth / 15, graphics.PreferredBackBufferHeight / 3), Color.White);
+                        spriteBatch.DrawString(mainFont, "Find all the items in the house, then burn them in the fireplace!", new Vector2(12 * graphics.PreferredBackBufferWidth / 60, 1 * graphics.PreferredBackBufferHeight / 10), Color.White);
+                        spriteBatch.DrawString(mainFont, "Once all items are burned find the portal and escape!", new Vector2(15 * graphics.PreferredBackBufferWidth / 60, 2 * graphics.PreferredBackBufferHeight / 10), Color.White);
+                        spriteBatch.DrawString(mainFont, "Press WASD to move", new Vector2(6 * graphics.PreferredBackBufferWidth / 15, 3 * graphics.PreferredBackBufferHeight / 10), Color.White);
+                        spriteBatch.DrawString(mainFont, "Press E to Interact with items", new Vector2(11 * graphics.PreferredBackBufferWidth / 30, 4 * graphics.PreferredBackBufferHeight / 10), Color.White);
 
                         // Back Button
                         backButton.PressButton(mouseState);
@@ -760,6 +779,10 @@ namespace Timeless_Torture
                         // D Button
                         instructionsDButton.KeyboardPressButton(keyState, Keys.D);
                         instructionsDButton.Draw(spriteBatch);
+
+                        // E button
+                        instructionsEButton.KeyboardPressButton(keyState, Keys.E);
+                        instructionsEButton.Draw(spriteBatch);
                     }
 
                     spriteBatch.End();
