@@ -76,9 +76,9 @@ namespace ExternalTool
 
         private void button7_Click(object sender, EventArgs e)
         {
-            color = Color.Gray;
+            color = Color.DarkBlue;
             button9.BackColor = color;
-            textBox1.Text = "Dimly lit area";
+            textBox1.Text = "Portal";
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -121,10 +121,6 @@ namespace ExternalTool
                 StreamWriter output = new StreamWriter(outStream);
                 int count = 0;
 
-                //Saving the height and width of the grid in the first two lines
-                output.WriteLine(width);
-                output.WriteLine(height);
-
                 foreach (PictureBox var in list)
                 {
                     output.WriteLine(ColorTranslator.ToHtml(list[count].BackColor));
@@ -158,9 +154,6 @@ namespace ExternalTool
 
                 Form1 editor = new Form1();
 
-                width = int.Parse(input.ReadLine());
-                height = int.Parse(input.ReadLine());
-
                 for (int x = 0; x < (height * width); x++)
                 {
                     editor.list.Add(new PictureBox());
@@ -192,6 +185,18 @@ namespace ExternalTool
 
                 this.Close();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            color = Color.BurlyWood;
+            button9.BackColor = color;
+            textBox1.Text = "Staircase";
         }
     }
 }

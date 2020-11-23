@@ -41,6 +41,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +58,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.button6);
@@ -65,7 +67,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Location = new System.Drawing.Point(23, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(77, 103);
+            this.panel1.Size = new System.Drawing.Size(77, 134);
             this.panel1.TabIndex = 3;
             // 
             // button8
@@ -81,8 +83,8 @@
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.Teal;
-            this.button7.ForeColor = System.Drawing.Color.Teal;
+            this.button7.BackColor = System.Drawing.Color.DarkBlue;
+            this.button7.ForeColor = System.Drawing.Color.DarkBlue;
             this.button7.Location = new System.Drawing.Point(3, 37);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(31, 28);
@@ -137,7 +139,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.button9);
-            this.panel2.Location = new System.Drawing.Point(23, 168);
+            this.panel2.Location = new System.Drawing.Point(23, 179);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(77, 60);
             this.panel2.TabIndex = 4;
@@ -165,7 +167,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 118);
+            this.label1.Location = new System.Drawing.Point(31, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 0;
@@ -173,10 +175,22 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(23, 234);
+            this.textBox1.Location = new System.Drawing.Point(23, 245);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(77, 20);
             this.textBox1.TabIndex = 10;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.BurlyWood;
+            this.button10.ForeColor = System.Drawing.Color.BurlyWood;
+            this.button10.Location = new System.Drawing.Point(21, 103);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(31, 28);
+            this.button10.TabIndex = 10;
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Form1
             // 
@@ -213,6 +227,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button10;
     }
 }
 

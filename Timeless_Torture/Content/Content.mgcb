@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:amazon echo.png
 
+#begin bed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bed.png
+
 #begin beeper glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -133,6 +145,18 @@
 /processorParam:TextureFormat=Color
 /build:facebook logo.png
 
+#begin fifth floor pattern.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fifth floor pattern.png
+
 #begin fireplace glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -168,6 +192,54 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:floor pattern.png
+
+#begin fourth floor pattern.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fourth floor pattern.png
+
+#begin game portal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:game portal.png
+
+#begin human left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:human left.png
+
+#begin human right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:human right.png
 
 #begin ipod touch glow.png
 /importer:TextureImporter
@@ -216,6 +288,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:lightsaber.png
+
+#begin losing screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:losing screen.png
 
 #begin mood ring glow.png
 /importer:TextureImporter
@@ -313,18 +397,6 @@
 /processorParam:TextureFormat=Color
 /build:pong machine.png
 
-#begin portal.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:portal.png
-
 #begin rubik cube glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -348,6 +420,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:rubik cube.png
+
+#begin second floor pattern.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:second floor pattern.png
 
 #begin slap bracelet glow.png
 /importer:TextureImporter
@@ -373,6 +457,18 @@
 /processorParam:TextureFormat=Color
 /build:slap bracelet.png
 
+#begin staircase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:staircase.png
+
 #begin tamagotchi glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -397,6 +493,18 @@
 /processorParam:TextureFormat=Color
 /build:tamagotchi.png
 
+#begin third floor pattern.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:third floor pattern.png
+
 #begin Title.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -420,6 +528,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:TT Buttons.png
+
+#begin victory screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:victory screen.png
 
 #begin walkman glow.png
 /importer:TextureImporter

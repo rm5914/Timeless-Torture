@@ -13,18 +13,21 @@ namespace Timeless_Torture
 {
     class Item
     {
-        bool isPickedUp;
-        bool isBurned;
-        bool playerClose;
-        Rectangle rectangle;
-        Texture2D texture;
-        Texture2D closeTexture;
-        Color color;
+        private bool isPickedUp;
+        private bool isBurned;
+        private bool playerClose;
+        private Rectangle rectangle;
+        private Rectangle inventoryRectangle;
+        private Texture2D texture;
+        private Texture2D closeTexture;
+        private Color color;
+        
 
         // Constructor
-        public Item(Rectangle rectangle, Texture2D texture, Texture2D closeTexture, Color color)
+        public Item(Rectangle rectangle, Rectangle inventoryRectangle, Texture2D texture, Texture2D closeTexture, Color color)
         {
             this.rectangle = rectangle;
+            this.inventoryRectangle = inventoryRectangle;
             this.texture = texture;
             this.closeTexture = closeTexture;
             this.color = color;
@@ -43,6 +46,14 @@ namespace Timeless_Torture
             }
         }
 
+        public Rectangle InventoryPosition
+        {
+            get
+            {
+                return inventoryRectangle;
+            }
+        }
+
         public bool PlayerClose
         {
             get
@@ -52,6 +63,14 @@ namespace Timeless_Torture
             set
             {
                 playerClose = value;
+            }
+        }
+
+        public bool IsPickedUp
+        {
+            get
+            {
+                return isPickedUp;
             }
         }
 
@@ -97,6 +116,11 @@ namespace Timeless_Torture
                 {
                     spriteBatch.Draw(texture, rectangle, color);
                 }
+            }
+            //display items - bottom left corner
+            else if (isPickedUp && !isBurned)
+            {
+                spriteBatch.Draw(texture, inventoryRectangle, color);
             }
         }
     }
