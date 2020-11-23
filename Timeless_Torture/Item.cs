@@ -66,6 +66,14 @@ namespace Timeless_Torture
             }
         }
 
+        public bool IsPickedUp
+        {
+            get
+            {
+                return isPickedUp;
+            }
+        }
+
         // End of Properties
 
         //methods
@@ -76,7 +84,6 @@ namespace Timeless_Torture
         {
             if (playerClose && !isBurned && !isPickedUp)
             {
-                Console.WriteLine("it ran");
                 isPickedUp = true;
                 return true;
             }
