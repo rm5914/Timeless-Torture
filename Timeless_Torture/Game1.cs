@@ -819,6 +819,7 @@ namespace Timeless_Torture
                         //drawing the current floor pattern
                         currentFloorTexture = floor1.Texture;
                         currentFloorTiles = floors[currentFloor].FloorTiles;
+                        
 
                         for (int i = 0; i < 20; i++)
                         {
@@ -860,8 +861,8 @@ namespace Timeless_Torture
                         // Displaying the items on the floor
                         for (int i = 0; i < floors[currentFloor].Items.Count; i++)
                         {
-                            floors[currentFloor].Items[i].PlayerClose = IsPlayerClose(player.Position, floors[currentFloor].Items[i].Position);
                             floors[currentFloor].Items[i].Draw(spriteBatch);
+                            floors[currentFloor].Items[i].PlayerClose = IsPlayerClose(player.Position, floors[currentFloor].Items[i].Position);
                         }
 
                         // Displaying the player inventory
@@ -972,7 +973,7 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")
@@ -1077,7 +1078,6 @@ namespace Timeless_Torture
         {
             // Setting the current level of the game
             currentLevel++;
-            currentFloor = 0;
 
             // Getting the current floor texture
             switch (currentLevel)
@@ -1122,6 +1122,11 @@ namespace Timeless_Torture
 
             floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
             floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+
+            // Initializing floors
+            floors = new Floor[2];
+            floors[0] = floor1;
+            floors[1] = floor2;
 
             for (int i = 0; i < 20; i++)
             {
