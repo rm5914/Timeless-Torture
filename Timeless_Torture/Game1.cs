@@ -22,6 +22,9 @@ namespace Timeless_Torture
     public class Game1 : Game
     {
         // FIELDS
+
+        //Camera object
+        private Camera camera;
         
         //enum as data type
         GameState gameState;
@@ -194,7 +197,6 @@ namespace Timeless_Torture
         private Button mediumDifficulty;
         private Button hardDifficulty;
 
-        private Camera camera;
 
         // CONSTRUCTOR
         public Game1()
@@ -578,7 +580,7 @@ namespace Timeless_Torture
                         timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
 
                         //updating the camera in game
-                        camera.Move(player.Position);
+                        camera.Move(player);
 
                         if (timer <= 0)
                         {
@@ -693,12 +695,13 @@ namespace Timeless_Torture
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
 
             switch (gameState)
             {
                 case GameState.Menu:
                     {
+                        spriteBatch.Begin();
+
                         //Changing Background Color
                         GraphicsDevice.Clear(Color.Black);
 
@@ -721,12 +724,16 @@ namespace Timeless_Torture
                         exitButton.PressButton(mouseState);
                         exitButton.Draw(spriteBatch);
 
+                        spriteBatch.End();
+
                         break;
                     }
 
                     //create instructions for game
                 case GameState.Instructions:
                     {
+                        spriteBatch.Begin();
+
                         //Changing Background Color
                         GraphicsDevice.Clear(Color.Black);
 
@@ -754,10 +761,14 @@ namespace Timeless_Torture
                         instructionsDButton.KeyboardPressButton(keyState, Keys.D);
                         instructionsDButton.Draw(spriteBatch);
                     }
+
+                    spriteBatch.End();
                     break;
 
                 case GameState.Options:
                     {
+                        spriteBatch.Begin();
+
                         GraphicsDevice.Clear(Color.Black);
 
                         // Back Button
@@ -811,11 +822,15 @@ namespace Timeless_Torture
                             // Hard Difficulty Button
                             hardDifficulty.Draw(spriteBatch);
                         }
+
+                        spriteBatch.End();
                         break;
                     }
 
                 case GameState.Game:
                     {
+                        spriteBatch.Begin(transformMatrix: camera.transform);
+
                         //drawing the current floor pattern
                         currentFloorTexture = floor1.Texture;
                         currentFloorTiles = floors[currentFloor].FloorTiles;
@@ -882,11 +897,14 @@ namespace Timeless_Torture
                         //display inventory
                         spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
 
+                        spriteBatch.End();
                         break;
                     }
 
                 case GameState.Pause:
                     {
+                        spriteBatch.Begin();
+
                         // Making the background
                         spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
 
@@ -908,16 +926,21 @@ namespace Timeless_Torture
                         // Exit Button
                         pauseExitButton.PressButton(mouseState);
                         pauseExitButton.Draw(spriteBatch);
+
+                        spriteBatch.End();
                         break;
                     }
 
                 case GameState.GameOver:
                     {
+                        spriteBatch.Begin();
+
                         spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 3, 0), Color.Black);
+
+                        spriteBatch.End();
                         break;
                     }
             }
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -972,7 +995,7 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")

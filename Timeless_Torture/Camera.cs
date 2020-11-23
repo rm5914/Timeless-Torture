@@ -12,42 +12,23 @@ namespace Timeless_Torture
     class Camera
     { 
         public Matrix transform;
-
         private float zoom;
-        private Vector2 centre;
-        private Viewport viewport;
-
-        public float Zoom
-        {
-            get { return zoom; }
-            set
-            {
-                zoom = value;
-                if (zoom < 0.1f)
-                {
-                    zoom = 0.1f;
-                }
-            }
-        }
+        private Rectangle bounds;
 
         public Camera(Viewport viewport)
         {
-            this.viewport = viewport;
-            zoom = 1.0f;
+            zoom = 2f;
+            bounds = viewport.Bounds;
         }
 
-        public void Move(Rectangle center)
+        public void Move(Player player)
         {
-            var position = Matrix.CreateTranslation(
-                -center.X - (center.Width / 2),
-                -center.Y - (center.Height / 2),
-                0);
-            var offset = Matrix.CreateTranslation(
-                Game1.ScreenWidth / 2,
-                Game1.ScreenHeight / 2,
-                0);
-                                                
-            transform = position * center;
+
+            var position = Matrix.CreateTranslation(new Vector3(-player.Position.X, -player.Position.Y, 0));
+
+            var offset = Matrix.CreateTranslation(new Vector3(bounds.Width /4, bounds.Height /4, 0));
+
+            transform = (position * offset * Matrix.CreateScale(zoom));
         }
     }
 }
