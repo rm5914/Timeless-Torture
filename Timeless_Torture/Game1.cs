@@ -257,7 +257,7 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("player");
+            texture = Content.Load<Texture2D>("Player_Front");
 
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
