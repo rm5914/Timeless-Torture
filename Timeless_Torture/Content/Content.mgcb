@@ -361,7 +361,7 @@
 /processorParam:TextureFormat=Color
 /build:play station.png
 
-#begin player.png
+#begin Player_Front.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -371,7 +371,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player.png
+/build:Player_Front.jpg
 
 #begin pong machine glow.png
 /importer:TextureImporter

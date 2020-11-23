@@ -257,7 +257,7 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("player");
+            texture = Content.Load<Texture2D>("Player_Front");
 
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
@@ -861,8 +861,9 @@ namespace Timeless_Torture
                         // Displaying the items on the floor
                         for (int i = 0; i < floors[currentFloor].Items.Count; i++)
                         {
-                            floors[currentFloor].Items[i].Draw(spriteBatch);
                             floors[currentFloor].Items[i].PlayerClose = IsPlayerClose(player.Position, floors[currentFloor].Items[i].Position);
+                            if(IsPlayerCloseLarge(player.Position, floors[currentFloor].Items[i].Position))
+                                floors[currentFloor].Items[i].Draw(spriteBatch);
                         }
 
                         // Displaying the player inventory
