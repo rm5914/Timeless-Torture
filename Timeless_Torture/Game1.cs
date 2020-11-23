@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
@@ -22,6 +23,9 @@ namespace Timeless_Torture
     public class Game1 : Game
     {
         // FIELDS
+
+        //Camera object
+        private Camera camera;
         
         //enum as data type
         GameState gameState;
@@ -94,6 +98,10 @@ namespace Timeless_Torture
         private List<Texture2D> ninetiesGlow;
         private List<Texture2D> zerosGlow;
         private List<Texture2D> tensGlow;
+
+        // Sounds
+        private SoundEffectInstance soundEffectInstance;
+        private SoundEffect pickupSound;
 
         // Textures
         private Texture2D texture;
@@ -195,7 +203,6 @@ namespace Timeless_Torture
         private Button mediumDifficulty;
         private Button hardDifficulty;
 
-        private Camera camera;
 
         // CONSTRUCTOR
         public Game1()
@@ -263,7 +270,10 @@ namespace Timeless_Torture
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
 
-            // All of the textures
+            // initializing sounds
+            pickupSound = Content.Load<SoundEffect>("item_pickup");
+
+            // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
@@ -584,7 +594,7 @@ namespace Timeless_Torture
                         timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
 
                         //updating the camera in game
-                        camera.Move(player.Position);
+                        camera.Move(player);
 
                         if (timer <= 0)
                         {
@@ -608,6 +618,8 @@ namespace Timeless_Torture
                                 if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
+                                    soundEffectInstance = pickupSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                     return;
                                 }
                             }
@@ -699,12 +711,13 @@ namespace Timeless_Torture
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
 
             switch (gameState)
             {
                 case GameState.Menu:
                     {
+                        spriteBatch.Begin();
+
                         //Changing Background Color
                         GraphicsDevice.Clear(Color.Black);
 
@@ -727,12 +740,16 @@ namespace Timeless_Torture
                         exitButton.PressButton(mouseState);
                         exitButton.Draw(spriteBatch);
 
+                        spriteBatch.End();
+
                         break;
                     }
 
                     //create instructions for game
                 case GameState.Instructions:
                     {
+                        spriteBatch.Begin();
+
                         //Changing Background Color
                         GraphicsDevice.Clear(Color.Black);
 
@@ -767,10 +784,14 @@ namespace Timeless_Torture
                         instructionsEButton.KeyboardPressButton(keyState, Keys.E);
                         instructionsEButton.Draw(spriteBatch);
                     }
+
+                    spriteBatch.End();
                     break;
 
                 case GameState.Options:
                     {
+                        spriteBatch.Begin();
+
                         GraphicsDevice.Clear(Color.Black);
 
                         // Back Button
@@ -824,11 +845,15 @@ namespace Timeless_Torture
                             // Hard Difficulty Button
                             hardDifficulty.Draw(spriteBatch);
                         }
+
+                        spriteBatch.End();
                         break;
                     }
 
                 case GameState.Game:
                     {
+                        spriteBatch.Begin(transformMatrix: camera.transform);
+
                         //drawing the current floor pattern
                         currentFloorTexture = floor1.Texture;
                         currentFloorTiles = floors[currentFloor].FloorTiles;
@@ -897,11 +922,14 @@ namespace Timeless_Torture
                         //display inventory
                         spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
 
+                        spriteBatch.End();
                         break;
                     }
 
                 case GameState.Pause:
                     {
+                        spriteBatch.Begin();
+
                         // Making the background
                         spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
 
@@ -923,16 +951,21 @@ namespace Timeless_Torture
                         // Exit Button
                         pauseExitButton.PressButton(mouseState);
                         pauseExitButton.Draw(spriteBatch);
+
+                        spriteBatch.End();
                         break;
                     }
 
                 case GameState.GameOver:
                     {
+                        spriteBatch.Begin();
+
                         spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 3, 0), Color.Black);
+
+                        spriteBatch.End();
                         break;
                     }
             }
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,64 +12,23 @@ namespace Timeless_Torture
     class Camera
     { 
         public Matrix transform;
-        public Rectangle position;
-
         private float zoom;
-        private float rotation;
-        private Vector2 centre;
-        private Viewport viewport;
-
-        public float Zoom
-        {
-            get { return zoom; }
-            set
-            {
-                zoom = value;
-                if (zoom < 0.1f)
-                {
-                    zoom = 0.1f;
-                }
-            }
-        }
-
-        public float Rotation
-        {
-            get { return rotation; }
-            set { rotation = value; }
-        }
-
-        public int X
-        {
-            get { return position.X; }
-            set
-            { 
-                position.X = value; 
-            }
-        }
-
-        public int Y
-        {
-            get { return position.Y; }
-            set
-            {
-                position.Y = value;
-            }
-        }
+        private Rectangle bounds;
 
         public Camera(Viewport viewport)
         {
-            this.viewport = viewport;
-            zoom = 1.0f;
-            rotation = 0.0f;
+            zoom = 2f;
+            bounds = viewport.Bounds;
         }
 
-        public void Move(Rectangle center)
+        public void Move(Player player)
         {
-            position = center;
-            transform = Matrix.CreateTranslation(new Vector3(-center.X, -center.Y, 0)) *
-                                                Matrix.CreateRotationZ(Rotation) *
-                                                Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
-                                                Matrix.CreateTranslation(new Vector3(viewport.Width * 0.5f, viewport.Height * 0.5f, 0));
+
+            var position = Matrix.CreateTranslation(new Vector3(-player.Position.X, -player.Position.Y, 0));
+
+            var offset = Matrix.CreateTranslation(new Vector3(bounds.Width /4, bounds.Height /4, 0));
+
+            transform = (position * offset * Matrix.CreateScale(zoom));
         }
     }
 }
