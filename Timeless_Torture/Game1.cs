@@ -861,7 +861,8 @@ namespace Timeless_Torture
                         for (int i = 0; i < floors[currentFloor].Items.Count; i++)
                         {
                             floors[currentFloor].Items[i].PlayerClose = IsPlayerClose(player.Position, floors[currentFloor].Items[i].Position);
-                            floors[currentFloor].Items[i].Draw(spriteBatch);
+                            if(IsPlayerCloseLarge(player.Position, floors[currentFloor].Items[i].Position))
+                                floors[currentFloor].Items[i].Draw(spriteBatch);
                         }
 
                         // Displaying the player inventory
@@ -972,7 +973,7 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")
