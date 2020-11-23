@@ -629,7 +629,7 @@ namespace Timeless_Torture
                             }
 
                             // Checking if they want to use the fireplace
-                            if (player.Inventory[0] != null)
+                            if (player.Inventory[0] != null && IsPlayerClose(player.Position, fireplace.Position))
                             {
                                 fireplace.BurnItem(player);
                                 soundEffectInstance = burnSound.CreateInstance();
