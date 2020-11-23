@@ -259,7 +259,7 @@ namespace Timeless_Torture
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("player");
+            texture = Content.Load<Texture2D>("Player_Front");
 
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
@@ -834,6 +834,7 @@ namespace Timeless_Torture
                         //drawing the current floor pattern
                         currentFloorTexture = floor1.Texture;
                         currentFloorTiles = floors[currentFloor].FloorTiles;
+                        
 
                         for (int i = 0; i < 20; i++)
                         {
@@ -876,7 +877,8 @@ namespace Timeless_Torture
                         for (int i = 0; i < floors[currentFloor].Items.Count; i++)
                         {
                             floors[currentFloor].Items[i].PlayerClose = IsPlayerClose(player.Position, floors[currentFloor].Items[i].Position);
-                            floors[currentFloor].Items[i].Draw(spriteBatch);
+                            if(IsPlayerCloseLarge(player.Position, floors[currentFloor].Items[i].Position))
+                                floors[currentFloor].Items[i].Draw(spriteBatch);
                         }
 
                         // Displaying the player inventory
@@ -1100,7 +1102,6 @@ namespace Timeless_Torture
         {
             // Setting the current level of the game
             currentLevel++;
-            currentFloor = 0;
 
             // Getting the current floor texture
             switch (currentLevel)
@@ -1145,6 +1146,11 @@ namespace Timeless_Torture
 
             floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
             floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+
+            // Initializing floors
+            floors = new Floor[2];
+            floors[0] = floor1;
+            floors[1] = floor2;
 
             for (int i = 0; i < 20; i++)
             {
