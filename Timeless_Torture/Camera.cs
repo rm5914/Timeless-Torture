@@ -14,7 +14,7 @@ namespace Timeless_Torture
         public Matrix transform;
         private float zoom;
         private Rectangle bounds;
-
+        
         public Camera(Viewport viewport)
         {
             zoom = 2f;

@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<<<<<<<< HEAD:Timeless_Torture/Content/obj/DesktopGL/Content/human left.mgcontent
-  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/human left.png</SourceFile>
-  <SourceTime>2020-11-23T16:13:53.5582353-05:00</SourceTime>
-  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/Content/human left.xnb</DestFile>
-  <DestTime>2020-11-23T16:16:05.5896005-05:00</DestTime>
-========
-  <SourceFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/player.png</SourceFile>
-  <SourceTime>2020-11-05T14:08:22.2477132-05:00</SourceTime>
-  <DestFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/bin/DesktopGL/Content/player.xnb</DestFile>
-  <DestTime>2020-11-23T16:19:45.9336074-05:00</DestTime>
->>>>>>>> 371d2435bd4084978e09c893ab6a17eaa0667bf7:Timeless_Torture/Content/obj/DesktopGL/Content/player.mgcontent
+  <SourceFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/human left.png</SourceFile>
+  <SourceTime>2020-11-23T16:14:32.5447269-05:00</SourceTime>
+  <DestFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/bin/DesktopGL/Content/human left.xnb</DestFile>
+  <DestTime>2020-11-23T17:37:11.7917976-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
