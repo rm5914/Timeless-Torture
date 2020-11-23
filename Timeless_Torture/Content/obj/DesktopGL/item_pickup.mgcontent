@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/item_pickup.mp3</SourceFile>
-  <SourceTime>2020-11-23T17:22:42.7089539-05:00</SourceTime>
-  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/item_pickup.xnb</DestFile>
-  <DestTime>2020-11-23T17:37:05.5024815-05:00</DestTime>
+  <SourceFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/item_pickup.mp3</SourceFile>
+  <SourceTime>2020-11-23T18:08:14.6890698-05:00</SourceTime>
+  <DestFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/bin/DesktopGL/item_pickup.xnb</DestFile>
+  <DestTime>2020-11-23T18:09:21.2533858-05:00</DestTime>
   <Importer>Mp3Importer</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T10:05:36-05:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>

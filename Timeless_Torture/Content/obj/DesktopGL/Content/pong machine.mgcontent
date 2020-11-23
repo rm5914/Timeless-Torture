@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/pong machine.png</SourceFile>
-  <SourceTime>2020-10-20T16:48:57.3608256-04:00</SourceTime>
-  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Content/pong machine.xnb</DestFile>
-  <DestTime>2020-11-23T18:28:17.1044659-05:00</DestTime>
+  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/pong machine.png</SourceFile>
+  <SourceTime>2020-10-27T12:45:54.2530152-04:00</SourceTime>
+  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/Content/pong machine.xnb</DestFile>
+  <DestTime>2020-11-23T18:29:32.0377479-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
