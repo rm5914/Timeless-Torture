@@ -21,6 +21,7 @@ namespace Timeless_Torture
         public ItemPosition (Vector2 position)
         {
             this.position = position;
+            isPicked = false;
         }
 
         //methods

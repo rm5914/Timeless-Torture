@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/tamagotchi.png</SourceFile>
-  <SourceTime>2020-10-25T16:12:16.0595253-04:00</SourceTime>
-  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/tamagotchi.xnb</DestFile>
-  <DestTime>2020-11-19T13:19:25.365492-05:00</DestTime>
+  <SourceFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/tamagotchi.png</SourceFile>
+  <SourceTime>2020-10-25T17:06:06.2704784-04:00</SourceTime>
+  <DestFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/bin/DesktopGL/tamagotchi.xnb</DestFile>
+  <DestTime>2020-11-21T14:14:01.2546418-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T10:05:36-05:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

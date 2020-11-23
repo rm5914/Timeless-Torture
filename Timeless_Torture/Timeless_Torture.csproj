@@ -45,6 +45,7 @@
     <Compile Include="Button.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Fireplace.cs" />
+    <Compile Include="Floor.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemPosition.cs" />
@@ -84,8 +85,11 @@
     <Content Include="Content\floor pattern.png" />
     <Content Include="Content\fourth floor pattern.png" />
     <Content Include="Content\game portal.png" />
+    <Content Include="Content\human left.png" />
+    <Content Include="Content\human right.png" />
     <Content Include="Content\ipod touch glow.png" />
     <Content Include="Content\ipod touch.png" />
+    <Content Include="Content\losing screen.png" />
     <Content Include="Content\mood ring glow.png" />
     <Content Include="Content\mood ring.png" />
     <Content Include="Content\play station glow.png" />
@@ -102,6 +106,7 @@
     <Content Include="Content\tamagotchi glow.png" />
     <Content Include="Content\tamagotchi.png" />
     <Content Include="Content\third floor pattern.png" />
+    <Content Include="Content\victory screen.png" />
     <Content Include="Content\walkman glow.png" />
     <Content Include="Content\walkman.png" />
     <Content Include="Content\wii remote glow.png" />
