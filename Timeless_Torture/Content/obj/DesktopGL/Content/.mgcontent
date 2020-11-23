@@ -25,6 +25,7 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/human right.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/ipod touch glow.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/ipod touch.png</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/item_pickup.mp3</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/lightsaber glow.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/lightsaber.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/losing screen.png</File>
@@ -56,6 +57,7 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/zoopal plate.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

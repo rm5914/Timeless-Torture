@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
@@ -94,6 +95,10 @@ namespace Timeless_Torture
         private List<Texture2D> ninetiesGlow;
         private List<Texture2D> zerosGlow;
         private List<Texture2D> tensGlow;
+
+        // Sounds
+        private SoundEffectInstance soundEffectInstance;
+        private SoundEffect pickupSound;
 
         // Textures
         private Texture2D texture;
@@ -262,7 +267,10 @@ namespace Timeless_Torture
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
 
-            // All of the textures
+            // initializing sounds
+            pickupSound = Content.Load<SoundEffect>("item_pickup");
+
+            // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
             title = Content.Load<Texture2D>("Title");
             pauseTitle = Content.Load<Texture2D>("Pause");
@@ -602,6 +610,8 @@ namespace Timeless_Torture
                                 if (player.Inventory[player.InventoryLimit - 1] == null && items[i].PickUp())
                                 {
                                     player.AddItem(items[i]);
+                                    soundEffectInstance = pickupSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                     return;
                                 }
                             }
