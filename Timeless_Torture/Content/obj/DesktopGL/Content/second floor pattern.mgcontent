@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/second floor pattern.png</SourceFile>
-  <SourceTime>2020-11-15T15:36:42.496022-05:00</SourceTime>
-  <DestFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/bin/DesktopGL/Content/second floor pattern.xnb</DestFile>
-  <DestTime>2020-11-23T17:37:12.5956494-05:00</DestTime>
+  <SourceFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/second floor pattern.png</SourceFile>
+  <SourceTime>2020-11-15T15:27:24.8746404-05:00</SourceTime>
+  <DestFile>C:/Users/Renee/source/repos/Timeless-Torture/Timeless_Torture/Content/bin/DesktopGL/Content/second floor pattern.xnb</DestFile>
+  <DestTime>2020-11-23T18:28:17.3095075-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
