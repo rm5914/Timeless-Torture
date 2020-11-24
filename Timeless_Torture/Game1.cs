@@ -104,6 +104,7 @@ namespace Timeless_Torture
         private SoundEffect pickupSound;
         private SoundEffect portalSpawnSound;
         private SoundEffect burnSound;
+        private SoundEffect stairsSound;
 
         // Textures
         private Texture2D texture;
@@ -276,6 +277,7 @@ namespace Timeless_Torture
             pickupSound = Content.Load<SoundEffect>("item_pickup");
             portalSpawnSound = Content.Load<SoundEffect>("portal_Spawn");
             burnSound = Content.Load<SoundEffect>("item_burn");
+            stairsSound = Content.Load<SoundEffect>("stairs_sound");
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -649,14 +651,19 @@ namespace Timeless_Torture
                                 NextLevel();
                             }
 
+                            // Checking if they want to go up/down stairs
                             else if (IsPlayerClose(player.Position, staircaseRectangle))
                             {
                                 if (currentFloor == 0)
                                 {
                                     currentFloor++;
+                                    soundEffectInstance = stairsSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                 }
                                 else
                                 {
+                                    soundEffectInstance = stairsSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                     currentFloor = 0;
                                 }
                             }

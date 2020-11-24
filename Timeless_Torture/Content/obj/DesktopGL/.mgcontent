@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/stairs_sound.mp3</File>
     <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/amazon echo glow.png</File>
     <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/amazon echo.png</File>
     <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/bed.png</File>
@@ -56,4 +57,7 @@
     <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/zoopal plate glow.png</File>
     <File>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/zoopal plate.png</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>
