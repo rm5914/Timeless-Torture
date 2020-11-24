@@ -105,6 +105,7 @@ namespace Timeless_Torture
         private SoundEffect portalSpawnSound;
         private SoundEffect burnSound;
         private SoundEffect stairsSound;
+        private SoundEffect buttonSound;
 
         // Textures
         private Texture2D texture;
@@ -278,6 +279,7 @@ namespace Timeless_Torture
             portalSpawnSound = Content.Load<SoundEffect>("portal_Spawn");
             burnSound = Content.Load<SoundEffect>("item_burn");
             stairsSound = Content.Load<SoundEffect>("stairs_sound");
+            buttonSound = Content.Load<SoundEffect>("button_press");
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -515,6 +517,8 @@ namespace Timeless_Torture
                         // Checking if they click the start button
                         if (startButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             GameStart();
                             previousGameState = gameState;
                             gameState = GameState.Game;
@@ -523,6 +527,8 @@ namespace Timeless_Torture
                         // checking if they click the instructions button
                         if (instructionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Instructions;
                         }
@@ -530,6 +536,8 @@ namespace Timeless_Torture
                         // Checking if they want to edit the options of the game
                         if (optionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Options;
                         }
@@ -537,6 +545,8 @@ namespace Timeless_Torture
                         // Checking if they want to exit the game
                         if (exitButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             this.Exit();
                         }
                         break;
@@ -547,21 +557,29 @@ namespace Timeless_Torture
                         //checking if they click the back button
                         if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
                         else if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
@@ -573,21 +591,29 @@ namespace Timeless_Torture
                         //checking if they click the back button
                         if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
                         else if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
@@ -678,24 +704,32 @@ namespace Timeless_Torture
                         // Checking if they click the continue button
                         if (pauseContinueButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Game;
                         }
                         // checking if they click the instructions button
                         if (pauseInstructionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Instructions;
                         }
                         // Checking if they want to edit the options of the game
                         if (pauseOptionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Options;
                         }
                         // Checking if they want to exit to the menu
                         if (pauseExitButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
@@ -706,6 +740,8 @@ namespace Timeless_Torture
                     {
                         if(SingleKeyPress(Keys.Enter))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
                         }
@@ -816,6 +852,8 @@ namespace Timeless_Torture
                         // Making the difficulty button stay pressed after 1 click
                         if (difficultyButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             difficultyButton.IsPressed = !difficultyButton.IsPressed;
                         }
 
@@ -828,22 +866,30 @@ namespace Timeless_Torture
                             // Easy Difficulty Button
                             if (easyDifficulty.MouseClick(mouseState, previousMouseState))
                             {
+                                soundEffectInstance = buttonSound.CreateInstance();
+                                soundEffectInstance.Play();
                                 easyDifficulty.IsPressed = !easyDifficulty.IsPressed;
                                 mediumDifficulty.IsPressed = false;
                                 hardDifficulty.IsPressed = false;
 
                                 difficulty = Difficulty.Easy;
                             }
+                            // Medium Difficulty Button
                             else if (mediumDifficulty.MouseClick(mouseState, previousMouseState))
                             {
+                                soundEffectInstance = buttonSound.CreateInstance();
+                                soundEffectInstance.Play();
                                 easyDifficulty.IsPressed = false;
                                 mediumDifficulty.IsPressed = !mediumDifficulty.IsPressed;
                                 hardDifficulty.IsPressed = false;
 
                                 difficulty = Difficulty.Medium;
                             }
+                            // Hard Difficulty Button
                             else if (hardDifficulty.MouseClick(mouseState, previousMouseState))
                             {
+                                soundEffectInstance = buttonSound.CreateInstance();
+                                soundEffectInstance.Play();
                                 easyDifficulty.IsPressed = false;
                                 mediumDifficulty.IsPressed = false;
                                 hardDifficulty.IsPressed = !hardDifficulty.IsPressed;
