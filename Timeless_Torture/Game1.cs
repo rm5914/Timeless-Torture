@@ -16,7 +16,7 @@ namespace Timeless_Torture
     /// </summary>
      
     //enum GameState
-    enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
+    enum GameState { Menu, Options, Instructions, Game, Pause, GameOver, Victory };
 
     // Used to control the difficulty of the game, only affects the game when the game starts
     enum Difficulty { Easy, Medium, Hard };
@@ -57,6 +57,10 @@ namespace Timeless_Torture
         double timer;
         double timerMax;
 
+        // Footstep timers
+        double footstepTimer;
+        double footstepTimerMax;
+
         //list to keep track of rectangles of floor tiles
         Rectangle[,] currentFloorTiles;
 
@@ -75,6 +79,10 @@ namespace Timeless_Torture
         Floor floor2;
         Floor[] floors;
         int currentFloor;
+
+        // Contains all the walls
+        Texture2D[] wallTypes;
+        Texture2D[,] walls;
 
         // The fireplace
         Fireplace fireplace;
@@ -112,7 +120,10 @@ namespace Timeless_Torture
         private SoundEffect footsteps;
 
         // Textures
-        private Texture2D texture;
+        private Texture2D playerFront;
+        private Texture2D playerBack;
+        private Texture2D playerRight;
+        private Texture2D playerLeft;
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
@@ -121,6 +132,10 @@ namespace Timeless_Torture
         private Texture2D portal;
         private Texture2D bed;
         private Texture2D staircase;
+
+        // Different Screens
+        private Texture2D mainMenuScreen;
+        private Texture2D victoryScreen;
 
         // Floors
         private Texture2D currentFloorTexture;
@@ -238,6 +253,7 @@ namespace Timeless_Torture
 
             timerMax = timer;
             footstepTimer = footstepTimerMax;
+            timer = 5;
             difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
             numGenerator = new Random();
@@ -270,11 +286,32 @@ namespace Timeless_Torture
             tensFloor = Content.Load<Texture2D>("fifth floor pattern");
             currentFloorTexture = seventiesFloor;
 
+            // loading the walls
+            walls = new Texture2D[20, 20];
+            wallTypes = new Texture2D[6];
+            wallTypes[0] = Content.Load<Texture2D>("Moldy Wall 1");
+            wallTypes[1] = Content.Load<Texture2D>("Moldy Wall 2");
+            wallTypes[2] = Content.Load<Texture2D>("Moldy Wall 3");
+            wallTypes[3] = Content.Load<Texture2D>("Moldy Wall 4");
+            wallTypes[4] = Content.Load<Texture2D>("Moldy Wall 5");
+            wallTypes[5] = Content.Load<Texture2D>("Moldy Wall 6");
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    walls[i, j] = wallTypes[numGenerator.Next(0, wallTypes.Length)];
+                }
+            }
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("Player_Front");
+            playerFront = Content.Load<Texture2D>("Player_FrontWalk");
+            playerBack = Content.Load<Texture2D>("Player_BackWalk");
+            playerRight = Content.Load<Texture2D>("Player_RightWalk");
+            playerLeft = Content.Load<Texture2D>("Player_LeftWalk");
 
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
@@ -303,7 +340,11 @@ namespace Timeless_Torture
             bed = Content.Load<Texture2D>("bed");
             staircase = Content.Load<Texture2D>("staircase");
 
-            // Secenties item textures
+            // Screens
+            mainMenuScreen = Content.Load<Texture2D>("Menu Screen");
+            victoryScreen = Content.Load<Texture2D>("Victory Screen");
+
+            // Seventies item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
             pongMachine = Content.Load<Texture2D>("pong machine");
             moodRing = Content.Load<Texture2D>("mood ring");
@@ -407,7 +448,7 @@ namespace Timeless_Torture
             mainFont = Content.Load<SpriteFont>("mainFont");
 
             // All positions
-            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
+            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, 36 * graphics.PreferredBackBufferHeight / 100 - title.Height / 2);
 
             // Creating all of the buttons
             // Main Menu buttons
@@ -526,6 +567,9 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
+                        //Starting the timer
+                        timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
+
                         // Checking if they click the start button
                         if (startButton.MouseClick(mouseState, previousMouseState))
                         {
@@ -772,6 +816,17 @@ namespace Timeless_Torture
 
                         break;
                     }
+                case GameState.Victory:
+                    {
+                        if (SingleKeyPress(Keys.Enter))
+                        {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
+                            previousGameState = gameState;
+                            gameState = GameState.Menu;
+                        }
+                        break;
+                    }
             }
 
             base.Update(gameTime);
@@ -796,24 +851,30 @@ namespace Timeless_Torture
                         //Changing Background Color
                         GraphicsDevice.Clear(Color.Black);
 
-                        // Title
-                        spriteBatch.Draw(title, titlePosition, Color.White);
+                        // Drawing the background
+                        spriteBatch.Draw(mainMenuScreen, new Vector2(0, 0), Color.White);
 
-                        // Start Button
-                        startButton.PressButton(mouseState);
-                        startButton.Draw(spriteBatch);
+                        if (timer <= 0)
+                        {
+                            // Title
+                            spriteBatch.Draw(title, titlePosition, Color.White);
 
-                        // Istructions Button
-                        instructionsButton.PressButton(mouseState);
-                        instructionsButton.Draw(spriteBatch);
+                            // Start Button
+                            startButton.PressButton(mouseState);
+                            startButton.Draw(spriteBatch);
 
-                        // Options Button
-                        optionsButton.PressButton(mouseState);
-                        optionsButton.Draw(spriteBatch);
+                            // Istructions Button
+                            instructionsButton.PressButton(mouseState);
+                            instructionsButton.Draw(spriteBatch);
 
-                        // Exit Button
-                        exitButton.PressButton(mouseState);
-                        exitButton.Draw(spriteBatch);
+                            // Options Button
+                            optionsButton.PressButton(mouseState);
+                            optionsButton.Draw(spriteBatch);
+
+                            // Exit Button
+                            exitButton.PressButton(mouseState);
+                            exitButton.Draw(spriteBatch);
+                        }
 
                         spriteBatch.End();
 
@@ -956,7 +1017,7 @@ namespace Timeless_Torture
                             {
                                 if (floors[currentFloor].FloorData[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(currentFloorTexture, currentFloorTiles[i, j], Color.Black);
+                                    spriteBatch.Draw(walls[i, j], currentFloorTiles[i, j], Color.White);
                                     player.PlayerCollision(currentFloorTiles[i, j]);
                                 }
                                 else if (!IsPlayerCloseLarge(player.Position, currentFloorTiles[i, j]))
@@ -1055,6 +1116,15 @@ namespace Timeless_Torture
                         spriteBatch.End();
                         break;
                     }
+                case GameState.Victory:
+                    {
+                        spriteBatch.Begin();
+
+                        spriteBatch.Draw(victoryScreen, new Vector2(0, 0), Color.White);
+
+                        spriteBatch.End();
+                        break;
+                    }
             }
 
             base.Draw(gameTime);
@@ -1110,7 +1180,7 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")
@@ -1126,7 +1196,7 @@ namespace Timeless_Torture
             }
 
             // Spawning the player
-            player = new Player(texture, playerPosition, 1);
+            player = new Player(playerFront, playerBack, playerRight, playerLeft, playerPosition, 1);
             player.ResetInventory();
 
             // Resetting everything
@@ -1243,7 +1313,7 @@ namespace Timeless_Torture
                 case 5:
                     {
                         // Victory screen
-                        gameState = GameState.GameOver;
+                        gameState = GameState.Victory;
                         break;
                     }
             }
@@ -1278,7 +1348,7 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")
@@ -1358,8 +1428,6 @@ namespace Timeless_Torture
             }
         }
 
-        double footstepTimer;
-        double footstepTimerMax;
         public bool PlayFootsteps()
         {
             if ((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D)) && footstepTimer<=0)
