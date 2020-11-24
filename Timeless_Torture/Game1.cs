@@ -1171,8 +1171,8 @@ namespace Timeless_Torture
             shouldSpawnPortal = false;
 
             // Loading the first level
-            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(seventiesFloor, "TestLevel" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(seventiesFloor, "TestLevel" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
@@ -1339,8 +1339,8 @@ namespace Timeless_Torture
                 floor2.ItemPositions[i].Reset();
             }
 
-            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(currentFloorTexture, "TestLevel" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(currentFloorTexture, "TestLevel" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
