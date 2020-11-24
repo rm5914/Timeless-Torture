@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
@@ -101,11 +102,13 @@ namespace Timeless_Torture
 
         // Sounds
         private SoundEffectInstance soundEffectInstance;
+        private Song backgroundSound;
         private SoundEffect pickupSound;
         private SoundEffect portalSpawnSound;
         private SoundEffect burnSound;
         private SoundEffect stairsSound;
         private SoundEffect buttonSound;
+        private SoundEffect portalTravelSound;
 
         // Textures
         private Texture2D texture;
@@ -280,6 +283,12 @@ namespace Timeless_Torture
             burnSound = Content.Load<SoundEffect>("item_burn");
             stairsSound = Content.Load<SoundEffect>("stairs_sound");
             buttonSound = Content.Load<SoundEffect>("button_press");
+            portalTravelSound = Content.Load<SoundEffect>("use_portal");
+
+            // ambiance sound
+            backgroundSound = Content.Load<Song>("horror_ambiance");
+            MediaPlayer.Play(backgroundSound);
+            MediaPlayer.IsRepeating = true; //keeps on endless loop
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -675,6 +684,8 @@ namespace Timeless_Torture
                             if (IsPlayerClose(player.Position, portalRectangle))
                             {
                                 NextLevel();
+                                soundEffectInstance = portalTravelSound.CreateInstance();
+                                soundEffectInstance.Play();
                             }
 
                             // Checking if they want to go up/down stairs
