@@ -136,6 +136,8 @@ namespace Timeless_Torture
         // Different Screens
         private Texture2D mainMenuScreen;
         private Texture2D victoryScreen;
+        private Texture2D pauseScreen;
+        private Texture2D loseScreen;
 
         // Floors
         private Texture2D currentFloorTexture;
@@ -343,6 +345,7 @@ namespace Timeless_Torture
             // Screens
             mainMenuScreen = Content.Load<Texture2D>("Menu Screen");
             victoryScreen = Content.Load<Texture2D>("Victory Screen");
+            pauseScreen = Content.Load<Texture2D>("Pause Screen");
 
             // Seventies item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
@@ -616,6 +619,7 @@ namespace Timeless_Torture
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
@@ -623,6 +627,7 @@ namespace Timeless_Torture
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Pause)
@@ -650,6 +655,7 @@ namespace Timeless_Torture
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
@@ -657,6 +663,7 @@ namespace Timeless_Torture
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Pause)
@@ -799,6 +806,7 @@ namespace Timeless_Torture
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         break;
@@ -811,6 +819,7 @@ namespace Timeless_Torture
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
 
@@ -824,6 +833,7 @@ namespace Timeless_Torture
                             soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Menu;
+                            timer = 0;
                         }
                         break;
                     }
@@ -1082,7 +1092,7 @@ namespace Timeless_Torture
                         spriteBatch.Begin();
 
                         // Making the background
-                        spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
+                        spriteBatch.Draw(pauseScreen, new Vector2(0, 0), Color.White);
 
                         // Pause title
                         spriteBatch.Draw(pauseTitle, titlePosition, Color.White);
