@@ -57,6 +57,10 @@ namespace Timeless_Torture
         double timer;
         double timerMax;
 
+        // Footstep timers
+        double footstepTimer;
+        double footstepTimerMax;
+
         //list to keep track of rectangles of floor tiles
         Rectangle[,] currentFloorTiles;
 
@@ -1358,8 +1362,6 @@ namespace Timeless_Torture
             }
         }
 
-        double footstepTimer;
-        double footstepTimerMax;
         public bool PlayFootsteps()
         {
             if ((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D)) && footstepTimer<=0)
