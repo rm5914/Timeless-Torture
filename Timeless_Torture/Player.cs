@@ -237,7 +237,12 @@ namespace Timeless_Torture
         {
             spriteBatch.Draw(playerTexture, position, Color.White);
         }
-        
+
+        public void DrawInventory(SpriteBatch spriteBatch, SpriteFont spriteFont)
+        {
+            spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(position.X - 150, position.Y + 180), Color.White);
+        }
+
         /// <summary>
         /// Resets the players inventory so it holds 0 items
         /// </summary>
