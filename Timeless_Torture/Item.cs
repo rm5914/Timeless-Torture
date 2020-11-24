@@ -109,7 +109,6 @@ namespace Timeless_Torture
             {
                 if (playerClose)
                 {
-                    // The Color.DarkRed is temporary, once we get the second sprite the color will just be color and the texture will change
                     spriteBatch.Draw(closeTexture, rectangle, color);
                 }
                 else
@@ -122,6 +121,18 @@ namespace Timeless_Torture
             {
                 spriteBatch.Draw(texture, inventoryRectangle, color);
             }
+        }
+
+        /// <summary>
+        /// Draws an item in the inventory
+        /// </summary>
+        /// <param name="spriteBatch"> The spritebatch to draw the item </param>
+        /// <param name="position"> The position of the item in the inventory </param>
+        /// <param name="x"> The x position of the player </param>
+        /// <param name="y"> The y position of the player </param>
+        public void DrawInventory(SpriteBatch spriteBatch, int position, int x, int y)
+        {
+            spriteBatch.Draw(closeTexture, new Rectangle(x - 120 + position * 20 , y + 180, 50, 50), color);
         }
     }
 }
