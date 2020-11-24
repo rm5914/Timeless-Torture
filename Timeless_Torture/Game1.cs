@@ -1310,7 +1310,7 @@ namespace Timeless_Torture
                         currentFloorTexture = tensFloor;
                         break;
                     }
-                case 1:
+                case 5:
                     {
                         // Victory screen
                         gameState = GameState.Victory;
