@@ -1004,14 +1004,13 @@ namespace Timeless_Torture
                             }
                         }
 
+                        // Drawing the player
+                        player.Draw(spriteBatch);
+                        player.DrawInventory(spriteBatch, mainFont);
+
                         //Displaying the timer
                         string time = string.Format("{0:0.00}", timer);
-                        spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.White);
-                        player.Draw(spriteBatch);
-
-
-                        //display inventory
-                        spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
+                        spriteBatch.DrawString(mainFont, time, new Vector2(player.X - 25, player.Y - 220), Color.White);
 
                         spriteBatch.End();
                         break;
