@@ -117,7 +117,13 @@ namespace Timeless_Torture
         private SoundEffect stairsSound;
         private SoundEffect buttonSound;
         private SoundEffect portalTravelSound;
-        private SoundEffect footsteps;
+
+        private SoundEffect footstep1;
+        private SoundEffect footstep2;
+        private SoundEffect footstep3;
+        private SoundEffect footstep4;
+        private SoundEffect footstep5;
+        private SoundEffect footstep6;
 
         // Textures
         private Texture2D playerFront;
@@ -325,12 +331,18 @@ namespace Timeless_Torture
             stairsSound = Content.Load<SoundEffect>("stairs_sound");
             buttonSound = Content.Load<SoundEffect>("button_press");
             portalTravelSound = Content.Load<SoundEffect>("use_portal");
-            footsteps = Content.Load<SoundEffect>("footsteps");
+
+            footstep1 = Content.Load<SoundEffect>("footstep_1");
+            footstep2 = Content.Load<SoundEffect>("footstep_2");
+            footstep3 = Content.Load<SoundEffect>("footstep_3");
+            footstep4 = Content.Load<SoundEffect>("footstep_4");
+            footstep5 = Content.Load<SoundEffect>("footstep_5");
+            footstep6 = Content.Load<SoundEffect>("footstep_6");
 
             // ambiance sound
             backgroundSound = Content.Load<Song>("horror_ambiance");
             MediaPlayer.Play(backgroundSound);
-            MediaPlayer.IsRepeating = true; //keeps on endless loop
+            //MediaPlayer.IsRepeating = true; //keeps on endless loop
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -766,11 +778,38 @@ namespace Timeless_Torture
 
                         // checking for player movement
                         footstepTimer = footstepTimer - gameTime.ElapsedGameTime.TotalSeconds; //updating footstep timer
-
+                        Random rand = new Random();
                         if (PlayFootsteps() == true) //footsteps
                         {
-                            soundEffectInstance = footsteps.CreateInstance();
-                            soundEffectInstance.Play();
+                            int footstepNum = rand.Next(1, 7);
+                            switch(footstepNum)
+                            {
+                                case 1:
+                                    soundEffectInstance = footstep1.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 2:
+                                    soundEffectInstance = footstep2.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 3:
+                                    soundEffectInstance = footstep3.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 4:
+                                    soundEffectInstance = footstep4.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 5:
+                                    soundEffectInstance = footstep5.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 6:
+                                    soundEffectInstance = footstep6.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                            }
+                            
                         }
                         break;
                     }
@@ -1240,7 +1279,7 @@ namespace Timeless_Torture
             timer = timerMax;
             PlaceItems(seventiesItems, seventiesGlow);
 
-            footstepTimerMax = 0.6; //0.6s.. the length of the footsteps mp3
+            footstepTimerMax = 0.33; //0.33s.. the length of each of the footstep mp3s
         }
 
         /// <summary>
@@ -1438,10 +1477,11 @@ namespace Timeless_Torture
                 return false;
             }
         }
-
         public bool PlayFootsteps()
         {
-            if ((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D)) && footstepTimer<=0)
+            if (
+                (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D))
+                && footstepTimer<=0)
             {
                 footstepTimer = footstepTimerMax; //resets timer
                 return true;
