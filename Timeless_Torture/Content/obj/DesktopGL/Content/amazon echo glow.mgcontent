@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/amazon echo glow.png</SourceFile>
-  <SourceTime>2020-10-31T23:21:03.3157235-04:00</SourceTime>
-  <DestFile>C:/Users/saumi/Desktop/Homework/GDAPS2.1/Final Game/Timeless_Torture/Content/bin/DesktopGL/Content/amazon echo glow.xnb</DestFile>
-  <DestTime>2020-11-23T20:15:24.2570896-05:00</DestTime>
+  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/amazon echo glow.png</SourceFile>
+  <SourceTime>2020-11-03T15:04:58.8670864-05:00</SourceTime>
+  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/Content/amazon echo glow.xnb</DestFile>
+  <DestTime>2020-11-24T14:19:07.8952856-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
