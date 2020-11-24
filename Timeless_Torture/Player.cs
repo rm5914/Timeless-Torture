@@ -245,7 +245,7 @@ namespace Timeless_Torture
         /// <param name="spriteFont"> The font of the text for the inventory </param>
         public void DrawInventory(SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
-            spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(position.X - 150, position.Y + 180), Color.White);
+            spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(position.X - 290, position.Y + 190), Color.White);
 
             int currentItem = 0;
 

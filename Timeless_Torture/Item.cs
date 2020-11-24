@@ -116,11 +116,6 @@ namespace Timeless_Torture
                     spriteBatch.Draw(texture, rectangle, color);
                 }
             }
-            //display items - bottom left corner
-            else if (isPickedUp && !isBurned)
-            {
-                spriteBatch.Draw(texture, inventoryRectangle, color);
-            }
         }
 
         /// <summary>
@@ -132,7 +127,7 @@ namespace Timeless_Torture
         /// <param name="y"> The y position of the player </param>
         public void DrawInventory(SpriteBatch spriteBatch, int position, int x, int y)
         {
-            spriteBatch.Draw(closeTexture, new Rectangle(x - 120 + position * 20 , y + 180, 50, 50), color);
+            spriteBatch.Draw(closeTexture, new Rectangle(x - 160 + position * 20 , y + 195, 20, 20), color);
         }
     }
 }

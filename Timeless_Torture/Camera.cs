@@ -21,6 +21,14 @@ namespace Timeless_Torture
             bounds = viewport.Bounds;
         }
 
+        public Matrix Position
+        {
+            get
+            {
+                return transform;
+            }
+        }
+
         public void Move(Player player)
         {
 
