@@ -126,7 +126,6 @@ namespace Timeless_Torture
                 }
             }
         }
-
         // End of properties
 
         //methods
@@ -248,5 +247,6 @@ namespace Timeless_Torture
                 inventory[i] = null;
             }
         }
+
     }
 }

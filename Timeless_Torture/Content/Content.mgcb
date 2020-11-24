@@ -199,6 +199,12 @@
 /processorParam:TextureFormat=Color
 /build:floor pattern.png
 
+#begin footsteps.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footsteps.mp3
+
 #begin fourth floor pattern.png
 /importer:TextureImporter
 /processor:TextureProcessor

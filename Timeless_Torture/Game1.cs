@@ -109,6 +109,7 @@ namespace Timeless_Torture
         private SoundEffect stairsSound;
         private SoundEffect buttonSound;
         private SoundEffect portalTravelSound;
+        private SoundEffect footsteps;
 
         // Textures
         private Texture2D texture;
@@ -236,6 +237,7 @@ namespace Timeless_Torture
             //path = path.Substring(0, path.Length - 31);
 
             timerMax = timer;
+            footstepTimer = footstepTimerMax;
             difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
             numGenerator = new Random();
@@ -284,6 +286,7 @@ namespace Timeless_Torture
             stairsSound = Content.Load<SoundEffect>("stairs_sound");
             buttonSound = Content.Load<SoundEffect>("button_press");
             portalTravelSound = Content.Load<SoundEffect>("use_portal");
+            footsteps = Content.Load<SoundEffect>("footsteps");
 
             // ambiance sound
             backgroundSound = Content.Load<Song>("horror_ambiance");
@@ -706,7 +709,17 @@ namespace Timeless_Torture
                             }
                         }
 
+                        // Checking for player movement
                         player.MovePlayer(keyState);
+
+                        // checking for player movement
+                        footstepTimer = footstepTimer - gameTime.ElapsedGameTime.TotalSeconds; //updating footstep timer
+
+                        if (PlayFootsteps() == true) //footsteps
+                        {
+                            soundEffectInstance = footsteps.CreateInstance();
+                            soundEffectInstance.Play();
+                        }
                         break;
                     }
 
@@ -1147,6 +1160,7 @@ namespace Timeless_Torture
             timer = timerMax;
             PlaceItems(seventiesItems, seventiesGlow);
 
+            footstepTimerMax = 0.6; //0.6s.. the length of the footsteps mp3
         }
 
         /// <summary>
@@ -1343,6 +1357,19 @@ namespace Timeless_Torture
             {
                 return false;
             }
+        }
+
+        double footstepTimer;
+        double footstepTimerMax;
+        public bool PlayFootsteps()
+        {
+            if ((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D)) && footstepTimer<=0)
+            {
+                footstepTimer = footstepTimerMax; //resets timer
+                return true;
+            }
+            else
+                return false;
         }
     }
 }

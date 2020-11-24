@@ -20,6 +20,7 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/fireplace glow.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/fireplace.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/floor pattern.png</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/footsteps.mp3</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/fourth floor pattern.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/game portal.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/horror_ambiance.mp3</File>
@@ -63,6 +64,7 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/zoopal plate.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
