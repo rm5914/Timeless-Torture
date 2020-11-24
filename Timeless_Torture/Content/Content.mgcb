@@ -73,6 +73,12 @@
 /processorParam:TextureFormat=Color
 /build:beeper.png
 
+#begin button_press.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button_press.mp3
+
 #begin club penguin glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -193,6 +199,12 @@
 /processorParam:TextureFormat=Color
 /build:floor pattern.png
 
+#begin footsteps.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footsteps.mp3
+
 #begin fourth floor pattern.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -216,6 +228,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:game portal.png
+
+#begin horror_ambiance.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:horror_ambiance.mp3
 
 #begin human left.png
 /importer:TextureImporter
@@ -264,6 +282,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ipod touch.png
+
+#begin item_burn.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:item_burn.mp3
 
 #begin item_pickup.mp3
 /importer:Mp3Importer
@@ -403,6 +427,12 @@
 /processorParam:TextureFormat=Color
 /build:pong machine.png
 
+#begin portal_Spawn.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:portal_Spawn.mp3
+
 #begin rubik cube glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -475,6 +505,12 @@
 /processorParam:TextureFormat=Color
 /build:staircase.png
 
+#begin stairs_sound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:stairs_sound.mp3
+
 #begin tamagotchi glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -534,6 +570,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:TT Buttons.png
+
+#begin use_portal.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:use_portal.mp3
 
 #begin victory screen.png
 /importer:TextureImporter

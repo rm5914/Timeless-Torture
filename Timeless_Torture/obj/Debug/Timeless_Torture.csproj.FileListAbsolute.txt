@@ -50,7 +50,6 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_To
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Player1.xnb
-C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player1.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Timeless_Torture.exe
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Timeless_Torture.pdb
@@ -239,7 +238,6 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_To
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\floor pattern.xnb
 C:\Users\Renee\source\repos\Timeless-Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\player.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\floor pattern.xnb
-C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\player.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\second floor pattern.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\bed.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fifth floor pattern.xnb
@@ -289,55 +287,33 @@ C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Deb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_Front.xnb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.ogg
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\amazon echo glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\amazon echo.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\bed.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\beeper glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\beeper.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\club penguin glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\club penguin.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\door glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\door.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\facebook logo glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\facebook logo.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fifth floor pattern.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fireplace glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fireplace.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\floor pattern.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fourth floor pattern.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\game portal.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\human left.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\human right.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ipod touch glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ipod touch.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ItemPlaceholder.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.ogg
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\lightsaber glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\lightsaber.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\losing screen.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mood ring glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mood ring.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\play station glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\play station.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\PlayerSprite.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_Front.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\pong machine glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\pong machine.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\portal.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\rubik cube glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\rubik cube.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\second floor pattern.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\slap bracelet glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\slap bracelet.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\staircase.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\tamagotchi glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\tamagotchi.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\third floor pattern.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\victory screen.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\walkman glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\walkman.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\wii remote glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\wii remote.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\zoopal plate glow.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\zoopal plate.xnb
-C:\Users\saumi\Desktop\Homework\GDAPS2.1\Final Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\human left.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\human right.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\losing screen.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Player_Front.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\victory screen.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_Front.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\item_pickup.ogg
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\item_pickup.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\item_burn.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\portal_Spawn.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_burn.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\portal_Spawn.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_burn.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\portal_Spawn.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\stairs_sound.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\button_press.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\use_portal.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\horror_ambiance.ogg
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\horror_ambiance.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\button_press.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\stairs_sound.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\button_press.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\stairs_sound.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\horror_ambiance.ogg
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\horror_ambiance.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\use_portal.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\horror_ambiance.ogg
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\horror_ambiance.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\use_portal.xnb
