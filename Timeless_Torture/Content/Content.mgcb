@@ -73,6 +73,12 @@
 /processorParam:TextureFormat=Color
 /build:beeper.png
 
+#begin button_press.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button_press.mp3
+
 #begin club penguin glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -486,6 +492,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:staircase.png
+
+#begin stairs_sound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:stairs_sound.mp3
 
 #begin tamagotchi glow.png
 /importer:TextureImporter

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/item_pickup.mp3</SourceFile>
-  <SourceTime>2020-11-23T17:22:42.7089539-05:00</SourceTime>
-  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/Content/item_pickup.xnb</DestFile>
-  <DestTime>2020-11-23T19:02:30.9981709-05:00</DestTime>
+  <SourceFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/stairs_sound.mp3</SourceFile>
+  <SourceTime>2020-11-23T18:57:31.8058913-05:00</SourceTime>
+  <DestFile>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/bin/DesktopGL/stairs_sound.xnb</DestFile>
+  <DestTime>2020-11-23T18:58:48.7127644-05:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
