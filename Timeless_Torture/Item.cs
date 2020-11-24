@@ -17,17 +17,15 @@ namespace Timeless_Torture
         private bool isBurned;
         private bool playerClose;
         private Rectangle rectangle;
-        private Rectangle inventoryRectangle;
         private Texture2D texture;
         private Texture2D closeTexture;
         private Color color;
         
 
         // Constructor
-        public Item(Rectangle rectangle, Rectangle inventoryRectangle, Texture2D texture, Texture2D closeTexture, Color color)
+        public Item(Rectangle rectangle, Texture2D texture, Texture2D closeTexture, Color color)
         {
             this.rectangle = rectangle;
-            this.inventoryRectangle = inventoryRectangle;
             this.texture = texture;
             this.closeTexture = closeTexture;
             this.color = color;
@@ -43,14 +41,6 @@ namespace Timeless_Torture
             get
             {
                 return rectangle;
-            }
-        }
-
-        public Rectangle InventoryPosition
-        {
-            get
-            {
-                return inventoryRectangle;
             }
         }
 

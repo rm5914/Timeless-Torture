@@ -25,8 +25,8 @@ namespace ExternalTool
 
         public void Form1_Load(object sender, EventArgs e)
         {
-            height = 40;
-            width = 40;
+            height = 20;
+            width = 20;
             textBox1.Enabled = false;
 
             for (int x = 0; x < (height * width); x++)
@@ -42,8 +42,8 @@ namespace ExternalTool
 
                 for (int j = 0; j < width; j++)
                 {
-                    list[count].Size = new System.Drawing.Size(10, 10);
-                    list[count].Location = new System.Drawing.Point((176 + 10 * j), (23 + 10 * i));
+                    list[count].Size = new System.Drawing.Size(20, 20);
+                    list[count].Location = new System.Drawing.Point((176 + 20 * j), (23 + 20 * i));
 
                     //Differenciating between load files with edited picture boxes and new files with default picture boxes
                     if (list[count].BackColor == DefaultBackColor)

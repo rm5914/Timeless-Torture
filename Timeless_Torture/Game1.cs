@@ -1316,7 +1316,7 @@ namespace Timeless_Torture
                     position = numGenerator.Next(0, current.ItemPositions.Count);
                     itemVector = current.ItemPositions[position].GetPosition();
                 }
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Height / 5), new Rectangle(350 + i * 20, 700 + i * 20, textures[i].Width / 10, textures[i].Height / 10), textures[i], glowTextures[i], Color.White);
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i], glowTextures[i], Color.White);
                 current.Items.Add(items[i]);
             }
         }
