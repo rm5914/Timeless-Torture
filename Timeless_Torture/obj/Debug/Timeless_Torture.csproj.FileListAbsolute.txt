@@ -390,3 +390,4 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_To
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_LeftWalk.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_RightWalk.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Menu Screen.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause Screen.xnb
