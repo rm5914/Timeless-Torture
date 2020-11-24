@@ -223,6 +223,12 @@
 /processorParam:TextureFormat=Color
 /build:game portal.png
 
+#begin horror_ambiance.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:horror_ambiance.mp3
+
 #begin human left.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -558,6 +564,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:TT Buttons.png
+
+#begin use_portal.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:use_portal.mp3
 
 #begin victory screen.png
 /importer:TextureImporter
