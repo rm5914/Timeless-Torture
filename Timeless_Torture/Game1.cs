@@ -80,6 +80,10 @@ namespace Timeless_Torture
         Floor[] floors;
         int currentFloor;
 
+        // Contains all the walls
+        Texture2D[] wallTypes;
+        Texture2D[,] walls;
+
         // The fireplace
         Fireplace fireplace;
 
@@ -273,6 +277,24 @@ namespace Timeless_Torture
             zerosFloor = Content.Load<Texture2D>("fourth floor pattern");
             tensFloor = Content.Load<Texture2D>("fifth floor pattern");
             currentFloorTexture = seventiesFloor;
+
+            // loading the walls
+            walls = new Texture2D[20, 20];
+            wallTypes = new Texture2D[6];
+            wallTypes[0] = Content.Load<Texture2D>("Moldy Wall 1");
+            wallTypes[1] = Content.Load<Texture2D>("Moldy Wall 2");
+            wallTypes[2] = Content.Load<Texture2D>("Moldy Wall 3");
+            wallTypes[3] = Content.Load<Texture2D>("Moldy Wall 4");
+            wallTypes[4] = Content.Load<Texture2D>("Moldy Wall 5");
+            wallTypes[5] = Content.Load<Texture2D>("Moldy Wall 6");
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    walls[i, j] = wallTypes[numGenerator.Next(0, wallTypes.Length)];
+                }
+            }
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -960,7 +982,7 @@ namespace Timeless_Torture
                             {
                                 if (floors[currentFloor].FloorData[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(currentFloorTexture, currentFloorTiles[i, j], Color.Black);
+                                    spriteBatch.Draw(walls[i, j], currentFloorTiles[i, j], Color.White);
                                     player.PlayerCollision(currentFloorTiles[i, j]);
                                 }
                                 else if (!IsPlayerCloseLarge(player.Position, currentFloorTiles[i, j]))
