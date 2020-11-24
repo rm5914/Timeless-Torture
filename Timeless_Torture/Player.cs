@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
 
 namespace Timeless_Torture
 {
@@ -11,30 +10,56 @@ namespace Timeless_Torture
     {
         // FIELDS
         private Rectangle position;
-        private Texture2D playerTexture;
+        private Texture2D front;
+        private Texture2D back;
+        private Texture2D right;
+        private Texture2D left;
+        private Texture2D currentTexture;
         private List<Item> inventory;
         private int inventoryLimit;
         private int playerMovementX;
         private int playerMovementY;
+        private int frame;
+        private int frameInterval;
         private bool blockedLeft;
         private bool blockedRight;
         private bool blockedUp;
         private bool blockedDown;
+        private bool moved;
+        private bool faceSwitched;
 
         // Constructor
-        public Player(Texture2D texture, Rectangle pos, int inventoryLimit)
+        public Player(Texture2D playerFront, Texture2D playerBack, Texture2D playerRight, Texture2D playerLeft, Rectangle pos, int inventoryLimit)
         {
+            // Setting variables
             position = pos;
-            playerTexture = texture;
+            front = playerFront;
+            back = playerBack;
+            right = playerRight;
+            left = playerLeft;
+
+            // Starts the player facing down
+            currentTexture = front;
+
+            // Initializing inventory
             this.inventoryLimit = inventoryLimit;
             inventory = new List<Item>();
+
+            // Initiliazing player movement and frame data
             playerMovementX = 2;
             playerMovementY = 2;
+            frame = 1;
+            frameInterval = 0;
+
+            // Initializing booleans, all should be false
             blockedLeft = false;
             blockedRight = false;
             blockedUp = false;
             blockedDown = false;
+            moved = false;
+            faceSwitched = false;
 
+            // Filling the inventory
             for (int i = 0; i < inventoryLimit; i++)
             {
                 inventory.Add(null);
@@ -134,27 +159,74 @@ namespace Timeless_Torture
         /// </summary>
         public void MovePlayer(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.W) && !blockedUp)
-            {
-                position.Y -= playerMovementY;
-            }
-            if (keyState.IsKeyDown(Keys.A) && !blockedLeft)
-            {
-                position.X -= playerMovementX;
-            }
             if (keyState.IsKeyDown(Keys.S) && !blockedDown)
             {
                 position.Y += playerMovementY;
+                moved = true;
+                if (!faceSwitched)
+                {
+                    faceSwitched = true;
+                    currentTexture = front;
+                }
+            }
+            if (keyState.IsKeyDown(Keys.W) && !blockedUp)
+            {
+                position.Y -= playerMovementY;
+                moved = true;
+                if (!faceSwitched)
+                {
+                    faceSwitched = true;
+                    currentTexture = back;
+                }
             }
             if (keyState.IsKeyDown(Keys.D) && !blockedRight)
             {
                 position.X += playerMovementX;
+                moved = true;
+                if (!faceSwitched)
+                {
+                    faceSwitched = true;
+                    currentTexture = right;
+                }
+            }
+            if (keyState.IsKeyDown(Keys.A) && !blockedLeft)
+            {
+                position.X -= playerMovementX;
+                moved = true;
+                if (!faceSwitched)
+                {
+                    faceSwitched = true;
+                    currentTexture = left;
+                }
+            }
+
+            // Changing the frames
+            if (moved)
+            {
+                frameInterval++;
+
+                if (frameInterval % 8 == 0)
+                {
+                    frame++;
+
+                    if (frame >= 5)
+                    {
+                        frame = 2;
+                    }
+                }
+
+            }
+            else
+            {
+                frame = 1;
             }
 
             blockedLeft = false;
             blockedRight = false;
             blockedUp = false;
             blockedDown = false;
+            moved = false;
+            faceSwitched = false;
         }
 
         /// <summary>
@@ -234,7 +306,26 @@ namespace Timeless_Torture
         /// <param name="spriteBatch"> The spritebatch used to draw the player </param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playerTexture, position, Color.White);
+            switch (frame)
+            {
+                case 1:
+                    spriteBatch.Draw(currentTexture, position, new Rectangle(0, 0, 256, 256), Color.White);
+                    break;
+                case 2:
+                    spriteBatch.Draw(currentTexture, position, new Rectangle(256, 0, 256, 256), Color.White);
+                    break;
+                case 3:
+                    spriteBatch.Draw(currentTexture, position, new Rectangle(0, 256, 256, 256), Color.White);
+                    break;
+                case 4:
+                    spriteBatch.Draw(currentTexture, position, new Rectangle(256, 256, 256, 256), Color.White);
+                    break;
+                case 5:
+                    spriteBatch.Draw(currentTexture, position, new Rectangle(0, 768, 256, 256), Color.White);
+                    break;
+
+
+            }
         }
 
         /// <summary>
