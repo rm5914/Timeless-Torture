@@ -358,6 +358,7 @@ namespace Timeless_Torture
             mainMenuScreen = Content.Load<Texture2D>("Menu Screen");
             victoryScreen = Content.Load<Texture2D>("Victory Screen");
             pauseScreen = Content.Load<Texture2D>("Pause Screen");
+            loseScreen = Content.Load<Texture2D>("Lose Screen");
 
             // Seventies item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
@@ -1160,7 +1161,7 @@ namespace Timeless_Torture
                     {
                         spriteBatch.Begin();
 
-                        spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 3, 0), Color.Black);
+                        spriteBatch.Draw(loseScreen, new Vector2(0, 0), Color.White);
 
                         spriteBatch.End();
                         break;
