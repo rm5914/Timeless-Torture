@@ -30,6 +30,7 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +69,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(77, 134);
             this.panel1.TabIndex = 3;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.BurlyWood;
+            this.button10.ForeColor = System.Drawing.Color.BurlyWood;
+            this.button10.Location = new System.Drawing.Point(21, 103);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(31, 28);
+            this.button10.TabIndex = 10;
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button8
             // 
@@ -180,17 +191,6 @@
             this.textBox1.Size = new System.Drawing.Size(77, 20);
             this.textBox1.TabIndex = 10;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.BurlyWood;
-            this.button10.ForeColor = System.Drawing.Color.BurlyWood;
-            this.button10.Location = new System.Drawing.Point(21, 103);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(31, 28);
-            this.button10.TabIndex = 10;
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Form1
             // 
