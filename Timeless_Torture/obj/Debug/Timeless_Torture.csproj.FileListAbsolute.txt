@@ -437,3 +437,106 @@ C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Deb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\clock_ticking.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Lose Screen.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\clock_ticking.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ItemPlaceholder.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.ogg
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player1.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\PlayerSprite.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\portal.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\amazon echo glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\amazon echo.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\bed.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\beeper glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\beeper.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\button_press.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\clock_ticking.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\club penguin glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\club penguin.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\door glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\door.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\facebook logo glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\facebook logo.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fifth floor pattern.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fireplace glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fireplace.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\floor pattern.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_1.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_2.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_3.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_4.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_5.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_6.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\fourth floor pattern.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\game portal.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\horror_ambiance.ogg
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\horror_ambiance.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\human left.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\human right.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\inventory.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ipod touch glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\ipod touch.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_burn.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\item_pickup.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\lightsaber glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\lightsaber.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Lose Screen.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\losing screen.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Menu Screen.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 1.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 2.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 3.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 4.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 5.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 6.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mood ring glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mood ring.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause Screen.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\play station glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\play station.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_BackWalk.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_Front.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_FrontWalk.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_LeftWalk.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_RightWalk.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\pong machine glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\pong machine.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\portal_Spawn.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\rubik cube glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\rubik cube.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\second floor pattern.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\slap bracelet glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\slap bracelet.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\staircase.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\stairs_sound.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\tamagotchi glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\tamagotchi.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\third floor pattern.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Title.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\TT Buttons.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\use_portal.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\victory screen.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\walkman glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\walkman.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\wii remote glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\wii remote.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\zoopal plate glow.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\zoopal plate.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\mainFont.xnb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Timeless_Torture.exe
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Timeless_Torture.pdb
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\obj\Debug\Timeless_Torture.csprojAssemblyReference.cache
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\obj\Debug\Timeless_Torture.csproj.CopyComplete
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\obj\Debug\Timeless_Torture.exe
+C:\Users\aidan\Desktop\Game Stuff\Timeless Torture\Timeless_Torture\obj\Debug\Timeless_Torture.pdb

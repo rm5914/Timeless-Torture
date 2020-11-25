@@ -1307,7 +1307,7 @@ namespace Timeless_Torture
             }
             else if (difficulty == Difficulty.Medium)
             {
-                timerMax = 20;
+                timerMax = 200;
                 player.XMovement = 2;
                 player.YMovement = 2;
                 player.InventoryLimit = 2;
