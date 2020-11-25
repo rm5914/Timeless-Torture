@@ -117,6 +117,7 @@ namespace Timeless_Torture
         private SoundEffect stairsSound;
         private SoundEffect buttonSound;
         private SoundEffect portalTravelSound;
+        private SoundEffect clockTicking;
 
         private SoundEffect footstep1;
         private SoundEffect footstep2;
@@ -331,6 +332,7 @@ namespace Timeless_Torture
             stairsSound = Content.Load<SoundEffect>("stairs_sound");
             buttonSound = Content.Load<SoundEffect>("button_press");
             portalTravelSound = Content.Load<SoundEffect>("use_portal");
+            clockTicking = Content.Load<SoundEffect>("clock_ticking");
 
             footstep1 = Content.Load<SoundEffect>("footstep_1");
             footstep2 = Content.Load<SoundEffect>("footstep_2");
@@ -704,6 +706,14 @@ namespace Timeless_Torture
                         //updating the camera in game
                         camera.Move(player);
 
+                        // timer ticking, 15s remaining
+                        if(timer<=15)
+                        {
+                            soundEffectInstance = clockTicking.CreateInstance();
+                            soundEffectInstance.Play();
+                        }
+
+                        // game lose condition
                         if (timer <= 0)
                         {
                             previousGameState = gameState;

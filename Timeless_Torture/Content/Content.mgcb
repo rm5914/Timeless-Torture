@@ -79,6 +79,12 @@
 /processorParam:Quality=Best
 /build:button_press.mp3
 
+#begin clock_ticking.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:clock_ticking.mp3
+
 #begin club penguin glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -348,6 +354,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:lightsaber.png
+
+#begin Lose Screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Lose Screen.png
 
 #begin losing screen.png
 /importer:TextureImporter
@@ -834,16 +852,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:zoopal plate.png
-
-#begin Lose Screen.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Lose Screen.png
 
