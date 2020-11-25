@@ -56,6 +56,7 @@ namespace Timeless_Torture
         //timer
         double timer;
         double timerMax;
+        bool timeCheck = true;
 
         // Footstep timers
         double footstepTimer;
@@ -708,8 +709,9 @@ namespace Timeless_Torture
                         camera.Move(player);
 
                         // timer ticking, 15s remaining
-                        if(timer<=15)
+                        if(timer<=15 && timeCheck)
                         {
+                            timeCheck = false;
                             soundEffectInstance = clockTicking.CreateInstance();
                             soundEffectInstance.Play();
                         }
@@ -1289,6 +1291,7 @@ namespace Timeless_Torture
 
             // Resetting everything
             fireplace.Reset();
+            timeCheck = true;
 
             // Changing the settings based on difficulty
             // These are the max settings, any higher speed would cause problems with the player collision
@@ -1301,7 +1304,7 @@ namespace Timeless_Torture
             }
             else if (difficulty == Difficulty.Medium)
             {
-                timerMax = 300;
+                timerMax = 20;
                 player.XMovement = 2;
                 player.YMovement = 2;
                 player.InventoryLimit = 2;
@@ -1508,6 +1511,7 @@ namespace Timeless_Torture
             fireplace.Reset();
             shouldSpawnPortal = false;
             timer = timerMax;
+            timeCheck = true;
         }
 
         /// <summary>

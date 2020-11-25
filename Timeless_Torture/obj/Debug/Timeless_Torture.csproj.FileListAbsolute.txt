@@ -434,3 +434,6 @@ C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Deb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_RightWalk.xnb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Lose Screen.xnb
 C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\clock_ticking.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\clock_ticking.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Content\Lose Screen.xnb
+C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\clock_ticking.xnb
