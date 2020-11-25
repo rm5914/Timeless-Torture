@@ -832,8 +832,8 @@ namespace Timeless_Torture
 
                 case GameState.Pause:
                     {
-                        // Checking if they click the continue button
-                        if (pauseContinueButton.MouseClick(mouseState, previousMouseState))
+                        // Checking if they click the continue button or hit escape
+                        if (pauseContinueButton.MouseClick(mouseState, previousMouseState) || SingleKeyPress(Keys.Escape))
                         {
                             soundEffectInstance.Resume();
                             soundEffectInstance = buttonSound.CreateInstance();
