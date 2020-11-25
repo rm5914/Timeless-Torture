@@ -1210,8 +1210,8 @@ namespace Timeless_Torture
             shouldSpawnPortal = false;
 
             // Loading the first level
-            floor1 = new Floor(seventiesFloor, "TestLevel" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(seventiesFloor, "TestLevel" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
@@ -1316,7 +1316,7 @@ namespace Timeless_Torture
                     position = numGenerator.Next(0, current.ItemPositions.Count);
                     itemVector = current.ItemPositions[position].GetPosition();
                 }
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i], glowTextures[i], Color.White);
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Height / 5), textures[i], glowTextures[i], Color.White);
                 current.Items.Add(items[i]);
             }
         }
@@ -1378,8 +1378,8 @@ namespace Timeless_Torture
                 floor2.ItemPositions[i].Reset();
             }
 
-            floor1 = new Floor(currentFloorTexture, "TestLevel" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(currentFloorTexture, "TestLevel" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
