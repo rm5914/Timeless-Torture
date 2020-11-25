@@ -262,6 +262,7 @@ namespace Timeless_Torture
             timerMax = timer;
             footstepTimer = footstepTimerMax;
             timer = 5;
+
             difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
             numGenerator = new Random();
@@ -1210,8 +1211,8 @@ namespace Timeless_Torture
             shouldSpawnPortal = false;
 
             // Loading the first level
-            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
@@ -1241,6 +1242,33 @@ namespace Timeless_Torture
                     else if (floor1.FloorData[i, j] == "BurlyWood")
                     {
                         staircaseRectangle = floor1.FloorTiles[i, j];
+                    }
+                }
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    // Fireplace
+                    if (floor2.FloorData[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, floor2.FloorTiles[i, j], Color.White);
+                    }
+                    // Player Spawn
+                    else if (floor2.FloorData[i, j] == "DarkOliveGreen")
+                    {
+                        playerPosition = new Rectangle(floor2.FloorTiles[i, j].X, floor2.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
+                        currentFloor = 1;
+                    }
+                    // Portal Spawn
+                    else if (floor2.FloorData[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = floor2.FloorTiles[i, j];
+                    }
+                    // Staircase Spawn
+                    else if (floor2.FloorData[i, j] == "BurlyWood")
+                    {
+                        staircaseRectangle = floor2.FloorTiles[i, j];
                     }
                 }
             }
@@ -1378,8 +1406,8 @@ namespace Timeless_Torture
                 floor2.ItemPositions[i].Reset();
             }
 
-            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
@@ -1405,10 +1433,37 @@ namespace Timeless_Torture
                     {
                         portalRectangle = floor1.FloorTiles[i, j];
                     }
-                    // Staircase spawn
+                    // Staircase Spawn
                     else if (floor1.FloorData[i, j] == "BurlyWood")
                     {
                         staircaseRectangle = floor1.FloorTiles[i, j];
+                    }
+                }
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    // Fireplace
+                    if (floor2.FloorData[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, floor2.FloorTiles[i, j], Color.White);
+                    }
+                    // Player Spawn
+                    else if (floor2.FloorData[i, j] == "DarkOliveGreen")
+                    {
+                        player.Position = new Rectangle(floor2.FloorTiles[i, j].X, floor2.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
+                        currentFloor = 1;
+                    }
+                    // Portal Spawn
+                    else if (floor2.FloorData[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = floor2.FloorTiles[i, j];
+                    }
+                    // Staircase Spawn
+                    else if (floor2.FloorData[i, j] == "BurlyWood")
+                    {
+                        staircaseRectangle = floor2.FloorTiles[i, j];
                     }
                 }
             }
