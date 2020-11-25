@@ -834,8 +834,8 @@ namespace Timeless_Torture
 
                 case GameState.Pause:
                     {
-                        // Checking if they click the continue button
-                        if (pauseContinueButton.MouseClick(mouseState, previousMouseState))
+                        // Checking if they click the continue button or hit escape
+                        if (pauseContinueButton.MouseClick(mouseState, previousMouseState) || SingleKeyPress(Keys.Escape))
                         {
                             soundEffectInstance.Resume();
                             soundEffectInstance = buttonSound.CreateInstance();
@@ -959,8 +959,9 @@ namespace Timeless_Torture
                         GraphicsDevice.Clear(Color.Black);
 
                         // Writing actual instructions
-                        spriteBatch.DrawString(mainFont, "Find all the items in the house, then burn them in the fireplace!", new Vector2(12 * graphics.PreferredBackBufferWidth / 60, 1 * graphics.PreferredBackBufferHeight / 10), Color.White);
-                        spriteBatch.DrawString(mainFont, "Once all items are burned find the portal and escape!", new Vector2(15 * graphics.PreferredBackBufferWidth / 60, 2 * graphics.PreferredBackBufferHeight / 10), Color.White);
+
+                        spriteBatch.DrawString(mainFont, "Objective: Find all items within the house, and burn them in the fireplace!", new Vector2(8 * graphics.PreferredBackBufferWidth / 60, 1 * graphics.PreferredBackBufferHeight / 10), Color.White);
+                        spriteBatch.DrawString(mainFont, "Once all items are burned, a portal will open... find it and escape!", new Vector2(10 * graphics.PreferredBackBufferWidth / 60, 2 * graphics.PreferredBackBufferHeight / 10), Color.White);
                         spriteBatch.DrawString(mainFont, "Press WASD to move", new Vector2(6 * graphics.PreferredBackBufferWidth / 15, 3 * graphics.PreferredBackBufferHeight / 10), Color.White);
                         spriteBatch.DrawString(mainFont, "Press E to Interact with items", new Vector2(11 * graphics.PreferredBackBufferWidth / 30, 4 * graphics.PreferredBackBufferHeight / 10), Color.White);
 
