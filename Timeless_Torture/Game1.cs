@@ -728,6 +728,7 @@ namespace Timeless_Torture
                         // Checking if they want to pause
                         if (SingleKeyPress(Keys.Escape))
                         {
+                            soundEffectInstance.Pause();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
@@ -834,6 +835,7 @@ namespace Timeless_Torture
                         // Checking if they click the continue button
                         if (pauseContinueButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance.Resume();
                             soundEffectInstance = buttonSound.CreateInstance();
                             soundEffectInstance.Play();
                             previousGameState = gameState;
@@ -1307,7 +1309,7 @@ namespace Timeless_Torture
             }
             else if (difficulty == Difficulty.Medium)
             {
-                timerMax = 200;
+                timerMax = 300;
                 player.XMovement = 2;
                 player.YMovement = 2;
                 player.InventoryLimit = 2;
@@ -1380,6 +1382,9 @@ namespace Timeless_Torture
         {
             // Setting the current level of the game
             currentLevel++;
+
+            // Resetting the floor
+            currentFloor = 0;
 
             // Getting the current floor texture
             switch (currentLevel)
