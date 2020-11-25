@@ -139,6 +139,7 @@ namespace Timeless_Torture
         private Texture2D portal;
         private Texture2D bed;
         private Texture2D staircase;
+        private Texture2D inventory;
 
         // Different Screens
         private Texture2D mainMenuScreen;
@@ -355,6 +356,7 @@ namespace Timeless_Torture
             portal = Content.Load<Texture2D>("game portal");
             bed = Content.Load<Texture2D>("bed");
             staircase = Content.Load<Texture2D>("staircase");
+            inventory = Content.Load<Texture2D>("inventory");
 
             // Screens
             mainMenuScreen = Content.Load<Texture2D>("Menu Screen");
@@ -1127,7 +1129,8 @@ namespace Timeless_Torture
 
                         // Drawing the player
                         player.Draw(spriteBatch);
-                        player.DrawInventory(spriteBatch, mainFont);
+                        spriteBatch.Draw(inventory, new Vector2(player.X - 265, player.Y + 150), Color.White);
+                        player.DrawInventory(spriteBatch);
 
                         //Displaying the timer
                         string time = string.Format("{0:0.00}", timer);
