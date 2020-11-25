@@ -753,7 +753,9 @@ namespace Timeless_Torture
                             {
                                 fireplace.BurnItem(player);
                                 soundEffectInstance = burnSound.CreateInstance();
-                                    soundEffectInstance.Play();
+                                soundEffectInstance.Play();
+
+                                Console.WriteLine(fireplace.BurnedItems);
 
                                 if (fireplace.BurnedItems == items.Length)
                                 {
@@ -764,7 +766,7 @@ namespace Timeless_Torture
                             }
 
                             // Checking if they want to use the portal
-                            if (IsPlayerClose(player.Position, portalRectangle))
+                            if (IsPlayerClose(player.Position, portalRectangle) && shouldSpawnPortal)
                             {
                                 NextLevel();
                                 soundEffectInstance = portalTravelSound.CreateInstance();
@@ -1414,7 +1416,7 @@ namespace Timeless_Torture
                     {
                         // Victory screen
                         gameState = GameState.Victory;
-                        break;
+                        return;
                     }
             }
 
