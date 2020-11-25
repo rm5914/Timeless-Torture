@@ -10,6 +10,7 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/beeper glow.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/beeper.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/button_press.mp3</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/clock_ticking.mp3</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/club penguin glow.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/club penguin.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/door glow.png</File>
@@ -37,6 +38,7 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/item_pickup.mp3</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/lightsaber glow.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/lightsaber.png</File>
+    <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/Lose Screen.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/losing screen.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/Menu Screen.png</File>
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/Moldy Wall 1.png</File>
@@ -81,6 +83,8 @@
     <File>C:/Users/FR35H/Desktop/School/106/Game/Timeless_Torture/Content/zoopal plate.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
