@@ -414,3 +414,22 @@ C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_To
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_4.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_5.xnb
 C:\Users\riley\OneDrive\Desktop\RIT HW 2.0\GDAPS2.5\0TimelessTorture\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_6.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_1.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_2.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_3.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_4.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_5.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\footstep_6.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Menu Screen.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 1.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 2.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 3.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 4.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 5.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Moldy Wall 6.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Pause Screen.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_BackWalk.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_FrontWalk.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_LeftWalk.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Player_RightWalk.xnb
+C:\Users\FR35H\Desktop\School\106\Game\Timeless_Torture\bin\DesktopGL\AnyCPU\Debug\Content\Lose Screen.xnb

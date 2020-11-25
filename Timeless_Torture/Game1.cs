@@ -342,7 +342,7 @@ namespace Timeless_Torture
             // ambiance sound
             backgroundSound = Content.Load<Song>("horror_ambiance");
             MediaPlayer.Play(backgroundSound);
-            //MediaPlayer.IsRepeating = true; //keeps on endless loop
+            MediaPlayer.IsRepeating = true; //keeps on endless loop
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -505,7 +505,7 @@ namespace Timeless_Torture
             pauseOptionsButton.TextPosition = new Vector2(pauseOptionsButton.X + 35 * pauseOptionsButton.Position.Width / 100, pauseOptionsButton.Y + pauseOptionsButton.Position.Height / 4);
 
             // Exit button
-            pauseExitButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "EXIT",
+            pauseExitButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "QUIT",
                 mainFont, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2());
             pauseExitButton.TextPosition = new Vector2(pauseExitButton.X + 21 * pauseExitButton.Position.Width / 50, pauseExitButton.Y + pauseExitButton.Position.Height / 4);
 
