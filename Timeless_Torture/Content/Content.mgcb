@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:beeper.png
 
+#begin button_press.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:button_press.mp3
+
+#begin clock_ticking.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:clock_ticking.mp3
+
 #begin club penguin glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -193,6 +205,42 @@
 /processorParam:TextureFormat=Color
 /build:floor pattern.png
 
+#begin footstep_1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footstep_1.mp3
+
+#begin footstep_2.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footstep_2.mp3
+
+#begin footstep_3.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footstep_3.mp3
+
+#begin footstep_4.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footstep_4.mp3
+
+#begin footstep_5.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footstep_5.mp3
+
+#begin footstep_6.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:footstep_6.mp3
+
 #begin fourth floor pattern.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -217,6 +265,12 @@
 /processorParam:TextureFormat=Color
 /build:game portal.png
 
+#begin horror_ambiance.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:horror_ambiance.mp3
+
 #begin human left.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -240,6 +294,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:human right.png
+
+#begin inventory.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:inventory.png
 
 #begin ipod touch glow.png
 /importer:TextureImporter
@@ -301,6 +367,18 @@
 /processorParam:TextureFormat=Color
 /build:lightsaber.png
 
+#begin Lose Screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Lose Screen.png
+
 #begin losing screen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -312,6 +390,90 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:losing screen.png
+
+#begin Menu Screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu Screen.png
+
+#begin Moldy Wall 1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Moldy Wall 1.png
+
+#begin Moldy Wall 2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Moldy Wall 2.png
+
+#begin Moldy Wall 3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Moldy Wall 3.png
+
+#begin Moldy Wall 4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Moldy Wall 4.png
+
+#begin Moldy Wall 5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Moldy Wall 5.png
+
+#begin Moldy Wall 6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Moldy Wall 6.png
 
 #begin mood ring glow.png
 /importer:TextureImporter
@@ -336,6 +498,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:mood ring.png
+
+#begin Pause Screen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pause Screen.png
 
 #begin Pause.png
 /importer:TextureImporter
@@ -373,6 +547,18 @@
 /processorParam:TextureFormat=Color
 /build:play station.png
 
+#begin Player_BackWalk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player_BackWalk.png
+
 #begin Player_Front.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -384,6 +570,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player_Front.jpg
+
+#begin Player_FrontWalk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player_FrontWalk.png
+
+#begin Player_LeftWalk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player_LeftWalk.png
+
+#begin Player_RightWalk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player_RightWalk.png
 
 #begin pong machine glow.png
 /importer:TextureImporter
@@ -487,6 +709,12 @@
 /processorParam:TextureFormat=Color
 /build:staircase.png
 
+#begin stairs_sound.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:stairs_sound.mp3
+
 #begin tamagotchi glow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -547,7 +775,13 @@
 /processorParam:TextureFormat=Color
 /build:TT Buttons.png
 
-#begin victory screen.png
+#begin use_portal.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:use_portal.mp3
+
+#begin Victory Screen.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -557,7 +791,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:victory screen.png
+/build:Victory Screen.png
 
 #begin walkman glow.png
 /importer:TextureImporter

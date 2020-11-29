@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/Player_Front.jpg</SourceFile>
-  <SourceTime>2020-11-23T17:19:08.9321875-05:00</SourceTime>
+  <SourceTime>2020-11-24T02:35:12.9328464-05:00</SourceTime>
   <DestFile>C:/Users/riley/OneDrive/Desktop/RIT HW 2.0/GDAPS2.5/0TimelessTorture/Timeless_Torture/Content/bin/DesktopGL/Player_Front.xnb</DestFile>
-  <DestTime>2020-11-23T17:26:24.9810385-05:00</DestTime>
+  <DestTime>2020-11-24T02:36:46.53367-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

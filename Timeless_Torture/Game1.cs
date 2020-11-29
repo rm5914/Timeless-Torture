@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.ComponentModel.Design;
@@ -15,7 +16,7 @@ namespace Timeless_Torture
     /// </summary>
      
     //enum GameState
-    enum GameState { Menu, Options, Instructions, Game, Pause, GameOver };
+    enum GameState { Menu, Options, Instructions, Game, Pause, GameOver, Victory };
 
     // Used to control the difficulty of the game, only affects the game when the game starts
     enum Difficulty { Easy, Medium, Hard };
@@ -55,6 +56,11 @@ namespace Timeless_Torture
         //timer
         double timer;
         double timerMax;
+        bool timeCheck = true;
+
+        // Footstep timers
+        double footstepTimer;
+        double footstepTimerMax;
 
         //list to keep track of rectangles of floor tiles
         Rectangle[,] currentFloorTiles;
@@ -74,6 +80,10 @@ namespace Timeless_Torture
         Floor floor2;
         Floor[] floors;
         int currentFloor;
+
+        // Contains all the walls
+        Texture2D[] wallTypes;
+        Texture2D[,] walls;
 
         // The fireplace
         Fireplace fireplace;
@@ -101,12 +111,27 @@ namespace Timeless_Torture
 
         // Sounds
         private SoundEffectInstance soundEffectInstance;
+        private Song backgroundSound;
         private SoundEffect pickupSound;
         private SoundEffect portalSpawnSound;
         private SoundEffect burnSound;
+        private SoundEffect stairsSound;
+        private SoundEffect buttonSound;
+        private SoundEffect portalTravelSound;
+        private SoundEffect clockTicking;
+
+        private SoundEffect footstep1;
+        private SoundEffect footstep2;
+        private SoundEffect footstep3;
+        private SoundEffect footstep4;
+        private SoundEffect footstep5;
+        private SoundEffect footstep6;
 
         // Textures
-        private Texture2D texture;
+        private Texture2D playerFront;
+        private Texture2D playerBack;
+        private Texture2D playerRight;
+        private Texture2D playerLeft;
         private Texture2D button;
         private Texture2D title;
         private Texture2D pauseTitle;
@@ -115,6 +140,13 @@ namespace Timeless_Torture
         private Texture2D portal;
         private Texture2D bed;
         private Texture2D staircase;
+        private Texture2D inventory;
+
+        // Different Screens
+        private Texture2D mainMenuScreen;
+        private Texture2D victoryScreen;
+        private Texture2D pauseScreen;
+        private Texture2D loseScreen;
 
         // Floors
         private Texture2D currentFloorTexture;
@@ -231,6 +263,9 @@ namespace Timeless_Torture
             //path = path.Substring(0, path.Length - 31);
 
             timerMax = timer;
+            footstepTimer = footstepTimerMax;
+            timer = 5;
+
             difficulty = Difficulty.Medium;
             // TODO: Add your initialization logic here
             numGenerator = new Random();
@@ -263,11 +298,32 @@ namespace Timeless_Torture
             tensFloor = Content.Load<Texture2D>("fifth floor pattern");
             currentFloorTexture = seventiesFloor;
 
+            // loading the walls
+            walls = new Texture2D[20, 20];
+            wallTypes = new Texture2D[6];
+            wallTypes[0] = Content.Load<Texture2D>("Moldy Wall 1");
+            wallTypes[1] = Content.Load<Texture2D>("Moldy Wall 2");
+            wallTypes[2] = Content.Load<Texture2D>("Moldy Wall 3");
+            wallTypes[3] = Content.Load<Texture2D>("Moldy Wall 4");
+            wallTypes[4] = Content.Load<Texture2D>("Moldy Wall 5");
+            wallTypes[5] = Content.Load<Texture2D>("Moldy Wall 6");
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    walls[i, j] = wallTypes[numGenerator.Next(0, wallTypes.Length)];
+                }
+            }
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Making the player 
-            texture = Content.Load<Texture2D>("Player_Front");
+            playerFront = Content.Load<Texture2D>("Player_FrontWalk");
+            playerBack = Content.Load<Texture2D>("Player_BackWalk");
+            playerRight = Content.Load<Texture2D>("Player_RightWalk");
+            playerLeft = Content.Load<Texture2D>("Player_LeftWalk");
 
             //Making the camera
             camera = new Camera(GraphicsDevice.Viewport);
@@ -276,6 +332,22 @@ namespace Timeless_Torture
             pickupSound = Content.Load<SoundEffect>("item_pickup");
             portalSpawnSound = Content.Load<SoundEffect>("portal_Spawn");
             burnSound = Content.Load<SoundEffect>("item_burn");
+            stairsSound = Content.Load<SoundEffect>("stairs_sound");
+            buttonSound = Content.Load<SoundEffect>("button_press");
+            portalTravelSound = Content.Load<SoundEffect>("use_portal");
+            clockTicking = Content.Load<SoundEffect>("clock_ticking");
+
+            footstep1 = Content.Load<SoundEffect>("footstep_1");
+            footstep2 = Content.Load<SoundEffect>("footstep_2");
+            footstep3 = Content.Load<SoundEffect>("footstep_3");
+            footstep4 = Content.Load<SoundEffect>("footstep_4");
+            footstep5 = Content.Load<SoundEffect>("footstep_5");
+            footstep6 = Content.Load<SoundEffect>("footstep_6");
+
+            // ambiance sound
+            backgroundSound = Content.Load<Song>("horror_ambiance");
+            MediaPlayer.Play(backgroundSound);
+            MediaPlayer.IsRepeating = true; //keeps on endless loop
 
             // initializing textures
             button = Content.Load<Texture2D>("TT Buttons");
@@ -286,8 +358,15 @@ namespace Timeless_Torture
             portal = Content.Load<Texture2D>("game portal");
             bed = Content.Load<Texture2D>("bed");
             staircase = Content.Load<Texture2D>("staircase");
+            inventory = Content.Load<Texture2D>("inventory");
 
-            // Secenties item textures
+            // Screens
+            mainMenuScreen = Content.Load<Texture2D>("Menu Screen");
+            victoryScreen = Content.Load<Texture2D>("Victory Screen");
+            pauseScreen = Content.Load<Texture2D>("Pause Screen");
+            loseScreen = Content.Load<Texture2D>("Lose Screen");
+
+            // Seventies item textures
             lightsaber = Content.Load<Texture2D>("lightsaber");
             pongMachine = Content.Load<Texture2D>("pong machine");
             moodRing = Content.Load<Texture2D>("mood ring");
@@ -391,7 +470,7 @@ namespace Timeless_Torture
             mainFont = Content.Load<SpriteFont>("mainFont");
 
             // All positions
-            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, graphics.PreferredBackBufferHeight / 5 - title.Height / 2);
+            titlePosition = new Vector2(graphics.PreferredBackBufferWidth / 2 - 13 * title.Width / 25, 36 * graphics.PreferredBackBufferHeight / 100 - title.Height / 2);
 
             // Creating all of the buttons
             // Main Menu buttons
@@ -432,7 +511,7 @@ namespace Timeless_Torture
             pauseOptionsButton.TextPosition = new Vector2(pauseOptionsButton.X + 35 * pauseOptionsButton.Position.Width / 100, pauseOptionsButton.Y + pauseOptionsButton.Position.Height / 4);
 
             // Exit button
-            pauseExitButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "EXIT",
+            pauseExitButton = new Button(new Rectangle(graphics.PreferredBackBufferWidth / 2 - 3 * button.Width / 2, 9 * graphics.PreferredBackBufferHeight / 10 - button.Height / 2, 3 * button.Width, button.Height / 2), button, "QUIT",
                 mainFont, Color.Blue, Color.DarkGoldenrod, Color.Black, Color.DarkGreen, new Vector2());
             pauseExitButton.TextPosition = new Vector2(pauseExitButton.X + 21 * pauseExitButton.Position.Width / 50, pauseExitButton.Y + pauseExitButton.Position.Height / 4);
 
@@ -510,9 +589,14 @@ namespace Timeless_Torture
             {
                 case GameState.Menu:
                     {
+                        //Starting the timer
+                        timer = timer - gameTime.ElapsedGameTime.TotalSeconds;
+
                         // Checking if they click the start button
                         if (startButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             GameStart();
                             previousGameState = gameState;
                             gameState = GameState.Game;
@@ -521,6 +605,8 @@ namespace Timeless_Torture
                         // checking if they click the instructions button
                         if (instructionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Instructions;
                         }
@@ -528,6 +614,8 @@ namespace Timeless_Torture
                         // Checking if they want to edit the options of the game
                         if (optionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Options;
                         }
@@ -535,6 +623,8 @@ namespace Timeless_Torture
                         // Checking if they want to exit the game
                         if (exitButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             this.Exit();
                         }
                         break;
@@ -545,21 +635,31 @@ namespace Timeless_Torture
                         //checking if they click the back button
                         if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
@@ -571,21 +671,31 @@ namespace Timeless_Torture
                         //checking if they click the back button
                         if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Menu)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         else if (backButton.MouseClick(mouseState, previousMouseState) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
                         else if (SingleKeyPress(Keys.Back) && previousGameState == GameState.Pause)
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
@@ -600,6 +710,15 @@ namespace Timeless_Torture
                         //updating the camera in game
                         camera.Move(player);
 
+                        // timer ticking, 15s remaining
+                        if(timer<=15 && timeCheck)
+                        {
+                            timeCheck = false;
+                            soundEffectInstance = clockTicking.CreateInstance();
+                            soundEffectInstance.Play();
+                        }
+
+                        // game lose condition
                         if (timer <= 0)
                         {
                             previousGameState = gameState;
@@ -609,6 +728,7 @@ namespace Timeless_Torture
                         // Checking if they want to pause
                         if (SingleKeyPress(Keys.Escape))
                         {
+                            soundEffectInstance.Pause();
                             previousGameState = gameState;
                             gameState = GameState.Pause;
                         }
@@ -629,11 +749,13 @@ namespace Timeless_Torture
                             }
 
                             // Checking if they want to use the fireplace
-                            if (player.Inventory[0] != null)
+                            if (player.Inventory[0] != null && IsPlayerClose(player.Position, fireplace.Position))
                             {
                                 fireplace.BurnItem(player);
                                 soundEffectInstance = burnSound.CreateInstance();
-                                    soundEffectInstance.Play();
+                                soundEffectInstance.Play();
+
+                                Console.WriteLine(fireplace.BurnedItems);
 
                                 if (fireplace.BurnedItems == items.Length)
                                 {
@@ -644,52 +766,106 @@ namespace Timeless_Torture
                             }
 
                             // Checking if they want to use the portal
-                            if (IsPlayerClose(player.Position, portalRectangle))
+                            if (IsPlayerClose(player.Position, portalRectangle) && shouldSpawnPortal)
                             {
                                 NextLevel();
+                                soundEffectInstance = portalTravelSound.CreateInstance();
+                                soundEffectInstance.Play();
                             }
 
+                            // Checking if they want to go up/down stairs
                             else if (IsPlayerClose(player.Position, staircaseRectangle))
                             {
                                 if (currentFloor == 0)
                                 {
                                     currentFloor++;
+                                    soundEffectInstance = stairsSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                 }
                                 else
                                 {
+                                    soundEffectInstance = stairsSound.CreateInstance();
+                                    soundEffectInstance.Play();
                                     currentFloor = 0;
                                 }
                             }
                         }
 
+                        // Checking for player movement
                         player.MovePlayer(keyState);
+
+                        // checking for player movement
+                        footstepTimer = footstepTimer - gameTime.ElapsedGameTime.TotalSeconds; //updating footstep timer
+                        Random rand = new Random();
+                        if (PlayFootsteps() == true) //footsteps
+                        {
+                            int footstepNum = rand.Next(1, 7);
+                            switch(footstepNum)
+                            {
+                                case 1:
+                                    soundEffectInstance = footstep1.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 2:
+                                    soundEffectInstance = footstep2.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 3:
+                                    soundEffectInstance = footstep3.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 4:
+                                    soundEffectInstance = footstep4.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 5:
+                                    soundEffectInstance = footstep5.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                                case 6:
+                                    soundEffectInstance = footstep6.CreateInstance();
+                                    soundEffectInstance.Play();
+                                    break;
+                            }
+                            
+                        }
                         break;
                     }
 
                 case GameState.Pause:
                     {
-                        // Checking if they click the continue button
-                        if (pauseContinueButton.MouseClick(mouseState, previousMouseState))
+                        // Checking if they click the continue button or hit escape
+                        if (pauseContinueButton.MouseClick(mouseState, previousMouseState) || SingleKeyPress(Keys.Escape))
                         {
+                            soundEffectInstance.Resume();
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Game;
                         }
                         // checking if they click the instructions button
                         if (pauseInstructionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Instructions;
                         }
                         // Checking if they want to edit the options of the game
                         if (pauseOptionsButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
                             gameState = GameState.Options;
                         }
                         // Checking if they want to exit to the menu
                         if (pauseExitButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
                         break;
@@ -699,10 +875,25 @@ namespace Timeless_Torture
                     {
                         if(SingleKeyPress(Keys.Enter))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             previousGameState = gameState;
+                            timer = 0;
                             gameState = GameState.Menu;
                         }
 
+                        break;
+                    }
+                case GameState.Victory:
+                    {
+                        if (SingleKeyPress(Keys.Enter))
+                        {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
+                            previousGameState = gameState;
+                            gameState = GameState.Menu;
+                            timer = 0;
+                        }
                         break;
                     }
             }
@@ -729,24 +920,30 @@ namespace Timeless_Torture
                         //Changing Background Color
                         GraphicsDevice.Clear(Color.Black);
 
-                        // Title
-                        spriteBatch.Draw(title, titlePosition, Color.White);
+                        // Drawing the background
+                        spriteBatch.Draw(mainMenuScreen, new Vector2(0, 0), Color.White);
 
-                        // Start Button
-                        startButton.PressButton(mouseState);
-                        startButton.Draw(spriteBatch);
+                        if (timer <= 0)
+                        {
+                            // Title
+                            spriteBatch.Draw(title, titlePosition, Color.White);
 
-                        // Istructions Button
-                        instructionsButton.PressButton(mouseState);
-                        instructionsButton.Draw(spriteBatch);
+                            // Start Button
+                            startButton.PressButton(mouseState);
+                            startButton.Draw(spriteBatch);
 
-                        // Options Button
-                        optionsButton.PressButton(mouseState);
-                        optionsButton.Draw(spriteBatch);
+                            // Istructions Button
+                            instructionsButton.PressButton(mouseState);
+                            instructionsButton.Draw(spriteBatch);
 
-                        // Exit Button
-                        exitButton.PressButton(mouseState);
-                        exitButton.Draw(spriteBatch);
+                            // Options Button
+                            optionsButton.PressButton(mouseState);
+                            optionsButton.Draw(spriteBatch);
+
+                            // Exit Button
+                            exitButton.PressButton(mouseState);
+                            exitButton.Draw(spriteBatch);
+                        }
 
                         spriteBatch.End();
 
@@ -762,8 +959,9 @@ namespace Timeless_Torture
                         GraphicsDevice.Clear(Color.Black);
 
                         // Writing actual instructions
-                        spriteBatch.DrawString(mainFont, "Find all the items in the house, then burn them in the fireplace!", new Vector2(12 * graphics.PreferredBackBufferWidth / 60, 1 * graphics.PreferredBackBufferHeight / 10), Color.White);
-                        spriteBatch.DrawString(mainFont, "Once all items are burned find the portal and escape!", new Vector2(15 * graphics.PreferredBackBufferWidth / 60, 2 * graphics.PreferredBackBufferHeight / 10), Color.White);
+
+                        spriteBatch.DrawString(mainFont, "Objective: Find all items within the house, and burn them in the fireplace!", new Vector2(8 * graphics.PreferredBackBufferWidth / 60, 1 * graphics.PreferredBackBufferHeight / 10), Color.White);
+                        spriteBatch.DrawString(mainFont, "Once all items are burned, a portal will open... find it and escape!", new Vector2(10 * graphics.PreferredBackBufferWidth / 60, 2 * graphics.PreferredBackBufferHeight / 10), Color.White);
                         spriteBatch.DrawString(mainFont, "Press WASD to move", new Vector2(6 * graphics.PreferredBackBufferWidth / 15, 3 * graphics.PreferredBackBufferHeight / 10), Color.White);
                         spriteBatch.DrawString(mainFont, "Press E to Interact with items", new Vector2(11 * graphics.PreferredBackBufferWidth / 30, 4 * graphics.PreferredBackBufferHeight / 10), Color.White);
 
@@ -809,6 +1007,8 @@ namespace Timeless_Torture
                         // Making the difficulty button stay pressed after 1 click
                         if (difficultyButton.MouseClick(mouseState, previousMouseState))
                         {
+                            soundEffectInstance = buttonSound.CreateInstance();
+                            soundEffectInstance.Play();
                             difficultyButton.IsPressed = !difficultyButton.IsPressed;
                         }
 
@@ -821,22 +1021,30 @@ namespace Timeless_Torture
                             // Easy Difficulty Button
                             if (easyDifficulty.MouseClick(mouseState, previousMouseState))
                             {
+                                soundEffectInstance = buttonSound.CreateInstance();
+                                soundEffectInstance.Play();
                                 easyDifficulty.IsPressed = !easyDifficulty.IsPressed;
                                 mediumDifficulty.IsPressed = false;
                                 hardDifficulty.IsPressed = false;
 
                                 difficulty = Difficulty.Easy;
                             }
+                            // Medium Difficulty Button
                             else if (mediumDifficulty.MouseClick(mouseState, previousMouseState))
                             {
+                                soundEffectInstance = buttonSound.CreateInstance();
+                                soundEffectInstance.Play();
                                 easyDifficulty.IsPressed = false;
                                 mediumDifficulty.IsPressed = !mediumDifficulty.IsPressed;
                                 hardDifficulty.IsPressed = false;
 
                                 difficulty = Difficulty.Medium;
                             }
+                            // Hard Difficulty Button
                             else if (hardDifficulty.MouseClick(mouseState, previousMouseState))
                             {
+                                soundEffectInstance = buttonSound.CreateInstance();
+                                soundEffectInstance.Play();
                                 easyDifficulty.IsPressed = false;
                                 mediumDifficulty.IsPressed = false;
                                 hardDifficulty.IsPressed = !hardDifficulty.IsPressed;
@@ -879,7 +1087,7 @@ namespace Timeless_Torture
                             {
                                 if (floors[currentFloor].FloorData[i, j] == "Black")
                                 {
-                                    spriteBatch.Draw(currentFloorTexture, currentFloorTiles[i, j], Color.Black);
+                                    spriteBatch.Draw(walls[i, j], currentFloorTiles[i, j], Color.White);
                                     player.PlayerCollision(currentFloorTiles[i, j]);
                                 }
                                 else if (!IsPlayerCloseLarge(player.Position, currentFloorTiles[i, j]))
@@ -927,14 +1135,14 @@ namespace Timeless_Torture
                             }
                         }
 
+                        // Drawing the player
+                        player.Draw(spriteBatch);
+                        spriteBatch.Draw(inventory, new Vector2(player.X - 265, player.Y + 150), Color.White);
+                        player.DrawInventory(spriteBatch);
+
                         //Displaying the timer
                         string time = string.Format("{0:0.00}", timer);
-                        spriteBatch.DrawString(mainFont, time, new Vector2(GraphicsDevice.Viewport.Width / 2, 0), Color.White);
-                        player.Draw(spriteBatch);
-
-
-                        //display inventory
-                        spriteBatch.DrawString(mainFont, "Inventory", new Vector2(350, 650), Color.White);
+                        spriteBatch.DrawString(mainFont, time, new Vector2(player.X - 25, player.Y - 220), Color.White);
 
                         spriteBatch.End();
                         break;
@@ -945,7 +1153,7 @@ namespace Timeless_Torture
                         spriteBatch.Begin();
 
                         // Making the background
-                        spriteBatch.Draw(button, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.RoyalBlue); // BlueViolet, DarkMagenta, MediumPurple, CadetBlue, DodgerBlue
+                        spriteBatch.Draw(pauseScreen, new Vector2(0, 0), Color.White);
 
                         // Pause title
                         spriteBatch.Draw(pauseTitle, titlePosition, Color.White);
@@ -974,7 +1182,16 @@ namespace Timeless_Torture
                     {
                         spriteBatch.Begin();
 
-                        spriteBatch.DrawString(mainFont, "Game Over, Press enter to continue", new Vector2(GraphicsDevice.Viewport.Width / 3, 0), Color.Black);
+                        spriteBatch.Draw(loseScreen, new Vector2(0, 0), Color.White);
+
+                        spriteBatch.End();
+                        break;
+                    }
+                case GameState.Victory:
+                    {
+                        spriteBatch.Begin();
+
+                        spriteBatch.Draw(victoryScreen, new Vector2(0, 0), Color.White);
 
                         spriteBatch.End();
                         break;
@@ -1014,8 +1231,8 @@ namespace Timeless_Torture
             shouldSpawnPortal = false;
 
             // Loading the first level
-            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(seventiesFloor, "Level" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
@@ -1034,7 +1251,7 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        playerPosition = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")
@@ -1048,13 +1265,41 @@ namespace Timeless_Torture
                     }
                 }
             }
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    // Fireplace
+                    if (floor2.FloorData[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, floor2.FloorTiles[i, j], Color.White);
+                    }
+                    // Player Spawn
+                    else if (floor2.FloorData[i, j] == "DarkOliveGreen")
+                    {
+                        playerPosition = new Rectangle(floor2.FloorTiles[i, j].X, floor2.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
+                        currentFloor = 1;
+                    }
+                    // Portal Spawn
+                    else if (floor2.FloorData[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = floor2.FloorTiles[i, j];
+                    }
+                    // Staircase Spawn
+                    else if (floor2.FloorData[i, j] == "BurlyWood")
+                    {
+                        staircaseRectangle = floor2.FloorTiles[i, j];
+                    }
+                }
+            }
 
             // Spawning the player
-            player = new Player(texture, playerPosition, 1);
+            player = new Player(playerFront, playerBack, playerRight, playerLeft, playerPosition, 1);
             player.ResetInventory();
 
             // Resetting everything
             fireplace.Reset();
+            timeCheck = true;
 
             // Changing the settings based on difficulty
             // These are the max settings, any higher speed would cause problems with the player collision
@@ -1083,6 +1328,7 @@ namespace Timeless_Torture
             timer = timerMax;
             PlaceItems(seventiesItems, seventiesGlow);
 
+            footstepTimerMax = 0.33; //0.33s.. the length of each of the footstep mp3s
         }
 
         /// <summary>
@@ -1119,7 +1365,7 @@ namespace Timeless_Torture
                     position = numGenerator.Next(0, current.ItemPositions.Count);
                     itemVector = current.ItemPositions[position].GetPosition();
                 }
-                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Height / 5), new Rectangle(350 + i * 20, 700 + i * 20, textures[i].Width / 10, textures[i].Height / 10), textures[i], glowTextures[i], Color.White);
+                items[i] = new Item(new Rectangle((int)itemVector.X, (int)itemVector.Y, textures[i].Width / 5, textures[i].Height / 5), textures[i], glowTextures[i], Color.White);
                 current.Items.Add(items[i]);
             }
         }
@@ -1139,6 +1385,9 @@ namespace Timeless_Torture
         {
             // Setting the current level of the game
             currentLevel++;
+
+            // Resetting the floor
+            currentFloor = 0;
 
             // Getting the current floor texture
             switch (currentLevel)
@@ -1166,8 +1415,8 @@ namespace Timeless_Torture
                 case 5:
                     {
                         // Victory screen
-                        gameState = GameState.GameOver;
-                        break;
+                        gameState = GameState.Victory;
+                        return;
                     }
             }
 
@@ -1181,8 +1430,8 @@ namespace Timeless_Torture
                 floor2.ItemPositions[i].Reset();
             }
 
-            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
-            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2UNFINISHED1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor1 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor1.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
+            floor2 = new Floor(currentFloorTexture, "Level" + currentLevel + "Floor2.level", graphics.PreferredBackBufferWidth / 20, graphics.PreferredBackBufferHeight / 20);
 
             // Initializing floors
             floors = new Floor[2];
@@ -1201,17 +1450,44 @@ namespace Timeless_Torture
                     // Player Spawn
                     else if (floor1.FloorData[i, j] == "DarkOliveGreen")
                     {
-                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, texture.Width / 8, texture.Height / 8);
+                        player.Position = new Rectangle(floor1.FloorTiles[i, j].X, floor1.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
                     }
                     // Portal Spawn
                     else if (floor1.FloorData[i, j] == "DarkBlue")
                     {
                         portalRectangle = floor1.FloorTiles[i, j];
                     }
-                    // Staircase spawn
+                    // Staircase Spawn
                     else if (floor1.FloorData[i, j] == "BurlyWood")
                     {
                         staircaseRectangle = floor1.FloorTiles[i, j];
+                    }
+                }
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    // Fireplace
+                    if (floor2.FloorData[i, j] == "Red")
+                    {
+                        fireplace = new Fireplace(fireplaceTexture, fireplaceGlowTexture, floor2.FloorTiles[i, j], Color.White);
+                    }
+                    // Player Spawn
+                    else if (floor2.FloorData[i, j] == "DarkOliveGreen")
+                    {
+                        player.Position = new Rectangle(floor2.FloorTiles[i, j].X, floor2.FloorTiles[i, j].Y, playerFront.Width / 16, playerFront.Height / 22);
+                        currentFloor = 1;
+                    }
+                    // Portal Spawn
+                    else if (floor2.FloorData[i, j] == "DarkBlue")
+                    {
+                        portalRectangle = floor2.FloorTiles[i, j];
+                    }
+                    // Staircase Spawn
+                    else if (floor2.FloorData[i, j] == "BurlyWood")
+                    {
+                        staircaseRectangle = floor2.FloorTiles[i, j];
                     }
                 }
             }
@@ -1246,6 +1522,7 @@ namespace Timeless_Torture
             fireplace.Reset();
             shouldSpawnPortal = false;
             timer = timerMax;
+            timeCheck = true;
         }
 
         /// <summary>
@@ -1279,6 +1556,18 @@ namespace Timeless_Torture
             {
                 return false;
             }
+        }
+        public bool PlayFootsteps()
+        {
+            if (
+                (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.D))
+                && footstepTimer<=0)
+            {
+                footstepTimer = footstepTimerMax; //resets timer
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
